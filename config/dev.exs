@@ -25,7 +25,9 @@ config :lv13, Lv13Web.Endpoint,
   secret_key_base: "5sfD5+Vg0Ke84RzRth1vBfWTXqFsV7BUU/2KSjku6hiL1bpjDBVjZYzzuEFERF5Y",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    # Start the tailwind watcher by calling Tailwind.install_and_run(:default, args)
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
