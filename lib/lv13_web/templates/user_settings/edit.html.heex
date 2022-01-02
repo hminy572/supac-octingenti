@@ -1,0 +1,121 @@
+<div class="flex justify-center mt-6">
+  <div class="w-screen sm:w-11/12 md:w-9/12 lg:w-7/12 xl:w-5/12">
+    <div class="">
+      <span class="text-xl m-6">Change name</span>
+      <.form let={f} for={@name_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_name" class="border-2 border-slate-400 rounded-lg m-5 p-5 shadow-md">
+        <%= if @name_changeset.action do %>
+          <div class="alert alert-danger">
+            <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= hidden_input f, :action, name: "action", value: "update_name" %>
+
+        <%= label f, :name, class: "block" %>
+        <%= text_input f, :name, required: true, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+        <span class="text-red-500"><%= error_tag f, :name %></span>
+        <div>
+          <%= submit "Change name", class: "
+            border-l-4 border-l-slate-200
+            border-t-4 border-t-slate-200
+            border-r-4 border-r-slate-400
+            border-b-4 border-b-slate-400
+            bg-slate-100 hover:bg-slate-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-slate-800 hover:text-slate-900
+            font-bold rounded-xl" %>
+        </div>
+      </.form>
+    </div>
+
+    <div class="">
+      <span class="text-xl m-6">Change email</span>
+
+      <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email" class="border-2 border-slate-400 rounded-lg m-5 p-5 shadow-md">
+        <%= if @email_changeset.action do %>
+          <div class="alert alert-danger">
+            <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= hidden_input f, :action, name: "action", value: "update_email" %>
+
+        <%= label f, :email, class: "block" %>
+        <%= email_input f, :email, required: true, class: "
+          block shadow appearance-none border rounded
+          w-full mb-2 py-2 px-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+        <span class="text-red-500"><%= error_tag f, :email %></span>
+
+        <%= label f, :current_password, for: "current_password_for_email", class: "block" %>
+        <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+        <span class="text-red-500"><%= error_tag f, :current_password %></span>
+
+        <div>
+          <%= submit "Change email", class: "
+            border-l-4 border-l-slate-200
+            border-t-4 border-t-slate-200
+            border-r-4 border-r-slate-400
+            border-b-4 border-b-slate-400
+            bg-slate-100 hover:bg-slate-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-slate-800 hover:text-slate-900
+            font-bold rounded-xl"  %>
+        </div>
+      </.form>
+    </div>
+
+    <div class="">
+      <span class="text-xl m-6">Change password</span>
+
+      <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password" class="border-2 border-slate-400 rounded-lg m-5 p-5 shadow-md">
+        <%= if @password_changeset.action do %>
+          <div class="alert alert-danger">
+            <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= hidden_input f, :action, name: "action", value: "update_password" %>
+
+        <%= label f, :password, "New password", class: "block" %>
+        <%= password_input f, :password, required: true, class: "
+          block shadow appearance-none border rounded
+          w-full mb-2 py-2 px-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+        <span class="text-red-500"><%= error_tag f, :password %></span>
+
+        <%= label f, :password_confirmation, "Confirm new password", class: "block" %>
+        <%= password_input f, :password_confirmation, required: true, class: "
+          block shadow appearance-none border rounded
+          w-full mb-2 py-2 px-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+        <span class="text-red-500"><%= error_tag f, :password_confirmation %></span>
+
+        <%= label f, :current_password, for: "current_password_for_password", class: "block" %>
+        <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+        <span class="text-red-500"><%= error_tag f, :current_password %></span>
+
+        <div>
+          <%= submit "Change password", class: "
+            border-l-4 border-l-slate-200
+            border-t-4 border-t-slate-200
+            border-r-4 border-r-slate-400
+            border-b-4 border-b-slate-400
+            bg-slate-100 hover:bg-slate-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-slate-800 hover:text-slate-900
+            font-bold rounded-xl"  %>
+        </div>
+      </.form>
+    </div>
+  </div>
+</div>
