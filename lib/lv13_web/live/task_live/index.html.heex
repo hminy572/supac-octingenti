@@ -1,0 +1,57 @@
+<div style="display: flex; justify-content: space-between;">
+  <.form
+    let={f}
+    for={:task_search}
+    id="task-search"
+    phx-submit="task_search">
+
+    <%= search_input f, :term, placeholder: "🔍", autocomplete: "off", class: "rounded-md ml-4 h-9 w-28" %>
+    <%= error_tag f, :term %>
+  </.form>
+
+  <span><%= live_patch "New Task", to: Routes.task_index_path(@socket, :new), class: "new_one" %></span>
+</div>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.task_index_path(@socket, :index)}>
+    <.live_component
+      module={Lv13Web.TaskLive.FormComponent}
+      id={@task.id || :new}
+      title={@page_title}
+      action={@live_action}
+      task={@task}
+      current_user={@current_user}
+      return_to={Routes.task_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>DUE DATE</th>
+      <th>PERSON IN CHARGE</th>
+      <th>PRIORITY</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="tasks">
+    <%= for task <- @tasks do %>
+      <tr id={"task-#{task.id}"}>
+        <td><%= task.id %></td>
+        <td><%= task.name %></td>
+        <td><%= task.due_date %></td>
+        <td><%= task.person_in_charge %></td>
+        <td><%= task.priority %></td>
+
+        <td>
+          <span><%= live_patch "Edit", to: Routes.task_index_path(@socket, :edit, task) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: task.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

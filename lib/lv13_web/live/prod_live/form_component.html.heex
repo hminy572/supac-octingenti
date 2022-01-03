@@ -1,0 +1,40 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="prod-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+
+    <%= label f, :price %>
+    <%= number_input f, :price %>
+    <%= error_tag f, :price %>
+
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+
+  <%= if @action == :edit do %>
+    <div>
+      <div>
+        <strong>Appointments</strong>
+        <%= if @appo_id do %>
+          <a phx-click="add_prod_to_appo" phx-target={@myself} href="#" class="add_entry">Add Prod to Appointment</a>
+        <% else %>
+          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{prod_id: @prod.id}), class: "add_entry" %>
+        <% end %>
+      </div>
+      <%= for appo <- @prod.appos do %>
+        <div><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo) %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

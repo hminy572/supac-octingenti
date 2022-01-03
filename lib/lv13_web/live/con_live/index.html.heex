@@ -1,0 +1,55 @@
+<div style="display: flex; justify-content: space-between;">
+  <.form
+    let={f}
+    for={:con_search}
+    id="con-search"
+    phx-submit="con_search">
+
+    <%= search_input f, :term, placeholder: "🔍", autocomplete: "off", class: "rounded-md ml-4 h-9 w-28" %>
+    <%= error_tag f, :term %>
+  </.form>
+
+  <span><%= live_patch "New Con", to: Routes.con_index_path(@socket, :new), class: "new_one" %></span>
+</div>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.con_index_path(@socket, :index)}>
+    <.live_component
+      module={Lv13Web.ConLive.FormComponent}
+      id={@con.id || :new}
+      title={@page_title}
+      action={@live_action}
+      con={@con}
+      current_user={@current_user}
+      return_to={Routes.con_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>POSITION</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="cons">
+    <%= for con <- @cons do %>
+      <tr id={"con-#{con.id}"}>
+        <td><%= con.id %></td>
+        <td><%= con.name %></td>
+        <td><%= con.email %></td>
+        <td><%= con.position %></td>
+
+        <td>
+          <span><%= live_patch "Edit", to: Routes.con_index_path(@socket, :edit, con) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: con.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

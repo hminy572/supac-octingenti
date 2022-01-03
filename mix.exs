@@ -51,7 +51,12 @@ defmodule Lv13.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:phx_gen_tailwind, "~> 0.1.3"}
+      {:phx_gen_tailwind, "~> 0.1.3"},
+      {:faker, "~> 0.17.0"},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:contex, "~> 0.4.0"},
+      {:map_diff, "~> 1.3"},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
 

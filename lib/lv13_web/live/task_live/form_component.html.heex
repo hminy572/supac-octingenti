@@ -1,0 +1,49 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="task-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+
+    <%= hidden_input f, :com_id %>
+
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+
+    <%= label f, :due_date %>
+    <%= date_input f, :due_date %>
+    <%= error_tag f, :due_date %>
+
+    <%= label f, :person_in_charge %>
+    <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name() %>
+    <%= error_tag f, :person_in_charge %>
+
+    <%= label f, :content %>
+    <%= textarea f, :content %>
+    <%= error_tag f, :content %>
+
+    <%= label f, :priority %>
+    <%= select f, :priority, Ecto.Enum.values(Lv13.Sup.Task, :priority) %>
+    <%= error_tag f, :priority %>
+
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+
+<%= if @action == :edit do %>
+  <div><strong>Company</strong></div>
+    <div>
+      <%= if @task.com do %>
+        <%= live_redirect @task.com.name, to: Routes.com_index_path(@socket, :edit,@task.com) %>
+      <% else %>
+        <a phx-click="add_company" phx-target={@myself} href="#" class="add_entry">Add Company</a>
+      <% end %>
+    </div>
+<% end %>
+</div>

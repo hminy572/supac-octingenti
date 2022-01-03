@@ -1,35 +1,35 @@
-<header>
-  <div class="flex justify-center">
-    <div class="flex justify-center">
-      <a href="/" class="font-serif bg-blue-300">Supac</a>
-      <a href="/" class={if @active_tab == :chart, do: "bg-green-300", else: ""}>Chart</a>
-      <a href="/leads" class={if @active_tab == :lead, do: "bg-green-300", else: ""}>Lead</a>
-      <a href="/cons" class={if @active_tab == :con, do: "bg-green-300", else: ""}>Con</a>
-      <a href="/coms" class={if @active_tab == :com, do: "bg-green-300", else: ""}>Com</a>
-      <a href="/appos" class={if @active_tab == :appo, do: "bg-green-300", else: ""}>Appo</a>
-      <a href="/tasks" class={if @active_tab == :task, do: "bg-green-300", else: ""}>Task</a>
-      <a href="/prods" class={if @active_tab == :prod, do: "bg-green-300", else: ""}>Prod</a>
+<header class="w-full">
+  <div class="flex justify-between bg-amber-100">
+    <div class="flex mt-4 overflow-x-scroll">
+      <a href="/" class="font-serif text-2xl text-amber-700 font-bold mx-2">Supac</a>
+      <a href="/" class={Lv13Web.Nav.tab_style(@active_tab, :chart)}>Chart</a>
+      <a href="/leads" class={Lv13Web.Nav.tab_style(@active_tab, :lead)}>Lead</a>
+      <a href="/cons" class={Lv13Web.Nav.tab_style(@active_tab, :con)}>Con</a>
+      <a href="/coms" class={Lv13Web.Nav.tab_style(@active_tab, :com)}>Com</a>
+      <a href="/appos" class={Lv13Web.Nav.tab_style(@active_tab, :appo)}>Appo</a>
+      <a href="/tasks" class={Lv13Web.Nav.tab_style(@active_tab, :task)}>Task</a>
+      <a href="/prods" class={Lv13Web.Nav.tab_style(@active_tab, :prod)}>Prod</a>
       <form action="/search" method="get" class="search_form">
-        <input type="search" class="search_input" style="width:100px;" name="term" value="" placeholder="🔍" autocomplete="off">
+        <input type="search" class="rounded-md ml-4 h-9 w-28" name="term" value="" placeholder="🔍" autocomplete="off">
       </form>
     </div>
 
-    <div>
+    <div class="mx-2 mt-1">
       <%= if @current_user do %>
         <div><%= @current_user.name %></div>
         <div>
-          <%= link to: Routes.user_settings_path(@socket, :edit) do%>
+          <%= link to: Routes.user_settings_path(@socket, :edit), class: "hover:underline" do%>
             Settings
           <% end %>
         </div>
         <div>
-          <%= link to: Routes.user_session_path(@socket, :delete), method: :delete do %>
+          <%= link to: Routes.user_session_path(@socket, :delete), method: :delete, class: "hover:underline" do %>
             Logout
           <% end %>
         </div>
       <% else %>
-        <div><%= link "Register", to: Routes.user_registration_path(@socket, :new) %></div>
-        <div><%= link "Log in", to: Routes.user_session_path(@socket, :new) %></div>
+        <div><%= link "Register", to: Routes.user_registration_path(@socket, :new), class: "hover:underline" %></div>
+        <div><%= link "Log in", to: Routes.user_session_path(@socket, :new), class: "hover:underline" %></div>
       <% end %>
     </div>
   </div>

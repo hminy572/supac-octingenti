@@ -1,0 +1,57 @@
+<div style="display: flex; justify-content: space-between;">
+  <.form
+    let={f}
+    for={:lead_search}
+    id="lead-search"
+    phx-submit="lead_search">
+
+    <%= search_input f, :term, placeholder: "🔍", autocomplete: "off" %>
+    <%= error_tag f, :term %>
+  </.form>
+
+  <span><%= live_patch "New Lead", to: Routes.lead_index_path(@socket, :new), class: "new_one" %></span>
+</div>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.lead_index_path(@socket, :index)}>
+    <.live_component
+      module={Lv13Web.LeadLive.FormComponent}
+      id={@lead.id || :new}
+      title={@page_title}
+      action={@live_action}
+      lead={@lead}
+      current_user={@current_user}
+      return_to={Routes.lead_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>COMPANY NAME</th>
+      <th>POSITION</th>
+      <th>SIZE</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="leads">
+    <%= for lead <- @leads do %>
+      <tr id={"lead-#{lead.id}"}>
+        <td><%= lead.id %></td>
+        <td><%= lead.name %></td>
+        <td><%= lead.com_name %></td>
+        <td><%= lead.position %></td>
+        <td><%= lead.size %></td>
+
+        <td>
+          <span><%= live_patch "Edit", to: Routes.lead_index_path(@socket, :edit, lead) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: lead.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

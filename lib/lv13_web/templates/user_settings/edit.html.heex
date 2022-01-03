@@ -2,7 +2,7 @@
   <div class="w-screen sm:w-11/12 md:w-9/12 lg:w-7/12 xl:w-5/12">
     <div class="">
       <span class="text-xl m-6">Change name</span>
-      <.form let={f} for={@name_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_name" class="border-2 border-slate-400 rounded-lg m-5 p-5 shadow-md">
+      <.form let={f} for={@name_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_name" class="border-2 border-amber-400 rounded-lg m-5 p-5 shadow-md">
         <%= if @name_changeset.action do %>
           <div class="alert alert-danger">
             <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
@@ -19,13 +19,13 @@
         <span class="text-red-500"><%= error_tag f, :name %></span>
         <div>
           <%= submit "Change name", class: "
-            border-l-4 border-l-slate-200
-            border-t-4 border-t-slate-200
-            border-r-4 border-r-slate-400
-            border-b-4 border-b-slate-400
-            bg-slate-100 hover:bg-slate-300
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
             mt-5 px-2 py-1 shadow
-            text-sm text-slate-800 hover:text-slate-900
+            text-sm text-amber-800 hover:text-amber-900
             font-bold rounded-xl" %>
         </div>
       </.form>
@@ -34,7 +34,7 @@
     <div class="">
       <span class="text-xl m-6">Change email</span>
 
-      <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email" class="border-2 border-slate-400 rounded-lg m-5 p-5 shadow-md">
+      <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email" class="border-2 border-amber-400 rounded-lg m-5 p-5 shadow-md">
         <%= if @email_changeset.action do %>
           <div class="alert alert-danger">
             <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
@@ -59,13 +59,13 @@
 
         <div>
           <%= submit "Change email", class: "
-            border-l-4 border-l-slate-200
-            border-t-4 border-t-slate-200
-            border-r-4 border-r-slate-400
-            border-b-4 border-b-slate-400
-            bg-slate-100 hover:bg-slate-300
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
             mt-5 px-2 py-1 shadow
-            text-sm text-slate-800 hover:text-slate-900
+            text-sm text-amber-800 hover:text-amber-900
             font-bold rounded-xl"  %>
         </div>
       </.form>
@@ -74,7 +74,7 @@
     <div class="">
       <span class="text-xl m-6">Change password</span>
 
-      <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password" class="border-2 border-slate-400 rounded-lg m-5 p-5 shadow-md">
+      <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password" class="border-2 border-amber-400 rounded-lg m-5 p-5 shadow-md">
         <%= if @password_changeset.action do %>
           <div class="alert alert-danger">
             <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
@@ -106,13 +106,13 @@
 
         <div>
           <%= submit "Change password", class: "
-            border-l-4 border-l-slate-200
-            border-t-4 border-t-slate-200
-            border-r-4 border-r-slate-400
-            border-b-4 border-b-slate-400
-            bg-slate-100 hover:bg-slate-300
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
             mt-5 px-2 py-1 shadow
-            text-sm text-slate-800 hover:text-slate-900
+            text-sm text-amber-800 hover:text-amber-900
             font-bold rounded-xl"  %>
         </div>
       </.form>

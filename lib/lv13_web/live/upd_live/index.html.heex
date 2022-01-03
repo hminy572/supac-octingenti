@@ -1,0 +1,77 @@
+<h1>Search Updates</h1>
+
+  <.form let={f} for={:update} phx-submit="search" id="update-form">
+
+    <%= label f, "From" %>
+    <%= datetime_local_input f, :from %>
+
+    <%= label f, "To" %>
+    <%= datetime_local_input f, :to %>
+
+    <%= label f, :term %>
+    <%= search_input f, :term %>
+
+    <div>
+      <%= submit "Search", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>UPDATED_AT</th>
+        <th>OLD VALUE</th>
+        <th>NEW VALUE</th>
+        <th>SCHEMA</th>
+        <th>USER</th>
+
+      </tr>
+    </thead>
+    <tbody id="updates">
+      <%= for update <- @updates do %>
+        <tr id={"update-#{update.id}"}>
+          <td><%= update.id %></td>
+          <td><%= update.inserted_at  %></td>
+          <td>
+            <table>
+              <thead>
+                <tr>
+                  <%= for key <- updated_keys(update) do %>
+                    <th><%= key %></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <%= for old <- old_values(update) do %>
+                    <td><%= old %></td>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table>
+              <thead>
+                <tr>
+                  <%= for key <- updated_keys(update) do %>
+                    <th><%= key %></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <%= for new <- new_values(update) do %>
+                    <td><%= new %></td>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td><%= update.update["schema"] %></td>
+          <td><%= update.update["user"]["user_name"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

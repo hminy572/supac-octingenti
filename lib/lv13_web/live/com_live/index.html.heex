@@ -1,0 +1,60 @@
+<div style="display: flex; justify-content: space-between;">
+  <.form
+    let={f}
+    for={:com_search}
+    id="com-search"
+    phx-submit="com_search">
+
+    <%= search_input f, :term, placeholder: "🔍", autocomplete: "off", class: "rounded-md ml-4 h-9 w-28" %>
+    <%= error_tag f, :term %>
+  </.form>
+
+  <span><%= live_patch "New Com", to: Routes.com_index_path(@socket, :new), class: "new_one" %></span>
+</div>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.com_index_path(@socket, :index)}>
+    <.live_component
+      module={Lv13Web.ComLive.FormComponent}
+      id={@com.id || :new}
+      title={@page_title}
+      action={@live_action}
+      com={@com}
+      con_id={@con_id}
+      task_id={@task_id}
+      appo_id={@appo_id}
+      current_user={@current_user}
+      return_to={Routes.com_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>URL</th>
+      <th>SIZE</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="coms">
+    <%= for com <- @coms do %>
+      <tr id={"com-#{com.id}"}>
+        <td><%= com.id %></td>
+        <td><%= com.name %></td>
+        <td><%= com.email %></td>
+        <td><%= com.url %></td>
+        <td><%= com.size %></td>
+
+        <td>
+          <span><%= live_patch "Edit", to: Routes.com_index_path(@socket, :edit, com) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: com.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

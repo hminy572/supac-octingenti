@@ -1,0 +1,54 @@
+<div style="display: flex; justify-content: space-between;">
+  <.form
+    let={f}
+    for={:prod_search}
+    id="prod-search"
+    phx-submit="prod_search">
+
+    <%= search_input f, :term, placeholder: "🔍", autocomplete: "off", class: "rounded-md ml-4 h-9 w-28" %>
+    <%= error_tag f, :term %>
+  </.form>
+
+  <span><%= live_patch "New prod", to: Routes.prod_index_path(@socket, :new), class: "new_one" %></span>
+</div>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.prod_index_path(@socket, :index)}>
+    <.live_component
+      module={Lv13Web.ProdLive.FormComponent}
+      id={@prod.id || :new}
+      title={@page_title}
+      action={@live_action}
+      prod={@prod}
+      appo_id={@appo_id}
+      current_user={@current_user}
+      return_to={Routes.prod_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>PRICE</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="prods">
+    <%= for prod <- @prods do %>
+      <tr id={"prod-#{prod.id}"}>
+        <td><%= prod.id %></td>
+        <td><%= prod.name %></td>
+        <td><%= prod.price %></td>
+
+        <td>
+          <span><%= live_patch "Edit", to: Routes.prod_index_path(@socket, :edit, prod) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: prod.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

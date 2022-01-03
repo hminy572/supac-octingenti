@@ -80,11 +80,50 @@ defmodule Lv13Web.Router do
     scope "/", Lv13Web do
       pipe_through [:browser, :require_authenticated_user]
 
+      # user settings
       get "/users/settings", UserSettingsController, :edit
       put "/users/settings", UserSettingsController, :update
       get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
-      get "/", PageController, :index
+      # Lead
+      live "/leads", LeadLive.Index, :index
+      live "/leads/new", LeadLive.Index, :new
+      live "/leads/:id/edit", LeadLive.Index, :edit
+
+      # Prod
+      live "/prods", ProdLive.Index, :index
+      live "/prods/new", ProdLive.Index, :new
+      live "/prods/:id/edit", ProdLive.Index, :edit
+
+      # Task
+      live "/tasks", TaskLive.Index, :index
+      live "/tasks/new", TaskLive.Index, :new
+      live "/tasks/:id/edit", TaskLive.Index, :edit
+
+      # Com
+      live "/coms", ComLive.Index, :index
+      live "/coms/new", ComLive.Index, :new
+      live "/coms/:id/edit", ComLive.Index, :edit
+
+      # Con
+      live "/cons", ConLive.Index, :index
+      live "/cons/new", ConLive.Index, :new
+      live "/cons/:id/edit", ConLive.Index, :edit
+
+      # Appo
+      live "/appos", AppoLive.Index, :index
+      live "/appos/new", AppoLive.Index, :new
+      live "/appos/:id/edit", AppoLive.Index, :edit
+
+      # Update
+      live "/upds", UpdLive.Index, :index
+
+      # Chart
+      live "/", ChartLive
+
+      # Search
+      live "/search", SearchLive
+
     end
   end
 

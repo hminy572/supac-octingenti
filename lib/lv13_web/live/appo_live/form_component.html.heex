@@ -1,0 +1,80 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="appo-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+
+    <%= hidden_input f, :com_id %>
+
+    <%= hidden_input f, :prod_id %>
+
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+
+    <%= label f, :state %>
+    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Appo, :state) %>
+    <%= error_tag f, :state %>
+
+    <%= label f, :amount %>
+    <%= number_input f, :amount %>
+    <%= error_tag f, :amount %>
+
+    <%= label f, :probability %>
+    <%= number_input f, :probability, step: "any" %>
+    <%= error_tag f, :probability %>
+
+    <%= label f, :description %>
+    <%= textarea f, :description %>
+    <%= error_tag f, :description %>
+
+    <%= label f, :is_clinet %>
+    <%= checkbox f, :is_clinet %>
+    <%= error_tag f, :is_clinet %>
+
+    <%= label f, :person_in_charge %>
+    <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name() %>
+    <%= error_tag f, :person_in_charge %>
+
+    <%= label f, :date %>
+    <%= date_input f, :date %>
+    <%= error_tag f, :date %>
+
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+
+  <%= if @action == :edit do %>
+    <div><strong>Company</strong></div>
+      <div>
+        <%= if @appo.com do %>
+          <%= live_redirect @appo.com.name, to: Routes.com_index_path(@socket, :edit, @appo.com) %>
+
+          <div>
+            <div><strong>related contacts with <%= @appo.com.name %></strong></div>
+            <%= for con <- Lv13.Repo.preload(@appo.com, :cons).cons do %>
+              <div><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con) %></div>
+            <% end %>
+          </div>
+        <% else %>
+          <a phx-click="add_company" phx-target={@myself} href="#" class="add_entry">Add Company</a>
+        <% end %>
+      </div>
+
+    <div><strong>Prod</strong></div>
+    <div>
+      <%= if @appo.prod do %>
+        <%= live_redirect @appo.prod.name, to: Routes.prod_index_path(@socket, :edit, @appo.prod) %>
+      <% else %>
+        <a phx-click="add_prod" phx-target={@myself} href="#" class="add_entry">Add Prod</a>
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

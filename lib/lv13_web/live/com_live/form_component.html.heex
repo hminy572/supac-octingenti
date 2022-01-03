@@ -1,0 +1,76 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="com-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+
+    <%= label f, :email %>
+    <%= text_input f, :email %>
+    <%= error_tag f, :email %>
+
+    <%= label f, :url %>
+    <%= text_input f, :url %>
+    <%= error_tag f, :url %>
+
+    <%= label f, :size %>
+    <%= select f, :size, Ecto.Enum.values(Lv13.Sup.Com, :size) %>
+    <%= error_tag f, :size %>
+
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+
+  <%= if @action == :edit do %>
+    <div>
+      <div>
+        <strong>Contacts</strong>
+        <%= if @con_id do %>
+          <a id="add_com_to_con" phx-click="add_com_to_con" phx-target={@myself} href="#" class="add_entry">Add Company to Contact</a>
+        <% else %>
+          <%= live_redirect "Add Contact", to: Routes.con_index_path(@socket, :new, %{com_id: @com.id}), class: "add_entry", id: "add_con" %>
+        <% end %>
+      </div>
+      <%= for con <- @com.cons do %>
+        <div><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con), id: "rel_con-#{con.id}" %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <div>
+        <strong>Appointments</strong>
+        <%= if @appo_id do %>
+          <a id="add_com_to_appo" phx-click="add_com_to_appo" phx-target={@myself} href="#" class="add_entry">Add Company to Appointment</a>
+        <% else %>
+          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{com_id: @com.id}), class: "add_entry", id: "add_appo" %>
+        <% end %>
+      </div>
+      <%= for appo <- @com.appos do %>
+        <div><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo), id: "rel_appo-#{appo.id}" %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <div>
+        <strong>Tasks</strong>
+        <%= if @task_id do %>
+          <a id="add_com_to_task" phx-click="add_com_to_task" phx-target={@myself} href="#" class="add_entry">Add Company to Task</a>
+        <% else %>
+          <%= live_redirect "Add Task", to: Routes.task_index_path(@socket, :new, %{com_id: @com.id}), class: "add_entry", id: "add_task" %>
+        <% end %>
+      </div>
+      <%= for task <- @com.tasks do %>
+        <div><%= live_redirect task.name, to: Routes.task_index_path(@socket, :edit, task), id: "rel_task-#{task.id}" %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
