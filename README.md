@@ -44,11 +44,11 @@ mix phx.gen.live Sup Prod prods name price:integer deleted_at:datetime
 
 ## Task
 ### Mix Task
-mix phx.gen.live Sup Task tasks name due_date:datetime person_in_charge content:text priority deleted_at:datetime com_id:references:coms
+mix phx.gen.live Sup Task tasks name due_date:date person_in_charge content:text priority deleted_at:datetime com_id:references:coms
   
 ### Columns
 - name 
-- due_date:datetime 
+- due_date:date
 - person_in_charge 
 - content:text 
 - priority 
@@ -68,13 +68,13 @@ mix phx.gen.live Sup Con cons name email position deleted_at:datetime com_id:ref
 
 ## Appo
 ### Mix Task
-mix phx.gen.live Sup Appo appos name state amount:integer probability:integer description:text is_client:boolean date:date person_in_charge deleted_at:datetime com_id:references:coms prod_id:references:prods
+mix phx.gen.live Sup Appo appos name state amount:integer probability:float description:text is_client:boolean date:date person_in_charge deleted_at:datetime com_id:references:coms prod_id:references:prods
   
 ### Columns 
 - name 
 - state 
 - amount:integer 
-- probability:integer 
+- probability:float
 - description:text 
 - is_client:boolean 
 - date:date 
