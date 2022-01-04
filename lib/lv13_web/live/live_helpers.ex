@@ -36,7 +36,7 @@ defmodule Lv13Web.LiveHelpers do
         phx-key="escape"
       >
         <div class="overflow-auto h-full w-screen sm:w-11/12 md:w-9/12 lg:w-7/12 xl:w-5/12">
-          <div class="m-5 p-5 border-2 border-amber-100 rounded-lg bg-white">
+          <div class="m-5 p-5 border-4 border-amber-300 rounded-lg bg-white">
             <%= if @return_to do %>
 
               <div class="flex justify-between">
