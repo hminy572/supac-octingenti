@@ -43,7 +43,6 @@
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">COMPANY NAME</th>
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">POSITION</th>
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SIZE</th>
-
           <th></th>
         </tr>
       </thead>
@@ -56,9 +55,13 @@
             <td class="px-6 py-4 whitespace-nowrap"><%= lead.position %></td>
             <td class="px-6 py-4 whitespace-nowrap"><%= lead.size %></td>
 
-            <td>
-              <span><%= live_patch "Edit", to: Routes.lead_index_path(@socket, :edit, lead), class: "p-1 rounded hover:text-green-700 bg-green-200" %></span>
-              <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: lead.id, data: [confirm: "Are you sure?"], class: "p-1 rounded hover:text-red-700 bg-red-200 ml-2" %></span>
+            <td class="flex px-6 py-4 whitespace-nowrap">
+              <div class="overflow-x-auto">
+                <%= live_patch "Edit", to: Routes.lead_index_path(@socket, :edit, lead), class: "p-1 rounded hover:text-green-700 bg-green-200" %>
+              </div>
+              <div>
+                <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: lead.id, data: [confirm: "Are you sure?"], class: "p-1 rounded hover:text-red-700 bg-red-200 ml-2" %>
+              </div>
             </td>
           </tr>
         <% end %>
