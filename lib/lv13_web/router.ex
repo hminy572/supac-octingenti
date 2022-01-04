@@ -17,6 +17,19 @@ defmodule Lv13Web.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", Lv13Web do
+    pipe_through :api
+
+    post "/log_in", UserApiSessionController, :create
+  end
+
+  scope "/api", Lv13Web do
+    pipe_through [:api, :verify_token]
+
+    get "/status", UserApiSessionController, :status
+    resources "/leads", LeadController, except: [:new, :edit, :update, :delete]
+  end
+
   # unconfirmed
   live_session :unconfirmed, on_mount: Lv13Web.Nav do
     scope "/", Lv13Web do

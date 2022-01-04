@@ -139,6 +139,46 @@ defmodule Lv13Web.UserAuth do
     end
   end
 
+  # **** api auth ****
+  def verify_token(conn, _opts) do
+    user =
+      conn
+      |> get_token()
+      |> get_user_by_token()
+
+    if user do
+      assign(conn, :current_user, user)
+    else
+      render_unauthorized(conn)
+    end
+  end
+
+  defp render_unauthorized(conn) do
+    conn
+    |> put_status(:unauthorized)
+    |> put_view(Lv13Web.ErrorView)
+    |> render(:"401")
+    |> halt()
+  end
+
+  defp get_user_by_token(nil), do: nil
+
+  defp get_user_by_token(token) do
+    case Base.decode64(token) do
+      {:ok, decoded_token} -> Accounts.get_user_by_session_token(decoded_token)
+      _ -> nil
+    end
+  end
+
+  defp get_token(conn) do
+    case get_req_header(conn, "authorization") do
+      ["Bearer " <> token] -> token
+      _ -> nil
+    end
+  end
+
+  # **** api auth ****
+
   defp maybe_store_return_to(%{method: "GET"} = conn) do
     put_session(conn, :user_return_to, current_path(conn))
   end
