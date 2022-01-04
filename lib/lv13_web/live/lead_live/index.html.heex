@@ -57,8 +57,8 @@
             <td class="px-6 py-4 whitespace-nowrap"><%= lead.size %></td>
 
             <td>
-              <span><%= live_patch "Edit", to: Routes.lead_index_path(@socket, :edit, lead) %></span>
-              <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: lead.id, data: [confirm: "Are you sure?"] %></span>
+              <span><%= live_patch "Edit", to: Routes.lead_index_path(@socket, :edit, lead), class: "p-1 rounded hover:text-green-700 bg-green-200" %></span>
+              <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: lead.id, data: [confirm: "Are you sure?"], class: "p-1 rounded hover:text-red-700 bg-red-200 ml-2" %></span>
             </td>
           </tr>
         <% end %>
