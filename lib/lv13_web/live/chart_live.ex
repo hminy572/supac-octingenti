@@ -135,10 +135,12 @@ defmodule Lv13Web.ChartLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="charts">
-      <%= @bar_svg %>
-      <%= @line_svg %>
-      <%= @pie_svg %>
+    <div class="flex justify-center">
+      <div class="w-screen sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12">
+        <div class="m-4 p-4 border-4 border-amber-200"><%= @bar_svg %></div>
+        <div class="m-4 p-4 border-4 border-amber-200"><%= @line_svg %></div>
+        <div class="m-4 p-4 border-4 border-amber-200"><%= @pie_svg %></div>
+      </div>
     </div>
     """
   end
