@@ -28,7 +28,7 @@ defmodule Lv13Web.ComLive.FormComponent do
             {:noreply,
               socket
               |> put_flash(:info, "Company with id #{socket.assigns.com.id} is associated with this contact")
-              |> push_redirect(to: "/cons/#{socket.assigns.con_id}/edit")
+              |> push_redirect(to: Routes.con_index_path(socket, :edit, con)) # "/cons/#{socket.assigns.con_id}/edit"
             }
 
           {:error, %Ecto.Changeset{} = changeset} ->
@@ -53,7 +53,7 @@ defmodule Lv13Web.ComLive.FormComponent do
             {:noreply,
               socket
               |> put_flash(:info, "Company with id #{socket.assigns.com.id} is associated with this appointment")
-              |> push_redirect(to: "/appos/#{socket.assigns.appo_id}/edit")
+              |> push_redirect(to: Routes.appo_index_path(socket, :edit, appo)) # "/appos/#{socket.assigns.appo_id}/edit"
             }
 
           {:error, %Ecto.Changeset{} = changeset} ->
@@ -78,7 +78,7 @@ defmodule Lv13Web.ComLive.FormComponent do
             {:noreply,
               socket
               |> put_flash(:info, "Company with id #{socket.assigns.com.id} is associated with this contact")
-              |> push_redirect(to: "/tasks/#{socket.assigns.task_id}/edit")
+              |> push_redirect(to: Routes.task_index_path(socket, :edit, task)) # "/tasks/#{socket.assigns.task_id}/edit"
             }
 
           {:error, %Ecto.Changeset{} = changeset} ->

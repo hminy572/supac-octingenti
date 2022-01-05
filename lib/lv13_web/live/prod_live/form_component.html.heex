@@ -39,7 +39,7 @@
   <%= if @action == :edit do %>
     <hr class="mt-6">
     <div class="mt-2">
-      <div class="my-3"><strong>Appointments</strong></div>
+      <div class="mt-3"><strong>Appointments</strong></div>
       <div>
         <%= if @appo_id do %>
           <a phx-click="add_prod_to_appo" phx-target={@myself} href="#" class="
@@ -48,7 +48,7 @@
             border-r-4 border-r-amber-400
             border-b-4 border-b-amber-400
             bg-amber-100 hover:bg-amber-300
-            px-2 py-1 shadow
+            px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
             font-bold rounded-xl">Add Prod to Appointment</a>
         <% else %>
@@ -58,13 +58,13 @@
             border-r-4 border-r-amber-400
             border-b-4 border-b-amber-400
             bg-amber-100 hover:bg-amber-300
-            mt-5 px-2 py-1 shadow
+            px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
             font-bold rounded-xl" %>
         <% end %>
       </div>
       <%= for appo <- @prod.appos do %>
-        <div><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo) %></div>
+        <div class="mt-2"><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo) %></div>
       <% end %>
     </div>
   <% end %>
