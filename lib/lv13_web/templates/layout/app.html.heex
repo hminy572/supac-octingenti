@@ -28,7 +28,12 @@
 <% end %>
 
 <main class="w-full">
-  <p class="text-amber-500" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="text-red-500" role="alert"><%= get_flash(@conn, :error) %></p>
+  <%= if get_flash(@conn, :info) do %>
+    <p class="mx-2 mt-6 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-sky-200/75 rounded text-sky-700" role="alert"><%= get_flash(@conn, :info) %></p>
+  <% end %>
+  <%= if get_flash(@conn, :error) do %>
+    <p class="mx-2 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-red-200/75 rounded text-red-700" role="alert"><%= get_flash(@conn, :error) %></p>
+  <% end %>
+
   <%= @inner_content %>
 </main>
