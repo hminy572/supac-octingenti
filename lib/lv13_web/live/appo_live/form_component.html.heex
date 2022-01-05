@@ -79,12 +79,12 @@
       <div class="mt-3"><strong>Company</strong></div>
       <div>
         <%= if @appo.com do %>
-          <%= live_redirect @appo.com.name, to: Routes.com_index_path(@socket, :edit, @appo.com) %>
+          <%= live_redirect @appo.com.name, to: Routes.com_index_path(@socket, :edit, @appo.com), class: "text-amber-700 hover:underline" %>
 
           <div>
             <div class="mt-3"><strong>related contacts with <%= @appo.com.name %></strong></div>
             <%= for con <- Lv13.Repo.preload(@appo.com, :cons).cons do %>
-              <div class=""><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con) %></div>
+              <div><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con), class: "text-amber-700 hover:underline" %></div>
             <% end %>
           </div>
         <% else %>
@@ -103,7 +103,7 @@
       <div class="mt-3"><strong>Prod</strong></div>
       <div>
         <%= if @appo.prod do %>
-          <%= live_redirect @appo.prod.name, to: Routes.prod_index_path(@socket, :edit, @appo.prod) %>
+          <%= live_redirect @appo.prod.name, to: Routes.prod_index_path(@socket, :edit, @appo.prod), class: "text-amber-700 hover:underline" %>
         <% else %>
           <a phx-click="add_prod" phx-target={@myself} href="#" class="
             border-l-4 border-l-amber-200

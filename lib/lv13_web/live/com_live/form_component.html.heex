@@ -75,7 +75,7 @@
         <% end %>
       </div>
       <%= for con <- @com.cons do %>
-        <div class="my-1"><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con), id: "rel_con-#{con.id}" %></div>
+        <div class="my-1"><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con), id: "rel_con-#{con.id}", class: "text-amber-700 hover:underline" %></div>
       <% end %>
     </div>
 
@@ -105,7 +105,7 @@
         <% end %>
       </div>
       <%= for appo <- @com.appos do %>
-        <div class="my-1"><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo), id: "rel_appo-#{appo.id}" %></div>
+        <div class="my-1"><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo), id: "rel_appo-#{appo.id}", class: "text-amber-700 hover:underline" %></div>
       <% end %>
     </div>
 
@@ -135,7 +135,7 @@
         <% end %>
       </div>
       <%= for task <- @com.tasks do %>
-        <div class="my-1"><%= live_redirect task.name, to: Routes.task_index_path(@socket, :edit, task), id: "rel_task-#{task.id}" %></div>
+        <div class="my-1"><%= live_redirect task.name, to: Routes.task_index_path(@socket, :edit, task), id: "rel_task-#{task.id}", class: "text-amber-700 hover:underline" %></div>
       <% end %>
     </div>
   <% end %>

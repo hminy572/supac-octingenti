@@ -59,7 +59,7 @@
     <div class="mt-3"><strong>Company</strong></div>
     <div>
       <%= if @task.com do %>
-        <%= live_redirect @task.com.name, to: Routes.com_index_path(@socket, :edit,@task.com) %>
+        <%= live_redirect @task.com.name, to: Routes.com_index_path(@socket, :edit,@task.com), class: "text-amber-700 hover:underline" %>
       <% else %>
         <a phx-click="add_company" phx-target={@myself} href="#" class="
             border-l-4 border-l-amber-200

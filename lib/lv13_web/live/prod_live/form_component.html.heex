@@ -64,7 +64,7 @@
         <% end %>
       </div>
       <%= for appo <- @prod.appos do %>
-        <div class="mt-2"><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo) %></div>
+        <div class=""><%= live_redirect appo.name, to: Routes.appo_index_path(@socket, :edit, appo), class: "text-amber-700 hover:underline" %></div>
       <% end %>
     </div>
   <% end %>
