@@ -28,12 +28,34 @@
 <% end %>
 
 <main class="w-full">
-  <%= if get_flash(@conn, :info) do %>
-    <p class="mx-2 mt-6 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-sky-200/75 rounded text-sky-700" role="alert"><%= get_flash(@conn, :info) %></p>
+  <%= if @conn.request_path == "/users/log_in" do %>
+    <div class="bg-gradient-to-r from-amber-100 to-amber-200 pt-8">
+      <%= if get_flash(@conn, :info) do %>
+        <p class="mx-2 mb-3 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-sky-200/75 rounded text-sky-700 z-20" role="alert">
+          <%= get_flash(@conn, :info) %>
+        </p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="mx-2 mt-4 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-red-200/75 rounded text-red-700 z-20" role="alert">
+          <%= get_flash(@conn, :error) %>
+        </p>
+      <% end %>
+    </div>
+  <% else %>
+    <div>
+      <%= if get_flash(@conn, :info) do %>
+        <p class="mx-2 my-1 mt-6 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-sky-200/75 rounded text-sky-700 z-20" role="alert">
+          <%= get_flash(@conn, :info) %>
+        </p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="mx-2 mt-4 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-red-200/75 rounded text-red-700 z-20" role="alert">
+          <%= get_flash(@conn, :error) %>
+        </p>
+      <% end %>
+    </div>
   <% end %>
-  <%= if get_flash(@conn, :error) do %>
-    <p class="mx-2 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-red-200/75 rounded text-red-700" role="alert"><%= get_flash(@conn, :error) %></p>
-  <% end %>
+
 
   <%= @inner_content %>
 </main>

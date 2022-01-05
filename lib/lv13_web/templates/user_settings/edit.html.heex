@@ -4,7 +4,7 @@
       <span class="text-xl m-6">Change name</span>
       <.form let={f} for={@name_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_name" class="border-2 border-amber-400 rounded-lg m-5 p-5 shadow-md">
         <%= if @name_changeset.action do %>
-          <div class="alert alert-danger">
+          <div class="">
             <p class="text-red-500">Oops, something went wrong! Please check the errors below.</p>
           </div>
         <% end %>

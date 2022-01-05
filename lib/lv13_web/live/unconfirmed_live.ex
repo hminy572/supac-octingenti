@@ -15,9 +15,11 @@ defmodule Lv13Web.UnconfirmedLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <p>
-      Your email hasn't been confirmed yet. Make sure to click the confirmation link in the email sent to <%= @current_user.email %>
-    </p>
+    <div class="flex justify-center mt-16">
+      <div class="mx-2 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 xl:w-7/12">
+        Your email hasn't been confirmed yet. Make sure to click the confirmation link in the email sent to <%= @current_user.email %>
+      </div>
+    </div>
     """
   end
 end

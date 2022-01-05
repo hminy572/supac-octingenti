@@ -1,11 +1,12 @@
-<div class="flex justify-center ">
-  <div class="mx-2 w-8/12 sm:w-7/12 md:w-5/12 lg:w-4/12 xl:w-3/12 border-4 border-amber-200 rounded-lg shadow-lg p-10 mt-32">
+<div class="w-full flex justify-center bg-gradient-to-r from-amber-100 to-amber-200">
+  <div class="mx-2 w-9/12 sm:w-7/12 md:w-5/12 lg:w-4/12 xl:w-3/12 border-4 border-amber-200 rounded-lg shadow-lg p-8 mt-28 bg-amber-50">
+
     <div class="text-2xl font-bold my-2">Log in</div>
 
     <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
       <%= if @error_message do %>
-        <div class="alert alert-danger">
-          <p><%= @error_message %></p>
+        <div class="">
+          <p class="text-red-500"><%= @error_message %></p>
         </div>
       <% end %>
 
@@ -37,7 +38,8 @@
       </div>
     </.form>
 
-    <p><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></p>
-    <p><%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %></p>
+    <p><%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-amber-700 hover:underline" %></p>
+    <p><%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "text-amber-700 hover:underline" %></p>
   </div>
 </div>
+<div class="w-screen h-60 bg-gradient-to-r from-amber-100 to-amber-200"></div>

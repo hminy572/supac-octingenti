@@ -1,12 +1,17 @@
-<h1>Confirm account</h1>
+<div class="ml-10 mt-10">
+  <div class="text-lg font-bold my-2">Please click 'Confirm my account' button below to access content</div>
 
-<.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
-  <div>
-    <%= submit "Confirm my account" %>
-  </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+  <.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
+    <div>
+      <%= submit "Confirm my account", class: "
+        border-l-4 border-l-amber-200
+        border-t-4 border-t-amber-200
+        border-r-4 border-r-amber-400
+        border-b-4 border-b-amber-400
+        bg-amber-100 hover:bg-amber-300
+        my-5 px-2 py-1 shadow
+        text-sm text-amber-800 hover:text-amber-900
+        font-bold rounded-xl" %>
+    </div>
+  </.form>
+</div>
