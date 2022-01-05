@@ -28,15 +28,13 @@ defmodule Lv13Web.LiveHelpers do
 
     ~H"""
     <div id="modal" class="" phx-remove={hide_modal()}>
-      <div
-        id="modal-content"
-        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center"
-        phx-click-away={JS.dispatch("click", to: "#close")}
-        phx-window-keydown={JS.dispatch("click", to: "#close")}
-        phx-key="escape"
-      >
+      <div id="modal-content" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center">
         <div class="overflow-auto h-full w-screen sm:w-11/12 md:w-9/12 lg:w-7/12 xl:w-5/12">
-          <div class="m-5 p-5 border-4 border-amber-300 rounded-lg bg-white">
+          <div
+            phx-click-away={JS.dispatch("click", to: "#close")}
+            phx-window-keydown={JS.dispatch("click", to: "#close")}
+            phx-key="escape"
+            class="m-5 p-5 border-4 border-amber-300 rounded-lg bg-white">
             <%= if @return_to do %>
 
               <div class="flex justify-between">
@@ -51,7 +49,7 @@ defmodule Lv13Web.LiveHelpers do
             <% else %>
               <div class="flex justify-between">
                 <div></div>
-                <a id="close" href="#" class="" phx-click={hide_modal()}>✖</a>
+                <a id="close" href="#" class="" phx-click={hide_modal()} phx-click-away={hide_modal()}>✖</a>
               </div>
             <% end %>
 

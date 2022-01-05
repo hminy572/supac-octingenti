@@ -98,6 +98,9 @@ defmodule Lv13Web.Router do
       put "/users/settings", UserSettingsController, :update
       get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
+      # page
+      live "/page", PageLive
+
       # Lead
       live "/leads", LeadLive.Index, :index
       live "/leads/new", LeadLive.Index, :new
