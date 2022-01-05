@@ -51,7 +51,7 @@
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
         </tr>
       </thead>
-      <tbody id="coms">
+      <tbody id="coms" class="bg-gray-50">
         <%= for com <- @coms do %>
           <tr id={"com-#{com.id}"}>
             <td class="px-6 py-4 whitespace-nowrap"><%= com.id %></td>
