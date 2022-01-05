@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <div class="mb-3"><span class="text-xl"><%= @title %></span></div>
 
   <.form
     let={f}
@@ -9,27 +9,58 @@
     phx-change="validate"
     phx-submit="save">
 
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+    <%= label f, :name, class: "block" %>
+    <%= text_input f, :name, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :price %>
-    <%= number_input f, :price %>
-    <%= error_tag f, :price %>
+    <%= label f, :price, class: "block" %>
+    <%= number_input f, :price, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :price %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "Save", phx_disable_with: "Saving...", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
     </div>
   </.form>
 
   <%= if @action == :edit do %>
-    <div>
+    <hr class="mt-6">
+    <div class="mt-2">
+      <div class="my-3"><strong>Appointments</strong></div>
       <div>
-        <strong>Appointments</strong>
         <%= if @appo_id do %>
-          <a phx-click="add_prod_to_appo" phx-target={@myself} href="#" class="add_entry">Add Prod to Appointment</a>
+          <a phx-click="add_prod_to_appo" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Prod to Appointment</a>
         <% else %>
-          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{prod_id: @prod.id}), class: "add_entry" %>
+          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{prod_id: @prod.id}), class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
         <% end %>
       </div>
       <%= for appo <- @prod.appos do %>

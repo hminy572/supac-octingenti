@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <div class="mb-3"><span class="text-xl"><%= @title %></span></div>
 
   <.form
     let={f}
@@ -13,45 +13,70 @@
 
     <%= hidden_input f, :prod_id %>
 
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+    <%= label f, :name, class: "block" %>
+    <%= text_input f, :name, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :state %>
-    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Appo, :state) %>
-    <%= error_tag f, :state %>
+    <%= label f, :state, class: "block" %>
+    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Appo, :state), class: "block rounded mb-3" %>
+    <span class="text-red-500"><%= error_tag f, :state %></span>
 
-    <%= label f, :amount %>
-    <%= number_input f, :amount %>
-    <%= error_tag f, :amount %>
+    <%= label f, :amount, class: "block" %>
+    <%= number_input f, :amount, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :amount %></span>
 
-    <%= label f, :probability %>
-    <%= number_input f, :probability, step: "any" %>
-    <%= error_tag f, :probability %>
+    <%= label f, :probability, class: "block" %>
+    <%= number_input f, :probability, step: "any", class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :probability %></span>
 
-    <%= label f, :description %>
-    <%= textarea f, :description %>
-    <%= error_tag f, :description %>
+    <%= label f, :description, class: "block" %>
+    <%= textarea f, :description, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :description %></span>
 
-    <%= label f, :is_clinet %>
+    <%= label f, :is_clinet, class: "block" %>
     <%= checkbox f, :is_clinet %>
-    <%= error_tag f, :is_clinet %>
+    <span class="text-red-500"><%= error_tag f, :is_clinet %></span>
 
-    <%= label f, :person_in_charge %>
-    <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name() %>
-    <%= error_tag f, :person_in_charge %>
+    <%= label f, :person_in_charge, class: "block" %>
+    <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
+    <span class="text-red-500"><%= error_tag f, :person_in_charge %></span>
 
-    <%= label f, :date %>
-    <%= date_input f, :date %>
-    <%= error_tag f, :date %>
+    <%= label f, :date, class: "block" %>
+    <%= date_input f, :date, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :date %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "Save", phx_disable_with: "Saving...", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
     </div>
   </.form>
 
   <%= if @action == :edit do %>
-    <div><strong>Company</strong></div>
+    <hr class="mt-6">
+    <div class="mt-2">
+      <div class="my-3"><strong>Company</strong></div>
       <div>
         <%= if @appo.com do %>
           <%= live_redirect @appo.com.name, to: Routes.com_index_path(@socket, :edit, @appo.com) %>
@@ -63,18 +88,34 @@
             <% end %>
           </div>
         <% else %>
-          <a phx-click="add_company" phx-target={@myself} href="#" class="add_entry">Add Company</a>
+          <a phx-click="add_company" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Company</a>
         <% end %>
       </div>
 
-    <div><strong>Prod</strong></div>
-    <div>
-      <%= if @appo.prod do %>
-        <%= live_redirect @appo.prod.name, to: Routes.prod_index_path(@socket, :edit, @appo.prod) %>
-      <% else %>
-        <a phx-click="add_prod" phx-target={@myself} href="#" class="add_entry">Add Prod</a>
-      <% end %>
+      <div class="my-3"><strong>Prod</strong></div>
+      <div>
+        <%= if @appo.prod do %>
+          <%= live_redirect @appo.prod.name, to: Routes.prod_index_path(@socket, :edit, @appo.prod) %>
+        <% else %>
+          <a phx-click="add_prod" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Prod</a>
+        <% end %>
+      </div>
     </div>
-
   <% end %>
 </div>

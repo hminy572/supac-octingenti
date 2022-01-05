@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <div class="mb-3"><span class="text-xl"><%= @title %></span></div>
 
   <.form
     let={f}
@@ -11,31 +11,56 @@
 
     <%= hidden_input f, :com_id %>
 
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+    <%= label f, :name, class: "block" %>
+    <%= text_input f, :name, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :email %>
-    <%= text_input f, :email %>
-    <%= error_tag f, :email %>
+    <%= label f, :email, class: "block" %>
+    <%= text_input f, :email, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :email %></span>
 
-    <%= label f, :position %>
-    <%= select f, :position, Ecto.Enum.values(Lv13.Sup.Con, :position) %>
-    <%= error_tag f, :position %>
+    <%= label f, :position, class: "block" %>
+    <%= select f, :position, Ecto.Enum.values(Lv13.Sup.Con, :position), class: "block rounded mb-3" %>
+    <span class="text-red-500"><%= error_tag f, :position %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "Save", phx_disable_with: "Saving...", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
     </div>
   </.form>
 
   <%= if @action == :edit do %>
-    <div><strong>Company</strong></div>
-    <div>
-      <%= if @con.com do %>
-        <%= live_redirect @con.com.name, to: Routes.com_index_path(@socket, :edit, @con.com) %>
-      <% else %>
-        <a phx-click="add_company" phx-target={@myself} href="#" class="add_entry">Add Company</a>
-      <% end %>
+    <hr class="mt-6">
+    <div class="my-2">
+      <div class="my-3"><strong>Company</strong></div>
+      <div>
+        <%= if @con.com do %>
+          <%= live_redirect @con.com.name, to: Routes.com_index_path(@socket, :edit, @con.com) %>
+        <% else %>
+          <a phx-click="add_company" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Company</a>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

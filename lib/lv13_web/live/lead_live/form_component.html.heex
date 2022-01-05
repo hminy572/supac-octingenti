@@ -12,26 +12,26 @@
     <%= label f, :name, class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
-          w-full py-2 px-3 text-gray-700 leading-tight
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
     <%= label f, :email, class: "block" %>
     <%= text_input f, :email, class: "
           block shadow appearance-none border rounded
-          w-full py-2 px-3 text-gray-700 leading-tight
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :email %></span>
 
     <%= label f, :com_name, class: "block" %>
     <%= text_input f, :com_name, class: "
           block shadow appearance-none border rounded
-          w-full py-2 px-3 text-gray-700 leading-tight
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :com_name %></span>
 
     <%= label f, :state, class: "block" %>
-    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Lead, :state), class: "block rounded" %>
+    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Lead, :state), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :state %></span>
 
     <%= if Map.has_key?(@changeset.changes, :state) && @changeset.changes.state == :converted do %>
@@ -39,17 +39,17 @@
     <% end %>
 
     <%= label f, :position, class: "block" %>
-    <%= select f, :position, Ecto.Enum.values(Lv13.Sup.Lead, :position), class: "block rounded" %>
+    <%= select f, :position, Ecto.Enum.values(Lv13.Sup.Lead, :position), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :position %></span>
 
     <%= label f, :size, class: "block" %>
-    <%= select f, :size, Ecto.Enum.values(Lv13.Sup.Lead, :size), class: "block rounded" %>
+    <%= select f, :size, Ecto.Enum.values(Lv13.Sup.Lead, :size), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :size %></span>
 
     <%= label f, :url, class: "block" %>
     <%= text_input f, :url, class: "
           block shadow appearance-none border rounded
-          w-full py-2 px-3 text-gray-700 leading-tight
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :url %></span>
 

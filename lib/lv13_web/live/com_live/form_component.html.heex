@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <div class="mb-3"><span class="text-xl"><%= @title %></span></div>
 
   <.form
     let={f}
@@ -9,35 +9,69 @@
     phx-change="validate"
     phx-submit="save">
 
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+    <%= label f, :name, class: "block" %>
+    <%= text_input f, :name, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :email %>
-    <%= text_input f, :email %>
-    <%= error_tag f, :email %>
+    <%= label f, :email, class: "block" %>
+    <%= text_input f, :email, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :email %></span>
 
-    <%= label f, :url %>
-    <%= text_input f, :url %>
-    <%= error_tag f, :url %>
+    <%= label f, :url, class: "block" %>
+    <%= text_input f, :url, class: "
+          block shadow appearance-none border rounded
+          w-full py-2 px-3 mb-3 text-gray-700 leading-tight
+          focus:outline-none focus:shadow-outline" %>
+    <span class="text-red-500"><%= error_tag f, :url %></span>
 
-    <%= label f, :size %>
-    <%= select f, :size, Ecto.Enum.values(Lv13.Sup.Com, :size) %>
-    <%= error_tag f, :size %>
+    <%= label f, :size, class: "block" %>
+    <%= select f, :size, Ecto.Enum.values(Lv13.Sup.Com, :size), class: "block rounded mb-3" %>
+    <span class="text-red-500"><%= error_tag f, :size %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "Save", phx_disable_with: "Saving...", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
     </div>
   </.form>
 
   <%= if @action == :edit do %>
-    <div>
+    <hr class="mt-6">
+    <div class="mt-2">
+      <div class="my-3"><strong>Contacts</strong></div>
       <div>
-        <strong>Contacts</strong>
         <%= if @con_id do %>
-          <a id="add_com_to_con" phx-click="add_com_to_con" phx-target={@myself} href="#" class="add_entry">Add Company to Contact</a>
+          <a id="add_com_to_con" phx-click="add_com_to_con" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Company to Contact</a>
         <% else %>
-          <%= live_redirect "Add Contact", to: Routes.con_index_path(@socket, :new, %{com_id: @com.id}), class: "add_entry", id: "add_con" %>
+          <%= live_redirect "Add Contact", to: Routes.con_index_path(@socket, :new, %{com_id: @com.id}), id: "add_con", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
         <% end %>
       </div>
       <%= for con <- @com.cons do %>
@@ -46,12 +80,28 @@
     </div>
 
     <div>
+      <div class="my-3"><strong>Appointments</strong></div>
       <div>
-        <strong>Appointments</strong>
         <%= if @appo_id do %>
-          <a id="add_com_to_appo" phx-click="add_com_to_appo" phx-target={@myself} href="#" class="add_entry">Add Company to Appointment</a>
+          <a id="add_com_to_appo" phx-click="add_com_to_appo" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Company to Appointment</a>
         <% else %>
-          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{com_id: @com.id}), class: "add_entry", id: "add_appo" %>
+          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{com_id: @com.id}), id: "add_appo", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
         <% end %>
       </div>
       <%= for appo <- @com.appos do %>
@@ -60,12 +110,28 @@
     </div>
 
     <div>
+      <div class="my-3"><strong>Tasks</strong></div>
       <div>
-        <strong>Tasks</strong>
         <%= if @task_id do %>
-          <a id="add_com_to_task" phx-click="add_com_to_task" phx-target={@myself} href="#" class="add_entry">Add Company to Task</a>
+          <a id="add_com_to_task" phx-click="add_com_to_task" phx-target={@myself} href="#" class="
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl">Add Company to Task</a>
         <% else %>
-          <%= live_redirect "Add Task", to: Routes.task_index_path(@socket, :new, %{com_id: @com.id}), class: "add_entry", id: "add_task" %>
+          <%= live_redirect "Add Task", to: Routes.task_index_path(@socket, :new, %{com_id: @com.id}), id: "add_task", class: "
+            border-l-4 border-l-amber-200
+            border-t-4 border-t-amber-200
+            border-r-4 border-r-amber-400
+            border-b-4 border-b-amber-400
+            bg-amber-100 hover:bg-amber-300
+            mt-5 px-2 py-1 shadow
+            text-sm text-amber-800 hover:text-amber-900
+            font-bold rounded-xl" %>
         <% end %>
       </div>
       <%= for task <- @com.tasks do %>
