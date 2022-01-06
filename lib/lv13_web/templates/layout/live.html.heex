@@ -44,7 +44,7 @@
 <% end %>
 
 <%= if live_flash(@flash, :error) do %>
-  <p class="mx-2 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-red-200/75 rounded text-red-700" role="alert"
+  <p class="mx-2 mt-6 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-48 px-8 py-2 bg-red-200/75 rounded text-red-700" role="alert"
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 <% end %>

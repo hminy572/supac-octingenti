@@ -69,7 +69,6 @@ defmodule Lv13Web.LeadLive.FormComponent do
           {:noreply, assign(socket, :changeset, changeset)}
       end
     else
-      Logger.info("converted")
       case Sup.update_lead(socket.assigns.lead, lead_params) do
         {:ok, lead} ->
           case create_an_update(
@@ -78,6 +77,7 @@ defmodule Lv13Web.LeadLive.FormComponent do
               socket.assigns.current_user) do
 
             {:ok, _} ->
+              Logger.info("not converted")
               {:noreply,
                 socket
                 |> put_flash(:info, "Lead updated successfully")

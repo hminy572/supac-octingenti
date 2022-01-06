@@ -3,7 +3,7 @@ defmodule Lv13.His.Upd do
   import Ecto.Changeset
 
   schema "upds" do
-    field :update, :string
+    field :update, :map
 
     timestamps()
   end
