@@ -51,6 +51,20 @@ defmodule Lv13Web.ConnCase do
   end
 
   @doc """
+  Setup helper that registers and logs in confirmed users.
+
+      setup :register_and_log_in_confirmed_user
+
+  It stores an updated connection and a confirmed user in the
+  test context.
+  """
+  def register_and_log_in_confirmed_user(%{conn: conn}) do
+    user = Lv13.AccountsFixtures.confirmed_user_fixture()
+    %{conn: log_in_user(conn, user), user: user}
+  end
+
+  @spec log_in_user(Plug.Conn.t(), atom | %{:id => any, optional(any) => any}) :: Plug.Conn.t()
+  @doc """
   Logs the given `user` into the `conn`.
 
   It returns an updated `conn`.

@@ -2,109 +2,86 @@ defmodule Lv13Web.UpdLiveTest do
   use Lv13Web.ConnCase
 
   import Phoenix.LiveViewTest
-  import Lv13.HisFixtures
+  #import Lv13.HisFixtures
 
-  @create_attrs %{update: "some update"}
-  @update_attrs %{update: "some updated update"}
-  @invalid_attrs %{update: nil}
+  setup :register_and_log_in_confirmed_user
 
-  defp create_upd(_) do
-    upd = upd_fixture()
-    %{upd: upd}
-  end
+  # @lead_create_attrs %{
+  #   com_name: "some com_name",
+  #   email: "some@email.com",
+  #   name: "some name",
+  #   position: Enum.random(Ecto.Enum.values(Lead, :position)),
+  #   size: Enum.random(Ecto.Enum.values(Lead, :size)),
+  #   state: :not_contacted,
+  #   url: "https://some.url"
+  # }
+  # @lead_update_attrs %{
+  #   com_name: "some updated com_name",
+  #   email: "some@updated.email",
+  #   name: "lead name",
+  #   position: Enum.random(Ecto.Enum.values(Lead, :position)),
+  #   size: Enum.random(Ecto.Enum.values(Lead, :size)),
+  #   state: :not_contacted,
+  #   url: "https://some_updated.url"
+  # }
+  # @appo_update_attrs %{
+  #   amount: 43,
+  #   date: Faker.Date.backward(10),
+  #   description: "some updated description",
+  #   is_clinet: false,
+  #   name: "appo name",
+  #   person_in_charge: "user1",
+  #   probability: 456.7,
+  #   state: Enum.random(Ecto.Enum.values(Appo, :state))
+  # }
+  # @com_update_attrs %{
+  #   email: "some@updated.email",
+  #   name: "com name",
+  #   size: Enum.random(Ecto.Enum.values(Com, :size)),
+  #   url: "http://some_updated.url"
+  # }
+  # @con_update_attrs %{
+  #   email: "some@updated.email",
+  #   name: "con name",
+  #   position: Enum.random(Ecto.Enum.values(Con, :position))
+  # }
+  # @product_update_attrs %{name: "product name", price: 43}
+  # @task_update_attrs %{
+  #   content: "some updated content",
+  #   due_date: Date.utc_today(),
+  #   name: "task name",
+  #   person_in_charge: "user1",
+  #   priority: Enum.random(Ecto.Enum.values(Task, :priority))
+  # }
 
-  describe "Index" do
-    setup [:create_upd]
+  # defp create_lead(_) do
+  #   lead = lead_fixture()
+  #   %{lead: lead}
+  # end
 
-    test "lists all upds", %{conn: conn, upd: upd} do
-      {:ok, _index_live, html} = live(conn, Routes.upd_index_path(conn, :index))
+  # defp create_many(_) do
+  #   %{
+  #     lead: lead_fixture(),
+  #     appo: appo_fixture(),
+  #     com: com_fixture(),
+  #     con: con_fixture(),
+  #     product: product_fixture(),
+  #     task: task_fixture()
+  #   }
+  # end
 
-      assert html =~ "Listing Upds"
-      assert html =~ upd.update
-    end
+  describe "search updates" do
+    # setup [:create_many]
 
-    test "saves new upd", %{conn: conn} do
+    test "search update with empty fields", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, Routes.upd_index_path(conn, :index))
 
-      assert index_live |> element("a", "New Upd") |> render_click() =~
-               "New Upd"
-
-      assert_patch(index_live, Routes.upd_index_path(conn, :new))
-
-      assert index_live
-             |> form("#upd-form", upd: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
-
-      {:ok, _, html} =
-        index_live
-        |> form("#upd-form", upd: @create_attrs)
-        |> render_submit()
-        |> follow_redirect(conn, Routes.upd_index_path(conn, :index))
-
-      assert html =~ "Upd created successfully"
-      assert html =~ "some update"
-    end
-
-    test "updates upd in listing", %{conn: conn, upd: upd} do
-      {:ok, index_live, _html} = live(conn, Routes.upd_index_path(conn, :index))
-
-      assert index_live |> element("#upd-#{upd.id} a", "Edit") |> render_click() =~
-               "Edit Upd"
-
-      assert_patch(index_live, Routes.upd_index_path(conn, :edit, upd))
-
-      assert index_live
-             |> form("#upd-form", upd: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
-
-      {:ok, _, html} =
-        index_live
-        |> form("#upd-form", upd: @update_attrs)
-        |> render_submit()
-        |> follow_redirect(conn, Routes.upd_index_path(conn, :index))
-
-      assert html =~ "Upd updated successfully"
-      assert html =~ "some updated update"
-    end
-
-    test "deletes upd in listing", %{conn: conn, upd: upd} do
-      {:ok, index_live, _html} = live(conn, Routes.upd_index_path(conn, :index))
-
-      assert index_live |> element("#upd-#{upd.id} a", "Delete") |> render_click()
-      refute has_element?(index_live, "#upd-#{upd.id}")
-    end
-  end
-
-  describe "Show" do
-    setup [:create_upd]
-
-    test "displays upd", %{conn: conn, upd: upd} do
-      {:ok, _show_live, html} = live(conn, Routes.upd_show_path(conn, :show, upd))
-
-      assert html =~ "Show Upd"
-      assert html =~ upd.update
-    end
-
-    test "updates upd within modal", %{conn: conn, upd: upd} do
-      {:ok, show_live, _html} = live(conn, Routes.upd_show_path(conn, :show, upd))
-
-      assert show_live |> element("a", "Edit") |> render_click() =~
-               "Edit Upd"
-
-      assert_patch(show_live, Routes.upd_show_path(conn, :edit, upd))
-
-      assert show_live
-             |> form("#upd-form", upd: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
-
-      {:ok, _, html} =
-        show_live
-        |> form("#upd-form", upd: @update_attrs)
-        |> render_submit()
-        |> follow_redirect(conn, Routes.upd_show_path(conn, :show, upd))
-
-      assert html =~ "Upd updated successfully"
-      assert html =~ "some updated update"
+      update = %{
+        from: "",
+        to: "",
+        term: ""
+      }
+      index_live |> form("#update-form", update: update) |> render_submit()
     end
   end
 end

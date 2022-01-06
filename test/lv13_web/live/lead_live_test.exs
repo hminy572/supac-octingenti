@@ -120,7 +120,7 @@ defmodule Lv13Web.LeadLiveTest do
              |> render_change() =~ "invalid"
 
       # update lead with valid attrs
-      {:ok, updated_live, html} =
+      {:ok, _updated_live, html} =
         index_live
         |> form("#lead-form", lead: @update_attrs)
         |> render_submit()

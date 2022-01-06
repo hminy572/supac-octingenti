@@ -4,13 +4,24 @@ defmodule Lv13.AccountsFixtures do
   entities via the `Lv13.Accounts` context.
   """
 
+  def valid_user_name, do: "user1"
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
+      name: valid_user_name(),
       email: unique_user_email(),
       password: valid_user_password()
+    })
+  end
+
+  def valid_confirmed_user_attributes(attrs \\ %{}) do
+    Enum.into(attrs, %{
+      name: valid_user_name(),
+      email: unique_user_email(),
+      password: valid_user_password(),
+      confirmed_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
     })
   end
 
@@ -18,6 +29,15 @@ defmodule Lv13.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
+      |> Lv13.Accounts.register_user()
+
+    user
+  end
+
+  def confirmed_user_fixture(attrs \\ %{}) do
+    {:ok, user} =
+      attrs
+      |> valid_confirmed_user_attributes()
       |> Lv13.Accounts.register_user()
 
     user

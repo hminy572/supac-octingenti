@@ -1,14 +1,32 @@
 defmodule Lv13.SupTest do
   use Lv13.DataCase
 
+  import Lv13.AccountsFixtures
+
   alias Lv13.Sup
+  alias Lv13.Repo
+  alias Lv13.Sup.Appo
+
+  defp create_user(_) do
+    user = confirmed_user_fixture()
+    %{user: user}
+  end
 
   describe "leads" do
+
     alias Lv13.Sup.Lead
 
     import Lv13.SupFixtures
 
-    @invalid_attrs %{com_name: nil, deleted_at: nil, email: nil, name: nil, position: nil, size: nil, state: nil, url: nil}
+    @invalid_attrs %{
+      com_name: nil,
+      email: nil,
+      name: nil,
+      position: Enum.random(Ecto.Enum.values(Lead, :position)),
+      size: Enum.random(Ecto.Enum.values(Lead, :size)),
+      state: Enum.random(Ecto.Enum.values(Lead, :state)),
+      url: nil
+    }
 
     test "list_leads/0 returns all leads" do
       lead = lead_fixture()
@@ -21,17 +39,24 @@ defmodule Lv13.SupTest do
     end
 
     test "create_lead/1 with valid data creates a lead" do
-      valid_attrs = %{com_name: "some com_name", deleted_at: ~N[2022-01-01 14:38:00], email: "some email", name: "some name", position: "some position", size: "some size", state: "some state", url: "some url"}
+      valid_attrs = %{
+        com_name: "some com_name",
+        email: "some@email.com",
+        name: "some name",
+        position: Enum.random(Ecto.Enum.values(Lead, :position)),
+        size: Enum.random(Ecto.Enum.values(Lead, :size)),
+        state: Enum.random(Ecto.Enum.values(Lead, :state)),
+        url: "https://some.url"
+      }
 
       assert {:ok, %Lead{} = lead} = Sup.create_lead(valid_attrs)
       assert lead.com_name == "some com_name"
-      assert lead.deleted_at == ~N[2022-01-01 14:38:00]
-      assert lead.email == "some email"
+      assert lead.email == "some@email.com"
       assert lead.name == "some name"
-      assert lead.position == "some position"
-      assert lead.size == "some size"
-      assert lead.state == "some state"
-      assert lead.url == "some url"
+      assert Enum.member?(Ecto.Enum.values(Lead, :position), lead.position)
+      assert Enum.member?(Ecto.Enum.values(Lead, :size), lead.size)
+      assert Enum.member?(Ecto.Enum.values(Lead, :state), lead.state)
+      assert lead.url == "https://some.url"
     end
 
     test "create_lead/1 with invalid data returns error changeset" do
@@ -40,17 +65,24 @@ defmodule Lv13.SupTest do
 
     test "update_lead/2 with valid data updates the lead" do
       lead = lead_fixture()
-      update_attrs = %{com_name: "some updated com_name", deleted_at: ~N[2022-01-02 14:38:00], email: "some updated email", name: "some updated name", position: "some updated position", size: "some updated size", state: "some updated state", url: "some updated url"}
+      update_attrs = %{
+        com_name: "some updated com_name",
+        email: "some@updated.email",
+        name: "some updated name",
+        position: Enum.random(Ecto.Enum.values(Lead, :position)),
+        size: Enum.random(Ecto.Enum.values(Lead, :size)),
+        state: Enum.random(Ecto.Enum.values(Lead, :state)),
+        url: "https://some_updated.url"
+      }
 
       assert {:ok, %Lead{} = lead} = Sup.update_lead(lead, update_attrs)
       assert lead.com_name == "some updated com_name"
-      assert lead.deleted_at == ~N[2022-01-02 14:38:00]
-      assert lead.email == "some updated email"
+      assert lead.email == "some@updated.email"
       assert lead.name == "some updated name"
-      assert lead.position == "some updated position"
-      assert lead.size == "some updated size"
-      assert lead.state == "some updated state"
-      assert lead.url == "some updated url"
+      assert Enum.member?(Ecto.Enum.values(Lead, :position), lead.position)
+      assert Enum.member?(Ecto.Enum.values(Lead, :size), lead.size)
+      assert Enum.member?(Ecto.Enum.values(Lead, :state), lead.state)
+      assert lead.url == "https://some_updated.url"
     end
 
     test "update_lead/2 with invalid data returns error changeset" do
@@ -69,68 +101,7 @@ defmodule Lv13.SupTest do
       lead = lead_fixture()
       assert %Ecto.Changeset{} = Sup.change_lead(lead)
     end
-  end
 
-  describe "coms" do
-    alias Lv13.Sup.Com
-
-    import Lv13.SupFixtures
-
-    @invalid_attrs %{deleted_at: nil, email: nil, name: nil, size: nil, url: nil}
-
-    test "list_coms/0 returns all coms" do
-      com = com_fixture()
-      assert Sup.list_coms() == [com]
-    end
-
-    test "get_com!/1 returns the com with given id" do
-      com = com_fixture()
-      assert Sup.get_com!(com.id) == com
-    end
-
-    test "create_com/1 with valid data creates a com" do
-      valid_attrs = %{deleted_at: ~N[2022-01-02 05:22:00], email: "some email", name: "some name", size: "some size", url: "some url"}
-
-      assert {:ok, %Com{} = com} = Sup.create_com(valid_attrs)
-      assert com.deleted_at == ~N[2022-01-02 05:22:00]
-      assert com.email == "some email"
-      assert com.name == "some name"
-      assert com.size == "some size"
-      assert com.url == "some url"
-    end
-
-    test "create_com/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Sup.create_com(@invalid_attrs)
-    end
-
-    test "update_com/2 with valid data updates the com" do
-      com = com_fixture()
-      update_attrs = %{deleted_at: ~N[2022-01-03 05:22:00], email: "some updated email", name: "some updated name", size: "some updated size", url: "some updated url"}
-
-      assert {:ok, %Com{} = com} = Sup.update_com(com, update_attrs)
-      assert com.deleted_at == ~N[2022-01-03 05:22:00]
-      assert com.email == "some updated email"
-      assert com.name == "some updated name"
-      assert com.size == "some updated size"
-      assert com.url == "some updated url"
-    end
-
-    test "update_com/2 with invalid data returns error changeset" do
-      com = com_fixture()
-      assert {:error, %Ecto.Changeset{}} = Sup.update_com(com, @invalid_attrs)
-      assert com == Sup.get_com!(com.id)
-    end
-
-    test "delete_com/1 deletes the com" do
-      com = com_fixture()
-      assert {:ok, %Com{}} = Sup.delete_com(com)
-      assert_raise Ecto.NoResultsError, fn -> Sup.get_com!(com.id) end
-    end
-
-    test "change_com/1 returns a com changeset" do
-      com = com_fixture()
-      assert %Ecto.Changeset{} = Sup.change_com(com)
-    end
   end
 
   describe "prods" do
@@ -138,11 +109,11 @@ defmodule Lv13.SupTest do
 
     import Lv13.SupFixtures
 
-    @invalid_attrs %{deleted_at: nil, name: nil, price: nil}
+    @invalid_attrs %{name: nil, price: nil}
 
     test "list_prods/0 returns all prods" do
       prod = prod_fixture()
-      assert Sup.list_prods() == [prod]
+      assert Sup.list_prods() |> Repo.preload(:appos) == [prod]
     end
 
     test "get_prod!/1 returns the prod with given id" do
@@ -151,10 +122,9 @@ defmodule Lv13.SupTest do
     end
 
     test "create_prod/1 with valid data creates a prod" do
-      valid_attrs = %{deleted_at: ~N[2022-01-02 05:32:00], name: "some name", price: 42}
+      valid_attrs = %{name: "some name", price: 42}
 
       assert {:ok, %Prod{} = prod} = Sup.create_prod(valid_attrs)
-      assert prod.deleted_at == ~N[2022-01-02 05:32:00]
       assert prod.name == "some name"
       assert prod.price == 42
     end
@@ -165,10 +135,9 @@ defmodule Lv13.SupTest do
 
     test "update_prod/2 with valid data updates the prod" do
       prod = prod_fixture()
-      update_attrs = %{deleted_at: ~N[2022-01-03 05:32:00], name: "some updated name", price: 43}
+      update_attrs = %{name: "some updated name", price: 43}
 
       assert {:ok, %Prod{} = prod} = Sup.update_prod(prod, update_attrs)
-      assert prod.deleted_at == ~N[2022-01-03 05:32:00]
       assert prod.name == "some updated name"
       assert prod.price == 43
     end
@@ -191,16 +160,22 @@ defmodule Lv13.SupTest do
     end
   end
 
-  describe "name" do
+  describe "tasks" do
     alias Lv13.Sup.Task
 
     import Lv13.SupFixtures
 
-    @invalid_attrs %{content: nil, deleted_at: nil, due_date: nil, person_in_charge: nil, priority: nil}
+    @invalid_attrs %{
+      content: nil,
+      due_date: nil,
+      name: nil,
+      person_in_charge: nil,
+      priority: Enum.random(Ecto.Enum.values(Task, :priority))
+    }
 
-    test "list_name/0 returns all name" do
+    test "list_tasks/0 returns all tasks" do
       task = task_fixture()
-      assert Sup.list_name() == [task]
+      assert Sup.list_tasks() |> Repo.preload(:com) == [task]
     end
 
     test "get_task!/1 returns the task with given id" do
@@ -209,14 +184,20 @@ defmodule Lv13.SupTest do
     end
 
     test "create_task/1 with valid data creates a task" do
-      valid_attrs = %{content: "some content", deleted_at: ~N[2022-01-02 05:34:00], due_date: ~N[2022-01-02 05:34:00], person_in_charge: "some person_in_charge", priority: "some priority"}
+      valid_attrs = %{
+        content: "some content",
+        due_date: ~D[2021-12-11],
+        name: "some name",
+        person_in_charge: "some person_in_charge",
+        priority: Enum.random(Ecto.Enum.values(Task, :priority))
+      }
 
       assert {:ok, %Task{} = task} = Sup.create_task(valid_attrs)
       assert task.content == "some content"
-      assert task.deleted_at == ~N[2022-01-02 05:34:00]
-      assert task.due_date == ~N[2022-01-02 05:34:00]
+      assert task.due_date == ~D[2021-12-11]
+      assert task.name == "some name"
       assert task.person_in_charge == "some person_in_charge"
-      assert task.priority == "some priority"
+      assert Enum.member?(Ecto.Enum.values(Task, :priority), task.priority)
     end
 
     test "create_task/1 with invalid data returns error changeset" do
@@ -225,14 +206,20 @@ defmodule Lv13.SupTest do
 
     test "update_task/2 with valid data updates the task" do
       task = task_fixture()
-      update_attrs = %{content: "some updated content", deleted_at: ~N[2022-01-03 05:34:00], due_date: ~N[2022-01-03 05:34:00], person_in_charge: "some updated person_in_charge", priority: "some updated priority"}
+      update_attrs = %{
+        content: "some updated content",
+        due_date: ~D[2021-12-12],
+        name: "some updated name",
+        person_in_charge: "some updated person_in_charge",
+        priority: Enum.random(Ecto.Enum.values(Task, :priority))
+      }
 
       assert {:ok, %Task{} = task} = Sup.update_task(task, update_attrs)
       assert task.content == "some updated content"
-      assert task.deleted_at == ~N[2022-01-03 05:34:00]
-      assert task.due_date == ~N[2022-01-03 05:34:00]
+      assert task.due_date == ~D[2021-12-12]
+      assert task.name == "some updated name"
       assert task.person_in_charge == "some updated person_in_charge"
-      assert task.priority == "some updated priority"
+      assert Enum.member?(Ecto.Enum.values(Task, :priority), task.priority)
     end
 
     test "update_task/2 with invalid data returns error changeset" do
@@ -258,11 +245,15 @@ defmodule Lv13.SupTest do
 
     import Lv13.SupFixtures
 
-    @invalid_attrs %{deleted_at: nil, email: nil, name: nil, position: nil}
+    @invalid_attrs %{
+      email: nil,
+      name: nil,
+      position: Enum.random(Ecto.Enum.values(Con, :position))
+    }
 
     test "list_cons/0 returns all cons" do
       con = con_fixture()
-      assert Sup.list_cons() == [con]
+      assert Sup.list_cons() |> Repo.preload(:com) == [con]
     end
 
     test "get_con!/1 returns the con with given id" do
@@ -271,13 +262,16 @@ defmodule Lv13.SupTest do
     end
 
     test "create_con/1 with valid data creates a con" do
-      valid_attrs = %{deleted_at: ~N[2022-01-02 05:39:00], email: "some email", name: "some name", position: "some position"}
+      valid_attrs = %{
+        email: "some@email.com",
+        name: "some name",
+        position: Enum.random(Ecto.Enum.values(Con, :position))
+      }
 
       assert {:ok, %Con{} = con} = Sup.create_con(valid_attrs)
-      assert con.deleted_at == ~N[2022-01-02 05:39:00]
-      assert con.email == "some email"
+      assert con.email == "some@email.com"
       assert con.name == "some name"
-      assert con.position == "some position"
+      assert Enum.member?(Ecto.Enum.values(Con, :position), con.position)
     end
 
     test "create_con/1 with invalid data returns error changeset" do
@@ -286,13 +280,16 @@ defmodule Lv13.SupTest do
 
     test "update_con/2 with valid data updates the con" do
       con = con_fixture()
-      update_attrs = %{deleted_at: ~N[2022-01-03 05:39:00], email: "some updated email", name: "some updated name", position: "some updated position"}
+      update_attrs = %{
+        email: "some@updated.email",
+        name: "some updated name",
+        position: Enum.random(Ecto.Enum.values(Con, :position))
+      }
 
       assert {:ok, %Con{} = con} = Sup.update_con(con, update_attrs)
-      assert con.deleted_at == ~N[2022-01-03 05:39:00]
-      assert con.email == "some updated email"
+      assert con.email == "some@updated.email"
       assert con.name == "some updated name"
-      assert con.position == "some updated position"
+      assert Enum.member?(Ecto.Enum.values(Con, :position), con.position)
     end
 
     test "update_con/2 with invalid data returns error changeset" do
@@ -313,73 +310,193 @@ defmodule Lv13.SupTest do
     end
   end
 
+  defp create_appo(user) do
+    {:ok, appo} =
+      %{}
+      |> Enum.into(%{
+        amount: :rand.uniform(10) * 1000,
+        date: Faker.Date.backward(10),
+        description: Faker.Lorem.paragraph,
+        is_client: true,
+        name: Faker.Pokemon.name,
+        probability: :rand.uniform(),
+        person_in_charge: user.name,
+        state: Enum.random(Ecto.Enum.values(Appo, :state)),
+      })
+      |> Lv13.Sup.create_appo()
+
+    Repo.preload(appo, [:com, :prod])
+  end
+
   describe "appos" do
+    setup [:create_user]
+
     alias Lv13.Sup.Appo
 
     import Lv13.SupFixtures
 
-    @invalid_attrs %{amount: nil, date: nil, deleted_at: nil, description: nil, is_client: nil, name: nil, person_in_charge: nil, probability: nil, state: nil}
+    @invalid_attrs %{
+      amount: nil,
+      date: nil,
+      description: nil,
+      is_client: nil,
+      name: nil,
+      person_in_charge: nil,
+      probability: nil,
+      state: :Prospecting
+    }
 
-    test "list_appos/0 returns all appos" do
-      appo = appo_fixture()
-      assert Sup.list_appos() == [appo]
+    test "list_appos/0 returns all appos", %{user: user} do
+      appo = create_appo(user)
+      assert Sup.list_appos() |> Repo.preload([:com, :prod]) == [appo]
     end
 
-    test "get_appo!/1 returns the appo with given id" do
-      appo = appo_fixture()
+    test "get_appo!/1 returns the appo with given id", %{user: user} do
+      appo = create_appo(user)
       assert Sup.get_appo!(appo.id) == appo
     end
 
-    test "create_appo/1 with valid data creates a appo" do
-      valid_attrs = %{amount: 42, date: ~D[2022-01-02], deleted_at: ~N[2022-01-02 05:56:00], description: "some description", is_client: true, name: "some name", person_in_charge: "some person_in_charge", probability: 42, state: "some state"}
+    test "create_appo/1 with valid data creates a appo", %{user: user} do
+      valid_attrs = %{
+        amount: 42,
+        date: ~D[2021-12-11],
+        description: "some description",
+        is_client: true,
+        name: "some name",
+        person_in_charge: user.name,
+        probability: 120.5,
+        state: Enum.random(Ecto.Enum.values(Appo, :state)),
+      }
 
       assert {:ok, %Appo{} = appo} = Sup.create_appo(valid_attrs)
       assert appo.amount == 42
-      assert appo.date == ~D[2022-01-02]
-      assert appo.deleted_at == ~N[2022-01-02 05:56:00]
+      assert appo.date == ~D[2021-12-11]
       assert appo.description == "some description"
       assert appo.is_client == true
       assert appo.name == "some name"
-      assert appo.person_in_charge == "some person_in_charge"
-      assert appo.probability == 42
-      assert appo.state == "some state"
+      assert appo.person_in_charge == user.name
+      assert appo.probability == 120.5
+      assert Enum.member?(Ecto.Enum.values(Appo, :state), appo.state)
     end
 
-    test "create_appo/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Sup.create_appo(@invalid_attrs)
+    test "create_appo/1 with invalid data returns error changeset", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} = Sup.create_appo(Map.merge(@invalid_attrs, %{person_in_charge: user.name}))
     end
 
-    test "update_appo/2 with valid data updates the appo" do
-      appo = appo_fixture()
-      update_attrs = %{amount: 43, date: ~D[2022-01-03], deleted_at: ~N[2022-01-03 05:56:00], description: "some updated description", is_client: false, name: "some updated name", person_in_charge: "some updated person_in_charge", probability: 43, state: "some updated state"}
+    test "update_appo/2 with valid data updates the appo", %{user: user} do
+      appo = create_appo(user)
+      update_attrs = %{
+        amount: 43,
+        date: ~D[2021-12-12],
+        description: "some updated description",
+        is_client: false,
+        name: "some updated name",
+        person_in_charge: user.name,
+        probability: 456.7,
+        state: Enum.random(Ecto.Enum.values(Appo, :state))
+      }
 
       assert {:ok, %Appo{} = appo} = Sup.update_appo(appo, update_attrs)
       assert appo.amount == 43
-      assert appo.date == ~D[2022-01-03]
-      assert appo.deleted_at == ~N[2022-01-03 05:56:00]
+      assert appo.date == ~D[2021-12-12]
       assert appo.description == "some updated description"
       assert appo.is_client == false
       assert appo.name == "some updated name"
-      assert appo.person_in_charge == "some updated person_in_charge"
-      assert appo.probability == 43
-      assert appo.state == "some updated state"
+      assert appo.person_in_charge == user.name
+      assert appo.probability == 456.7
+      assert Enum.member?(Ecto.Enum.values(Appo, :state), appo.state)
     end
 
-    test "update_appo/2 with invalid data returns error changeset" do
-      appo = appo_fixture()
-      assert {:error, %Ecto.Changeset{}} = Sup.update_appo(appo, @invalid_attrs)
+    test "update_appo/2 with invalid data returns error changeset", %{user: user} do
+      appo = create_appo(user)
+      assert {:error, %Ecto.Changeset{}} = Sup.update_appo(appo, Map.merge(@invalid_attrs, %{person_in_charge: user.name}))
       assert appo == Sup.get_appo!(appo.id)
     end
 
-    test "delete_appo/1 deletes the appo" do
-      appo = appo_fixture()
+    test "delete_appo/1 deletes the appo", %{user: user} do
+      appo = create_appo(user)
       assert {:ok, %Appo{}} = Sup.delete_appo(appo)
       assert_raise Ecto.NoResultsError, fn -> Sup.get_appo!(appo.id) end
     end
 
-    test "change_appo/1 returns a appo changeset" do
-      appo = appo_fixture()
+    test "change_appo/1 returns a appo changeset", %{user: user} do
+      appo = create_appo(user)
       assert %Ecto.Changeset{} = Sup.change_appo(appo)
+    end
+  end
+
+  describe "coms" do
+    alias Lv13.Sup.Com
+
+    import Lv13.SupFixtures
+
+    @invalid_attrs %{
+      email: nil,
+      name: nil,
+      size: Enum.random(Ecto.Enum.values(Com, :size)),
+      url: nil
+    }
+
+    test "list_coms/0 returns all coms" do
+      com = com_fixture()
+      assert Sup.list_coms() |> Repo.preload([:cons, :appos, :tasks]) == [com]
+    end
+
+    test "get_com!/1 returns the com with given id" do
+      com = com_fixture()
+      assert Sup.get_com!(com.id) == com
+    end
+
+    test "create_com/1 with valid data creates a com" do
+      valid_attrs = %{
+        email: "some@email.com",
+        name: "some name",
+        size: Enum.random(Ecto.Enum.values(Com, :size)),
+        url: "http://some.url"
+      }
+
+      assert {:ok, %Com{} = com} = Sup.create_com(valid_attrs)
+      assert com.email == "some@email.com"
+      assert com.name == "some name"
+      assert Enum.member?(Ecto.Enum.values(Com, :size), com.size)
+      assert com.url == "http://some.url"
+    end
+
+    test "create_com/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Sup.create_com(@invalid_attrs)
+    end
+
+    test "update_com/2 with valid data updates the com" do
+      com = com_fixture()
+      update_attrs = %{
+        email: "some@updated.email",
+        name: "some updated name",
+        size: Enum.random(Ecto.Enum.values(Com, :size)),
+        url: "http://some_updated.url"
+      }
+
+      assert {:ok, %Com{} = com} = Sup.update_com(com, update_attrs)
+      assert com.email == "some@updated.email"
+      assert com.name == "some updated name"
+      assert Enum.member?(Ecto.Enum.values(Com, :size), com.size)
+      assert com.url == "http://some_updated.url"
+    end
+
+    test "update_com/2 with invalid data returns error changeset" do
+      com = com_fixture()
+      assert {:error, %Ecto.Changeset{}} = Sup.update_com(com, @invalid_attrs)
+      assert com == Sup.get_com!(com.id)
+    end
+
+    test "delete_com/1 deletes the com" do
+      com = com_fixture()
+      assert {:ok, %Com{}} = Sup.delete_com(com)
+      assert_raise Ecto.NoResultsError, fn -> Sup.get_com!(com.id) end
+    end
+
+    test "change_com/1 returns a com changeset" do
+      com = com_fixture()
+      assert %Ecto.Changeset{} = Sup.change_com(com)
     end
   end
 end

@@ -12,6 +12,15 @@ defmodule Lv13.Accounts.User do
     timestamps()
   end
 
+  @spec registration_changeset(
+          {map, map}
+          | %{
+              :__struct__ => atom | %{:__changeset__ => map, optional(any) => any},
+              optional(atom) => any
+            },
+          :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any},
+          keyword
+        ) :: Ecto.Changeset.t()
   @doc """
   A user changeset for registration.
 
@@ -31,7 +40,7 @@ defmodule Lv13.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:name, :email, :password])
+    |> cast(attrs, [:name, :email, :password, :confirmed_at])
     |> validate_required([:name])
     |> validate_email()
     |> validate_password(opts)

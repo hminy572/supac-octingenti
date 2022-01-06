@@ -7,9 +7,9 @@ defmodule Lv13Web.UserRegistrationControllerTest do
     test "renders registration page", %{conn: conn} do
       conn = get(conn, Routes.user_registration_path(conn, :new))
       response = html_response(conn, 200)
-      assert response =~ "<h1>Register</h1>"
+      assert response =~ "Register</div>"
       assert response =~ "Log in</a>"
-      assert response =~ "Register</a>"
+      assert response =~ "Register</button>"
     end
 
     test "redirects if already logged in", %{conn: conn} do
@@ -33,10 +33,8 @@ defmodule Lv13Web.UserRegistrationControllerTest do
 
       # Now do a logged in request and assert on the menu
       conn = get(conn, "/")
-      response = html_response(conn, 200)
-      assert response =~ email
-      assert response =~ "Settings</a>"
-      assert response =~ "Log out</a>"
+      response = html_response(conn, 302)
+      assert response =~ "<html><body>You are being <a href=\"/unconfirmed\">redirected</a>.</body></html>"
     end
 
     test "render errors for invalid data", %{conn: conn} do
@@ -46,7 +44,7 @@ defmodule Lv13Web.UserRegistrationControllerTest do
         })
 
       response = html_response(conn, 200)
-      assert response =~ "<h1>Register</h1>"
+      assert response =~ "Register</div>"
       assert response =~ "must have the @ sign and no spaces"
       assert response =~ "should be at least 12 character"
     end

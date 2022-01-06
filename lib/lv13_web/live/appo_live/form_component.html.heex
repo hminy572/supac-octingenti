@@ -45,9 +45,9 @@
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :description %></span>
 
-    <%= label f, :is_clinet, class: "block" %>
-    <%= checkbox f, :is_clinet %>
-    <span class="text-red-500"><%= error_tag f, :is_clinet %></span>
+    <%= label f, :is_client, class: "block" %>
+    <%= checkbox f, :is_client %>
+    <span class="text-red-500"><%= error_tag f, :is_client %></span>
 
     <%= label f, :person_in_charge, class: "block" %>
     <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name(), class: "block rounded mb-3" %>

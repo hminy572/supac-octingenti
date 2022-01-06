@@ -11,7 +11,7 @@ defmodule Lv13.HisFixtures do
     {:ok, upd} =
       attrs
       |> Enum.into(%{
-        update: "some update"
+        update: %{}
       })
       |> Lv13.His.create_upd()
 

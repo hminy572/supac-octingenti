@@ -3,6 +3,8 @@ defmodule Lv13.SupFixtures do
   This module defines test helpers for creating
   entities via the `Lv13.Sup` context.
   """
+  alias Lv13.Sup.{Lead, Con, Com, Task}
+  alias Lv13.Repo
 
   @doc """
   Generate a lead.
@@ -12,13 +14,12 @@ defmodule Lv13.SupFixtures do
       attrs
       |> Enum.into(%{
         com_name: "some com_name",
-        deleted_at: ~N[2022-01-01 14:38:00],
-        email: "some email",
+        email: "some@email.com",
         name: "some name",
-        position: "some position",
-        size: "some size",
-        state: "some state",
-        url: "some url"
+        position: Enum.random(Ecto.Enum.values(Lead, :position)),
+        size: Enum.random(Ecto.Enum.values(Lead, :size)),
+        state: :not_contacted,
+        url: "https://some.url"
       })
       |> Lv13.Sup.create_lead()
 
@@ -32,15 +33,14 @@ defmodule Lv13.SupFixtures do
     {:ok, com} =
       attrs
       |> Enum.into(%{
-        deleted_at: ~N[2022-01-02 05:22:00],
-        email: "some email",
-        name: "some name",
-        size: "some size",
-        url: "some url"
+        email: Faker.Internet.email,
+        name: Faker.Pokemon.name,
+        size: Enum.random(Ecto.Enum.values(Com, :size)),
+        url: "https://some.url"
       })
       |> Lv13.Sup.create_com()
 
-    com
+    Repo.preload(com, [:cons, :appos, :tasks])
   end
 
   @doc """
@@ -50,13 +50,12 @@ defmodule Lv13.SupFixtures do
     {:ok, prod} =
       attrs
       |> Enum.into(%{
-        deleted_at: ~N[2022-01-02 05:32:00],
         name: "some name",
         price: 42
       })
       |> Lv13.Sup.create_prod()
 
-    prod
+    Repo.preload(prod, :appos)
   end
 
   @doc """
@@ -66,15 +65,15 @@ defmodule Lv13.SupFixtures do
     {:ok, task} =
       attrs
       |> Enum.into(%{
-        content: "some content",
-        deleted_at: ~N[2022-01-02 05:34:00],
-        due_date: ~N[2022-01-02 05:34:00],
-        person_in_charge: "some person_in_charge",
-        priority: "some priority"
+        content: Faker.Lorem.paragraph,
+        due_date: Faker.Date.backward(10),
+        name: Faker.Pokemon.name,
+        person_in_charge: "user1",
+        priority: Enum.random(Ecto.Enum.values(Task, :priority))
       })
       |> Lv13.Sup.create_task()
 
-    task
+    Repo.preload(task, :com)
   end
 
   @doc """
@@ -84,14 +83,13 @@ defmodule Lv13.SupFixtures do
     {:ok, con} =
       attrs
       |> Enum.into(%{
-        deleted_at: ~N[2022-01-02 05:39:00],
-        email: "some email",
-        name: "some name",
-        position: "some position"
+        email: Faker.Internet.email,
+        name: Faker.Pokemon.name,
+        position: Enum.random(Ecto.Enum.values(Con, :position))
       })
       |> Lv13.Sup.create_con()
 
-    con
+    Repo.preload(con, :com)
   end
 
   @doc """
@@ -101,18 +99,17 @@ defmodule Lv13.SupFixtures do
     {:ok, appo} =
       attrs
       |> Enum.into(%{
-        amount: 42,
-        date: ~D[2022-01-02],
-        deleted_at: ~N[2022-01-02 05:56:00],
-        description: "some description",
+        amount: :rand.uniform(10) * 1000,
+        date: Faker.Date.backward(10),
+        description: Faker.Lorem.paragraph,
         is_client: true,
-        name: "some name",
-        person_in_charge: "some person_in_charge",
-        probability: 42,
-        state: "some state"
+        name: Faker.Pokemon.name,
+        probability: :rand.uniform(),
+        person_in_charge: "user1",
+        state: :Prospecting,
       })
       |> Lv13.Sup.create_appo()
 
-    appo
+    Repo.preload(appo, [:com, :prod])
   end
 end

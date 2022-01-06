@@ -21,10 +21,10 @@ defmodule Lv13.HisTest do
     end
 
     test "create_upd/1 with valid data creates a upd" do
-      valid_attrs = %{update: "some update"}
+      valid_attrs = %{update: %{}}
 
       assert {:ok, %Upd{} = upd} = His.create_upd(valid_attrs)
-      assert upd.update == "some update"
+      assert upd.update == %{}
     end
 
     test "create_upd/1 with invalid data returns error changeset" do
@@ -33,10 +33,10 @@ defmodule Lv13.HisTest do
 
     test "update_upd/2 with valid data updates the upd" do
       upd = upd_fixture()
-      update_attrs = %{update: "some updated update"}
+      update_attrs = %{update: %{}}
 
       assert {:ok, %Upd{} = upd} = His.update_upd(upd, update_attrs)
-      assert upd.update == "some updated update"
+      assert upd.update == %{}
     end
 
     test "update_upd/2 with invalid data returns error changeset" do

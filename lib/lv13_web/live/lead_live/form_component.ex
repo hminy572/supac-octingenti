@@ -125,7 +125,7 @@ defmodule Lv13Web.LeadLive.FormComponent do
         amount: 1,
         probability: 0.5,
         description: "first appointment with #{lead.com_name}",
-        is_clinet: false,
+        is_client: false,
         person_in_charge: Enum.at(Lv13.Accounts.list_users_by_name(), 0)
       }]
     }

@@ -92,6 +92,24 @@ defmodule Lv13.His do
   def get_upd!(id), do: Repo.get!(Upd, id)
 
   @doc """
+  Gets a latest update.
+
+  Raises `Ecto.NoResultsError` if the Update does not exist.
+
+  ## Examples
+
+      iex> get_latest_update(123)
+      %Update{}
+
+      iex> get_latest_update(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_latest_update() do
+    query = from u in Upd, limit: 1, order_by: [desc: u.id]
+    Repo.one(query)
+  end
+  @doc """
   Creates a upd.
 
   ## Examples
