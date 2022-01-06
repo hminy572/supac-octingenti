@@ -79,7 +79,7 @@ defmodule Lv13Web.SearchLiveTest do
         |> follow_redirect(conn, Routes.appo_index_path(conn, :edit, appo))
 
       assert appo_html =~ "Edit Appo"
-      assert appo_view |> element("#appo-form_name") |> render() =~ appo.name
+      assert appo_view |> element("#appo-form_name") |> render() =~ String.replace(appo.name, "'", "&#39;")
     end
 
     test "redirect to com", %{conn: conn, com: com} do
@@ -91,7 +91,7 @@ defmodule Lv13Web.SearchLiveTest do
         |> follow_redirect(conn, Routes.com_index_path(conn, :edit, com))
 
       assert com_html =~ "Edit Com"
-      assert com_view |> element("#com-form_name") |> render() =~ com.name
+      assert com_view |> element("#com-form_name") |> render() =~ String.replace(com.name, "'", "&#39;")
     end
 
     test "redirect to con", %{conn: conn, con: con} do
@@ -103,7 +103,7 @@ defmodule Lv13Web.SearchLiveTest do
         |> follow_redirect(conn, Routes.con_index_path(conn, :edit, con))
 
       assert con_html =~ "Edit Con"
-      assert con_view |> element("#con-form_name") |> render() =~ con.name
+      assert con_view |> element("#con-form_name") |> render() =~ String.replace(con.name, "'", "&#39;")
     end
 
     test "redirect to lead", %{conn: conn, lead: lead} do
@@ -139,7 +139,7 @@ defmodule Lv13Web.SearchLiveTest do
         |> follow_redirect(conn, Routes.task_index_path(conn, :edit, task))
 
       assert task_html =~ "Edit Task"
-      assert task_view |> element("#task-form_name") |> render() =~ task.name
+      assert task_view |> element("#task-form_name") |> render() =~ String.replace(task.name, "'", "&#39;")
     end
 
     test "no results found", %{conn: conn} do
