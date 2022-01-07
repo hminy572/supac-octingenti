@@ -92,6 +92,13 @@ defmodule Supac.AccountsTest do
       assert is_nil(user.confirmed_at)
       assert is_nil(user.password)
     end
+
+    test "register a user and send email with confirmation link" do
+      attrs = valid_user_attributes()
+      {:ok, email} = Accounts.register_user_in_iex_dev(attrs)
+      assert email.text_body =~ attrs.email
+      assert email.text_body =~ "http://localhost:4000/users/confirm/"
+    end
   end
 
   describe "change_user_registration/2" do
