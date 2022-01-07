@@ -28,7 +28,6 @@
           <% end %>
         </div>
       <% else %>
-        <div><%= link "Register", to: Routes.user_registration_path(@socket, :new), class: "hover:underline" %></div>
         <div><%= link "Log in", to: Routes.user_session_path(@socket, :new), class: "hover:underline" %></div>
       <% end %>
     </div>

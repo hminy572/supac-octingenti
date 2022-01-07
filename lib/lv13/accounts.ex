@@ -78,21 +78,21 @@ defmodule Supac.Accounts do
   ## User registration
 
   @doc """
-  Registers the admin user.
+  Registers a confirmed user.
 
   ## Examples
 
-      iex> admin_user(email, password)
+      iex> register_confirmed_user(name, email, password)
       {:ok, %User{}}
 
-      iex> admin_user(%{field: bad_value})
+      iex> register_confirmed_user(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def admin_user(email, password) do
+  def register_confirmed_user(name, email, password) do
     %User{}
     |> User.registration_changeset(%{
-      name: "admin",
+      name: name,
       email: email,
       password: password,
       confirmed_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
@@ -119,18 +119,51 @@ defmodule Supac.Accounts do
   end
 
   @doc """
-  Registers a userfrom iex session.
+  Registers a user from iex session when env is dev.
+  Email sent by this method can't be seen in /dev/mailbox because mailbox recieve emails sent from same node(process).
+  Thus if you send email form iex session, you can't find the email in the mailbox.
+  Instead, click the confirmation link in the output after calling this method in  iex session.
 
   ## Examples
 
-      iex> register_user_by_admin(%{field: value})
+      iex> register_user_in_iex_dev(%{field: value})
       {:ok, %User{}}
 
-      iex> register_user_by_admin(%{field: bad_value})
+      iex> register_user_in_iex_dev(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def register_user_by_admin(attrs) do
+  def register_user_in_iex_dev(attrs) do
+    case %User{}
+          |> User.registration_changeset(attrs)
+          |> Repo.insert() do
+      {:ok, user} ->
+        if user.confirmed_at do
+          {:error, :already_confirmed}
+        else
+          {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
+          Repo.insert!(user_token)
+          url = "http://localhost:4000/users/confirm/#{encoded_token}"
+          UserNotifier.deliver_confirmation_instructions(user, url)
+        end
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:error, %Ecto.Changeset{} = changeset}
+    end
+  end
+
+  @doc """
+  Registers a userfrom iex session when env is prod.
+
+  ## Examples
+
+      iex> register_user_in_iex_prod(%{field: value})
+      {:ok, %User{}}
+
+      iex> register_user_in_iex_prod(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def register_user_in_iex_prod(attrs) do
     case %User{}
           |> User.registration_changeset(attrs)
           |> Repo.insert() do
