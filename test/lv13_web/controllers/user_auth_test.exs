@@ -5,7 +5,7 @@ defmodule SupacWeb.UserAuthTest do
   alias SupacWeb.UserAuth
   import Supac.AccountsFixtures
 
-  @remember_me_cookie "_Supac_web_user_remember_me"
+  @remember_me_cookie "_supac_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =

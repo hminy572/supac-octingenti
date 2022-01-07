@@ -30,7 +30,7 @@ defmodule SupacWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/Supac_web/templates",
+        root: "lib/lv13_web/templates",
         namespace: SupacWeb
 
       # Import convenience functions from controllers

@@ -48,7 +48,7 @@ defmodule SupacWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_Supac_web_user_remember_me"]
+      assert conn.resp_cookies["_supac_web_user_remember_me"]
       assert redirected_to(conn) == "/"
     end
 

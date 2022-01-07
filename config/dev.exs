@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :Supac, Supac.Repo,
+config :supac, Supac.Repo,
   username: "root",
   password: "root",
   database: "Supac_dev",
@@ -15,7 +15,7 @@ config :Supac, Supac.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :Supac, SupacWeb.Endpoint,
+config :supac, SupacWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -55,13 +55,13 @@ config :Supac, SupacWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :Supac, SupacWeb.Endpoint,
+config :supac, SupacWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/Supac_web/(live|views)/.*(ex)$",
-      ~r"lib/Supac_web/templates/.*(eex)$"
+      ~r"lib/lv13_web/(live|views)/.*(ex)$",
+      ~r"lib/lv13_web/templates/.*(eex)$"
     ]
   ]
 

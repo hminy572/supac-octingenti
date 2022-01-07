@@ -33,7 +33,7 @@ defmodule SupacWeb.Router do
   scope "/", SupacWeb do
     pipe_through :browser
 
-    get "/page", PageController, :index
+    # get "/page", PageController, :index
   end
 
   # unconfirmed
