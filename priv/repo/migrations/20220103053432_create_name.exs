@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.CreateName do
+defmodule Supac.Repo.Migrations.CreateName do
   use Ecto.Migration
 
   def change do

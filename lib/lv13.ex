@@ -1,6 +1,6 @@
-defmodule Lv13 do
+defmodule Supac do
   @moduledoc """
-  Lv13 keeps the contexts that define your domain
+  Supac keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

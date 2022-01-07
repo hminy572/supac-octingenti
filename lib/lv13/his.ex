@@ -1,12 +1,12 @@
-defmodule Lv13.His do
+defmodule Supac.His do
   @moduledoc """
   The His context.
   """
 
   import Ecto.Query, warn: false
-  alias Lv13.Repo
+  alias Supac.Repo
 
-  alias Lv13.His.Upd
+  alias Supac.His.Upd
 
   @doc """
   Returns the list of upds.
@@ -61,12 +61,12 @@ defmodule Lv13.His do
     |> Enum.filter(fn update ->
       old_values =
         update
-        |> Lv13Web.LiveHelpers.old_values()
+        |> SupacWeb.LiveHelpers.old_values()
         |> Enum.join()
 
       new_values =
         update
-        |> Lv13Web.LiveHelpers.new_values()
+        |> SupacWeb.LiveHelpers.new_values()
         |> Enum.join()
 
       old_values <> new_values |> String.match?(~r/#{term}/)

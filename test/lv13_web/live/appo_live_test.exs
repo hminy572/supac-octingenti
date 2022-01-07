@@ -1,15 +1,15 @@
-defmodule Lv13Web.AppoLiveTest do
+defmodule SupacWeb.AppoLiveTest do
   @moduledoc """
   Tests for Sup.Appo
   """
 
-  use Lv13Web.ConnCase, async: true
+  use SupacWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Lv13.SupFixtures
-  alias Lv13.Sup
-  alias Lv13.His
-  alias Lv13.Sup.Appo
+  import Supac.SupFixtures
+  alias Supac.Sup
+  alias Supac.His
+  alias Supac.Sup.Appo
 
   setup :register_and_log_in_confirmed_user
 

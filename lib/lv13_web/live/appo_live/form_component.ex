@@ -1,7 +1,7 @@
-defmodule Lv13Web.AppoLive.FormComponent do
-  use Lv13Web, :live_component
+defmodule SupacWeb.AppoLive.FormComponent do
+  use SupacWeb, :live_component
 
-  alias Lv13.Sup
+  alias Supac.Sup
 
   @impl true
   def update(%{appo: appo} = assigns, socket) do

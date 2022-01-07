@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.NameToUsers do
+defmodule Supac.Repo.Migrations.NameToUsers do
   use Ecto.Migration
 
   def change do

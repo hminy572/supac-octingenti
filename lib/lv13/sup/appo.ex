@@ -1,4 +1,4 @@
-defmodule Lv13.Sup.Appo do
+defmodule Supac.Sup.Appo do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -24,8 +24,8 @@ defmodule Lv13.Sup.Appo do
       :ClosedLost
     ],
     default: :Prospecting
-    belongs_to :com, Lv13.Sup.Com
-    belongs_to :prod, Lv13.Sup.Prod
+    belongs_to :com, Supac.Sup.Com
+    belongs_to :prod, Supac.Sup.Prod
 
     timestamps()
   end

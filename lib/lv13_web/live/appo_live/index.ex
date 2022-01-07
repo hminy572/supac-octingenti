@@ -1,8 +1,8 @@
-defmodule Lv13Web.AppoLive.Index do
-  use Lv13Web, :live_view
+defmodule SupacWeb.AppoLive.Index do
+  use SupacWeb, :live_view
 
-  alias Lv13.Sup
-  alias Lv13.Sup.Appo
+  alias Supac.Sup
+  alias Supac.Sup.Appo
 
   @impl true
   def mount(_params, _session, socket) do

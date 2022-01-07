@@ -1,5 +1,5 @@
-defmodule Lv13Web.PageLive do
-  use Lv13Web, :live_view
+defmodule SupacWeb.PageLive do
+  use SupacWeb, :live_view
 
   require Logger
 

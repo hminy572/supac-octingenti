@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :lv13,
-  ecto_repos: [Lv13.Repo]
+config :Supac,
+  ecto_repos: [Supac.Repo]
 
 # Configures the endpoint
-config :lv13, Lv13Web.Endpoint,
+config :Supac, SupacWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: Lv13Web.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Lv13.PubSub,
+  render_errors: [view: SupacWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Supac.PubSub,
   live_view: [signing_salt: "jrE41xL/"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :lv13, Lv13Web.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :lv13, Lv13.Mailer, adapter: Swoosh.Adapters.Local
+config :Supac, Supac.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

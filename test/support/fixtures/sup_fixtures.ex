@@ -1,10 +1,10 @@
-defmodule Lv13.SupFixtures do
+defmodule Supac.SupFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Lv13.Sup` context.
+  entities via the `Supac.Sup` context.
   """
-  alias Lv13.Sup.{Lead, Con, Com, Task}
-  alias Lv13.Repo
+  alias Supac.Sup.{Lead, Con, Com, Task}
+  alias Supac.Repo
 
   @doc """
   Generate a lead.
@@ -21,7 +21,7 @@ defmodule Lv13.SupFixtures do
         state: :not_contacted,
         url: "https://some.url"
       })
-      |> Lv13.Sup.create_lead()
+      |> Supac.Sup.create_lead()
 
     lead
   end
@@ -38,7 +38,7 @@ defmodule Lv13.SupFixtures do
         size: Enum.random(Ecto.Enum.values(Com, :size)),
         url: "https://some.url"
       })
-      |> Lv13.Sup.create_com()
+      |> Supac.Sup.create_com()
 
     Repo.preload(com, [:cons, :appos, :tasks])
   end
@@ -53,7 +53,7 @@ defmodule Lv13.SupFixtures do
         name: "some name",
         price: 42
       })
-      |> Lv13.Sup.create_prod()
+      |> Supac.Sup.create_prod()
 
     Repo.preload(prod, :appos)
   end
@@ -71,7 +71,7 @@ defmodule Lv13.SupFixtures do
         person_in_charge: "user1",
         priority: Enum.random(Ecto.Enum.values(Task, :priority))
       })
-      |> Lv13.Sup.create_task()
+      |> Supac.Sup.create_task()
 
     Repo.preload(task, :com)
   end
@@ -87,7 +87,7 @@ defmodule Lv13.SupFixtures do
         name: Faker.Pokemon.name,
         position: Enum.random(Ecto.Enum.values(Con, :position))
       })
-      |> Lv13.Sup.create_con()
+      |> Supac.Sup.create_con()
 
     Repo.preload(con, :com)
   end
@@ -108,7 +108,7 @@ defmodule Lv13.SupFixtures do
         person_in_charge: "user1",
         state: :Prospecting,
       })
-      |> Lv13.Sup.create_appo()
+      |> Supac.Sup.create_appo()
 
     Repo.preload(appo, [:com, :prod])
   end

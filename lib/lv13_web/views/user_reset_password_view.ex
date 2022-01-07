@@ -1,3 +1,3 @@
-defmodule Lv13Web.UserResetPasswordView do
-  use Lv13Web, :view
+defmodule SupacWeb.UserResetPasswordView do
+  use SupacWeb, :view
 end

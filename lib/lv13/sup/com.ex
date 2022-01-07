@@ -1,4 +1,4 @@
-defmodule Lv13.Sup.Com do
+defmodule Supac.Sup.Com do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -17,9 +17,9 @@ defmodule Lv13.Sup.Com do
     ],
     default: :"1~5"
     field :url, :string
-    has_many :cons, Lv13.Sup.Con
-    has_many :appos, Lv13.Sup.Appo
-    has_many :tasks, Lv13.Sup.Task
+    has_many :cons, Supac.Sup.Con
+    has_many :appos, Supac.Sup.Appo
+    has_many :tasks, Supac.Sup.Task
 
     timestamps()
   end

@@ -1,4 +1,4 @@
-defmodule Lv13.Accounts.UserToken do
+defmodule Supac.Accounts.UserToken do
   use Ecto.Schema
   import Ecto.Query
 
@@ -16,7 +16,7 @@ defmodule Lv13.Accounts.UserToken do
     field :token, :binary
     field :context, :string
     field :sent_to, :string
-    belongs_to :user, Lv13.Accounts.User
+    belongs_to :user, Supac.Accounts.User
 
     timestamps(updated_at: false)
   end
@@ -42,7 +42,7 @@ defmodule Lv13.Accounts.UserToken do
   """
   def build_session_token(user) do
     token = :crypto.strong_rand_bytes(@rand_size)
-    {token, %Lv13.Accounts.UserToken{token: token, context: "session", user_id: user.id}}
+    {token, %Supac.Accounts.UserToken{token: token, context: "session", user_id: user.id}}
   end
 
   @doc """
@@ -85,7 +85,7 @@ defmodule Lv13.Accounts.UserToken do
     hashed_token = :crypto.hash(@hash_algorithm, token)
 
     {Base.url_encode64(token, padding: false),
-     %Lv13.Accounts.UserToken{
+     %Supac.Accounts.UserToken{
        token: hashed_token,
        context: context,
        sent_to: sent_to,
@@ -162,17 +162,17 @@ defmodule Lv13.Accounts.UserToken do
   Returns the token struct for the given token value and context.
   """
   def token_and_context_query(token, context) do
-    from Lv13.Accounts.UserToken, where: [token: ^token, context: ^context]
+    from Supac.Accounts.UserToken, where: [token: ^token, context: ^context]
   end
 
   @doc """
   Gets all tokens for the given user for the given contexts.
   """
   def user_and_contexts_query(user, :all) do
-    from t in Lv13.Accounts.UserToken, where: t.user_id == ^user.id
+    from t in Supac.Accounts.UserToken, where: t.user_id == ^user.id
   end
 
   def user_and_contexts_query(user, [_ | _] = contexts) do
-    from t in Lv13.Accounts.UserToken, where: t.user_id == ^user.id and t.context in ^contexts
+    from t in Supac.Accounts.UserToken, where: t.user_id == ^user.id and t.context in ^contexts
   end
 end

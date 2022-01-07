@@ -1,6 +1,6 @@
-defmodule Lv13Web.SearchLive do
-  use Lv13Web, :live_view
-  alias Lv13.Sup
+defmodule SupacWeb.SearchLive do
+  use SupacWeb, :live_view
+  alias Supac.Sup
 
   @impl true
   def mount(%{"term" => term}, _, socket) do

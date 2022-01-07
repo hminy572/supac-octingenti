@@ -1,5 +1,5 @@
-defmodule Lv13Web.ChartLive do
-  use Lv13Web, :live_view
+defmodule SupacWeb.ChartLive do
+  use SupacWeb, :live_view
 
   alias Contex.{
     BarChart,
@@ -11,7 +11,7 @@ defmodule Lv13Web.ChartLive do
     Scale
   }
   require Logger
-  alias Lv13.Sup
+  alias Supac.Sup
 
   @impl true
   def mount(_params, _, socket) do

@@ -1,4 +1,4 @@
-defmodule Lv13.DataCase do
+defmodule Supac.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Lv13.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Lv13.DataCase, async: true`, although
+  by setting `use Supac.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule Lv13.DataCase do
 
   using do
     quote do
-      alias Lv13.Repo
+      alias Supac.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Lv13.DataCase
+      import Supac.DataCase
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Lv13.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Supac.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

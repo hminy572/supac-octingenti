@@ -1,5 +1,5 @@
-defmodule Lv13.Repo do
+defmodule Supac.Repo do
   use Ecto.Repo,
-    otp_app: :lv13,
+    otp_app: :Supac,
     adapter: Ecto.Adapters.Postgres
 end

@@ -26,7 +26,7 @@
     <span class="text-red-500"><%= error_tag f, :email %></span>
 
     <%= label f, :position, class: "block" %>
-    <%= select f, :position, Ecto.Enum.values(Lv13.Sup.Con, :position), class: "block rounded mb-3" %>
+    <%= select f, :position, Ecto.Enum.values(Supac.Sup.Con, :position), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :position %></span>
 
     <div>

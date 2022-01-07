@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.TaskDueDate do
+defmodule Supac.Repo.Migrations.TaskDueDate do
   use Ecto.Migration
 
   def change do

@@ -8,23 +8,23 @@ config :bcrypt_elixir, :log_rounds, 1
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :lv13, Lv13.Repo,
+config :Supac, Supac.Repo,
   username: "root",
   password: "root",
-  database: "lv13_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "Supac_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :lv13, Lv13Web.Endpoint,
+config :Supac, SupacWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "94Z9VXi0m9D21KhyGCzQl6BMnhv4bltyhFuMdHL8PANzORV1All2jqfCAoiVPg7l",
   server: false
 
 # In test we don't send emails.
-config :lv13, Lv13.Mailer, adapter: Swoosh.Adapters.Test
+config :Supac, Supac.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn

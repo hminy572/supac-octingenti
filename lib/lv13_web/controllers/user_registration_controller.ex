@@ -1,9 +1,9 @@
-defmodule Lv13Web.UserRegistrationController do
-  use Lv13Web, :controller
+defmodule SupacWeb.UserRegistrationController do
+  use SupacWeb, :controller
 
-  alias Lv13.Accounts
-  alias Lv13.Accounts.User
-  alias Lv13Web.UserAuth
+  alias Supac.Accounts
+  alias Supac.Accounts.User
+  alias SupacWeb.UserAuth
 
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})

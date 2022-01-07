@@ -1,11 +1,11 @@
-defmodule Lv13.SupTest do
-  use Lv13.DataCase
+defmodule Supac.SupTest do
+  use Supac.DataCase
 
-  import Lv13.AccountsFixtures
+  import Supac.AccountsFixtures
 
-  alias Lv13.Sup
-  alias Lv13.Repo
-  alias Lv13.Sup.Appo
+  alias Supac.Sup
+  alias Supac.Repo
+  alias Supac.Sup.Appo
 
   defp create_user(_) do
     user = confirmed_user_fixture()
@@ -14,9 +14,9 @@ defmodule Lv13.SupTest do
 
   describe "leads" do
 
-    alias Lv13.Sup.Lead
+    alias Supac.Sup.Lead
 
-    import Lv13.SupFixtures
+    import Supac.SupFixtures
 
     @invalid_attrs %{
       com_name: nil,
@@ -105,9 +105,9 @@ defmodule Lv13.SupTest do
   end
 
   describe "prods" do
-    alias Lv13.Sup.Prod
+    alias Supac.Sup.Prod
 
-    import Lv13.SupFixtures
+    import Supac.SupFixtures
 
     @invalid_attrs %{name: nil, price: nil}
 
@@ -161,9 +161,9 @@ defmodule Lv13.SupTest do
   end
 
   describe "tasks" do
-    alias Lv13.Sup.Task
+    alias Supac.Sup.Task
 
-    import Lv13.SupFixtures
+    import Supac.SupFixtures
 
     @invalid_attrs %{
       content: nil,
@@ -241,9 +241,9 @@ defmodule Lv13.SupTest do
   end
 
   describe "cons" do
-    alias Lv13.Sup.Con
+    alias Supac.Sup.Con
 
-    import Lv13.SupFixtures
+    import Supac.SupFixtures
 
     @invalid_attrs %{
       email: nil,
@@ -323,7 +323,7 @@ defmodule Lv13.SupTest do
         person_in_charge: user.name,
         state: Enum.random(Ecto.Enum.values(Appo, :state)),
       })
-      |> Lv13.Sup.create_appo()
+      |> Supac.Sup.create_appo()
 
     Repo.preload(appo, [:com, :prod])
   end
@@ -331,9 +331,9 @@ defmodule Lv13.SupTest do
   describe "appos" do
     setup [:create_user]
 
-    alias Lv13.Sup.Appo
+    alias Supac.Sup.Appo
 
-    import Lv13.SupFixtures
+    import Supac.SupFixtures
 
     @invalid_attrs %{
       amount: nil,
@@ -426,9 +426,9 @@ defmodule Lv13.SupTest do
   end
 
   describe "coms" do
-    alias Lv13.Sup.Com
+    alias Supac.Sup.Com
 
-    import Lv13.SupFixtures
+    import Supac.SupFixtures
 
     @invalid_attrs %{
       email: nil,

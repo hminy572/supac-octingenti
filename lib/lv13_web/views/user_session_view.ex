@@ -1,3 +1,3 @@
-defmodule Lv13Web.UserSessionView do
-  use Lv13Web, :view
+defmodule SupacWeb.UserSessionView do
+  use SupacWeb, :view
 end

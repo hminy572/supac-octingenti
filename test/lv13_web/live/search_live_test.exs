@@ -1,10 +1,10 @@
-defmodule Lv13Web.SearchLiveTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.SearchLiveTest do
+  use SupacWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Lv13.SupFixtures
-  alias Lv13Web.SearchLive
-  alias Lv13.Sup
+  import Supac.SupFixtures
+  alias SupacWeb.SearchLive
+  alias Supac.Sup
 
   setup :register_and_log_in_confirmed_user
 

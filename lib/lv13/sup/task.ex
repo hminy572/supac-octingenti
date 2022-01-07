@@ -1,4 +1,4 @@
-defmodule Lv13.Sup.Task do
+defmodule Supac.Sup.Task do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -9,7 +9,7 @@ defmodule Lv13.Sup.Task do
     field :name, :string
     field :person_in_charge, :string
     field :priority, Ecto.Enum, values: [:urgent, :high, :mid, :low], defautl: :low
-    belongs_to :com, Lv13.Sup.Com
+    belongs_to :com, Supac.Sup.Com
 
     timestamps()
   end

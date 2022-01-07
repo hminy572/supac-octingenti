@@ -1,5 +1,5 @@
-defmodule Lv13Web.ErrorView do
-  use Lv13Web, :view
+defmodule SupacWeb.ErrorView do
+  use SupacWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

@@ -1,4 +1,4 @@
-defmodule Lv13.Sup.Lead do
+defmodule Supac.Sup.Lead do
   use Ecto.Schema
   import Ecto.Changeset
 

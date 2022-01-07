@@ -1,4 +1,4 @@
-defmodule Lv13Web.Telemetry do
+defmodule SupacWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -31,23 +31,23 @@ defmodule Lv13Web.Telemetry do
       ),
 
       # Database Metrics
-      summary("lv13.repo.query.total_time",
+      summary("Supac.repo.query.total_time",
         unit: {:native, :millisecond},
         description: "The sum of the other measurements"
       ),
-      summary("lv13.repo.query.decode_time",
+      summary("Supac.repo.query.decode_time",
         unit: {:native, :millisecond},
         description: "The time spent decoding the data received from the database"
       ),
-      summary("lv13.repo.query.query_time",
+      summary("Supac.repo.query.query_time",
         unit: {:native, :millisecond},
         description: "The time spent executing the query"
       ),
-      summary("lv13.repo.query.queue_time",
+      summary("Supac.repo.query.queue_time",
         unit: {:native, :millisecond},
         description: "The time spent waiting for a database connection"
       ),
-      summary("lv13.repo.query.idle_time",
+      summary("Supac.repo.query.idle_time",
         unit: {:native, :millisecond},
         description:
           "The time the connection spent waiting before being checked out for the query"
@@ -65,7 +65,7 @@ defmodule Lv13Web.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {Lv13Web, :count_users, []}
+      # {SupacWeb, :count_users, []}
     ]
   end
 end

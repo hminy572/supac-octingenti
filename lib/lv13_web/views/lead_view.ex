@@ -1,6 +1,6 @@
-defmodule Lv13Web.LeadView do
-  use Lv13Web, :view
-  alias Lv13Web.LeadView
+defmodule SupacWeb.LeadView do
+  use SupacWeb, :view
+  alias SupacWeb.LeadView
 
   def render("index.json", %{leads: leads}) do
     %{data: render_many(leads, LeadView, "lead.json")}

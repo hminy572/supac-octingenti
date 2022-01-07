@@ -1,12 +1,13 @@
-defmodule Lv13.Accounts do
+defmodule Supac.Accounts do
   @moduledoc """
   The Accounts context.
   """
 
   import Ecto.Query, warn: false
-  alias Lv13.Repo
+  alias Supac.Repo
 
-  alias Lv13.Accounts.{User, UserToken, UserNotifier}
+  alias Supac.Accounts.{User, UserToken, UserNotifier}
+  require Logger
 
   ## Database getters
 
@@ -77,6 +78,29 @@ defmodule Lv13.Accounts do
   ## User registration
 
   @doc """
+  Registers the admin user.
+
+  ## Examples
+
+      iex> admin_user(email, password)
+      {:ok, %User{}}
+
+      iex> admin_user(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def admin_user(email, password) do
+    %User{}
+    |> User.registration_changeset(%{
+      name: "admin",
+      email: email,
+      password: password,
+      confirmed_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
+      })
+    |> Repo.insert()
+  end
+
+  @doc """
   Registers a user.
 
   ## Examples
@@ -92,6 +116,27 @@ defmodule Lv13.Accounts do
     %User{}
     |> User.registration_changeset(attrs)
     |> Repo.insert()
+  end
+
+  @doc """
+  Registers a userfrom iex session.
+
+  ## Examples
+
+      iex> register_user_by_admin(%{field: value})
+      {:ok, %User{}}
+
+      iex> register_user_by_admin(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def register_user_by_admin(attrs) do
+    case %User{}
+          |> User.registration_changeset(attrs)
+          |> Repo.insert() do
+      {:ok, user} -> {:ok, user}
+      {:error, %Ecto.Changeset{} = changeset} -> {:error, %Ecto.Changeset{} = changeset}
+    end
   end
 
   @doc """

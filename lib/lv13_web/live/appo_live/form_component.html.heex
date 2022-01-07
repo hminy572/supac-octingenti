@@ -21,7 +21,7 @@
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
     <%= label f, :state, class: "block" %>
-    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Appo, :state), class: "block rounded mb-3" %>
+    <%= select f, :state, Ecto.Enum.values(Supac.Sup.Appo, :state), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :state %></span>
 
     <%= label f, :amount, class: "block" %>
@@ -50,7 +50,7 @@
     <span class="text-red-500"><%= error_tag f, :is_client %></span>
 
     <%= label f, :person_in_charge, class: "block" %>
-    <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
+    <%= select f, :person_in_charge, Supac.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :person_in_charge %></span>
 
     <%= label f, :date, class: "block" %>
@@ -83,7 +83,7 @@
 
           <div>
             <div class="mt-3"><strong>related contacts with <%= @appo.com.name %></strong></div>
-            <%= for con <- Lv13.Repo.preload(@appo.com, :cons).cons do %>
+            <%= for con <- Supac.Repo.preload(@appo.com, :cons).cons do %>
               <div><%= live_redirect con.email, to: Routes.con_index_path(@socket, :edit, con), class: "text-amber-700 hover:underline" %></div>
             <% end %>
           </div>

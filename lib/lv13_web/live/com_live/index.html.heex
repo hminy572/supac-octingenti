@@ -1,7 +1,7 @@
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.com_index_path(@socket, :index)}>
     <.live_component
-      module={Lv13Web.ComLive.FormComponent}
+      module={SupacWeb.ComLive.FormComponent}
       id={@com.id || :new}
       title={@page_title}
       action={@live_action}

@@ -1,7 +1,7 @@
-defmodule Lv13.AccountsFixtures do
+defmodule Supac.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Lv13.Accounts` context.
+  entities via the `Supac.Accounts` context.
   """
 
   def valid_user_name, do: "user1"
@@ -29,7 +29,7 @@ defmodule Lv13.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Lv13.Accounts.register_user()
+      |> Supac.Accounts.register_user()
 
     user
   end
@@ -38,7 +38,7 @@ defmodule Lv13.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_confirmed_user_attributes()
-      |> Lv13.Accounts.register_user()
+      |> Supac.Accounts.register_user()
 
     user
   end

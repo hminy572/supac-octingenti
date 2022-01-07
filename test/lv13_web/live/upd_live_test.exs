@@ -1,8 +1,8 @@
-defmodule Lv13Web.UpdLiveTest do
-  use Lv13Web.ConnCase
+defmodule SupacWeb.UpdLiveTest do
+  use SupacWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  #import Lv13.HisFixtures
+  #import Supac.HisFixtures
 
   setup :register_and_log_in_confirmed_user
 

@@ -1,8 +1,8 @@
-defmodule Lv13Web.UserSettingsControllerTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.UserSettingsControllerTest do
+  use SupacWeb.ConnCase, async: true
 
-  alias Lv13.Accounts
-  import Lv13.AccountsFixtures
+  alias Supac.Accounts
+  import Supac.AccountsFixtures
 
   setup :register_and_log_in_user
 

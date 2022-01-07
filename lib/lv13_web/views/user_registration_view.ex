@@ -1,3 +1,3 @@
-defmodule Lv13Web.UserRegistrationView do
-  use Lv13Web, :view
+defmodule SupacWeb.UserRegistrationView do
+  use SupacWeb, :view
 end

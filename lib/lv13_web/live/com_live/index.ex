@@ -1,8 +1,8 @@
-defmodule Lv13Web.ComLive.Index do
-  use Lv13Web, :live_view
+defmodule SupacWeb.ComLive.Index do
+  use SupacWeb, :live_view
 
-  alias Lv13.Sup
-  alias Lv13.Sup.Com
+  alias Supac.Sup
+  alias Supac.Sup.Com
 
   @impl true
   def mount(_params, _session, socket) do

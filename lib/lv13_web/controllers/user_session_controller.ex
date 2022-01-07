@@ -1,8 +1,8 @@
-defmodule Lv13Web.UserSessionController do
-  use Lv13Web, :controller
+defmodule SupacWeb.UserSessionController do
+  use SupacWeb, :controller
 
-  alias Lv13.Accounts
-  alias Lv13Web.UserAuth
+  alias Supac.Accounts
+  alias SupacWeb.UserAuth
 
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)

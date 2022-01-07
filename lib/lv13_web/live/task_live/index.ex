@@ -1,8 +1,8 @@
-defmodule Lv13Web.TaskLive.Index do
-  use Lv13Web, :live_view
+defmodule SupacWeb.TaskLive.Index do
+  use SupacWeb, :live_view
 
-  alias Lv13.Sup
-  alias Lv13.Sup.Task
+  alias Supac.Sup
+  alias Supac.Sup.Task
 
   @impl true
   def mount(_params, _session, socket) do

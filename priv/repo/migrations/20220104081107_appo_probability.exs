@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.AppoProbability do
+defmodule Supac.Repo.Migrations.AppoProbability do
   use Ecto.Migration
 
   def change do

@@ -1,10 +1,10 @@
-defmodule Lv13Web.LeadController do
-  use Lv13Web, :controller
+defmodule SupacWeb.LeadController do
+  use SupacWeb, :controller
 
-  alias Lv13.Sup
-  alias Lv13.Sup.Lead
+  alias Supac.Sup
+  alias Supac.Sup.Lead
 
-  action_fallback Lv13Web.FallbackController
+  action_fallback SupacWeb.FallbackController
 
   # index
   def index(conn, _params) do

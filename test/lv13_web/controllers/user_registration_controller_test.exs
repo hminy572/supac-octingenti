@@ -1,7 +1,7 @@
-defmodule Lv13Web.UserRegistrationControllerTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.UserRegistrationControllerTest do
+  use SupacWeb.ConnCase, async: true
 
-  import Lv13.AccountsFixtures
+  import Supac.AccountsFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do

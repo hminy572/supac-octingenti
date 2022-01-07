@@ -1,10 +1,10 @@
 import Config
 
 # Configure your database
-config :lv13, Lv13.Repo,
+config :Supac, Supac.Repo,
   username: "root",
   password: "root",
-  database: "lv13_dev",
+  database: "Supac_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :lv13, Lv13.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :lv13, Lv13Web.Endpoint,
+config :Supac, SupacWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -55,13 +55,13 @@ config :lv13, Lv13Web.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :lv13, Lv13Web.Endpoint,
+config :Supac, SupacWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/lv13_web/(live|views)/.*(ex)$",
-      ~r"lib/lv13_web/templates/.*(eex)$"
+      ~r"lib/Supac_web/(live|views)/.*(ex)$",
+      ~r"lib/Supac_web/templates/.*(eex)$"
     ]
   ]
 

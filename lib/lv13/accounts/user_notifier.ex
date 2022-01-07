@@ -1,7 +1,7 @@
-defmodule Lv13.Accounts.UserNotifier do
+defmodule Supac.Accounts.UserNotifier do
   import Swoosh.Email
 
-  alias Lv13.Mailer
+  alias Supac.Mailer
 
   # Delivers the email using the application mailer.
   defp deliver(recipient, subject, body) do

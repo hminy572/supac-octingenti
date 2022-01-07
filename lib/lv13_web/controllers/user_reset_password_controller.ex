@@ -1,7 +1,7 @@
-defmodule Lv13Web.UserResetPasswordController do
-  use Lv13Web, :controller
+defmodule SupacWeb.UserResetPasswordController do
+  use SupacWeb, :controller
 
-  alias Lv13.Accounts
+  alias Supac.Accounts
 
   plug :get_user_by_reset_password_token when action in [:edit, :update]
 

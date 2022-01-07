@@ -1,7 +1,7 @@
-defmodule Lv13Web.ProdLive.FormComponent do
-  use Lv13Web, :live_component
+defmodule SupacWeb.ProdLive.FormComponent do
+  use SupacWeb, :live_component
 
-  alias Lv13.Sup
+  alias Supac.Sup
   require Logger
 
   @impl true

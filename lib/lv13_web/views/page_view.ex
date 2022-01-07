@@ -1,3 +1,3 @@
-defmodule Lv13Web.PageView do
-  use Lv13Web, :view
+defmodule SupacWeb.PageView do
+  use SupacWeb, :view
 end

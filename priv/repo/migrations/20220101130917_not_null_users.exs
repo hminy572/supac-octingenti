@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.NotNullUsers do
+defmodule Supac.Repo.Migrations.NotNullUsers do
   use Ecto.Migration
 
   def change do

@@ -1,11 +1,11 @@
-defmodule Lv13Web.LeadLiveTest do
-  use Lv13Web.ConnCase
+defmodule SupacWeb.LeadLiveTest do
+  use SupacWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Lv13.SupFixtures
-  alias Lv13.Sup
-  alias Lv13.His
-  alias Lv13.Sup.Lead
+  import Supac.SupFixtures
+  alias Supac.Sup
+  alias Supac.His
+  alias Supac.Sup.Lead
 
   setup :register_and_log_in_confirmed_user
 

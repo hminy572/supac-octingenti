@@ -1,5 +1,9 @@
-defmodule Lv13Web.LayoutView do
-  use Lv13Web, :view
+defmodule SupacWeb.LayoutView do
+  use SupacWeb, :view
+
+  def title() do
+    "Supac"
+  end
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.

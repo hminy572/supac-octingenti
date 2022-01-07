@@ -1,6 +1,6 @@
-defmodule Lv13Web.UserApiSessionController do
-  use Lv13Web, :controller
-  alias Lv13.Accounts
+defmodule SupacWeb.UserApiSessionController do
+  use SupacWeb, :controller
+  alias Supac.Accounts
   require Logger
 
   # method to authenticate json api with token
@@ -14,7 +14,7 @@ defmodule Lv13Web.UserApiSessionController do
     else
       conn
       |> put_status(:unauthorized)
-      |> put_view(Lv13Web.ErrorView)
+      |> put_view(SupacWeb.ErrorView)
       |> render(:"401")
     end
   end

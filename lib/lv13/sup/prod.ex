@@ -1,4 +1,4 @@
-defmodule Lv13.Sup.Prod do
+defmodule Supac.Sup.Prod do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -6,7 +6,7 @@ defmodule Lv13.Sup.Prod do
     field :deleted_at, :naive_datetime
     field :name, :string
     field :price, :integer
-    has_many :appos, Lv13.Sup.Appo
+    has_many :appos, Supac.Sup.Appo
 
     timestamps()
   end

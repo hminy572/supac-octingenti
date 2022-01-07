@@ -1,10 +1,10 @@
-defmodule Lv13Web.LeadControllerTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.LeadControllerTest do
+  use SupacWeb.ConnCase, async: true
 
-  import Lv13.SupFixtures
-  import Lv13.AccountsFixtures
+  import Supac.SupFixtures
+  import Supac.AccountsFixtures
 
-  alias Lv13.Sup.Lead
+  alias Supac.Sup.Lead
 
   defp create_lead(_) do
     lead = lead_fixture()
@@ -19,7 +19,7 @@ defmodule Lv13Web.LeadControllerTest do
   It returns a conn with verified token
   """
   def log_in_and_get_token(%{conn: conn}) do
-    user = Lv13.AccountsFixtures.confirmed_user_fixture()
+    user = Supac.AccountsFixtures.confirmed_user_fixture()
     conn = post(conn,
       Routes.user_api_session_path(conn, :create,
         %{

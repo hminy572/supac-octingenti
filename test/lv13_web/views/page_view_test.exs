@@ -1,3 +1,3 @@
-defmodule Lv13Web.PageViewTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.PageViewTest do
+  use SupacWeb.ConnCase, async: true
 end

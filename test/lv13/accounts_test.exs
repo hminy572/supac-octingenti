@@ -1,10 +1,10 @@
-defmodule Lv13.AccountsTest do
-  use Lv13.DataCase
+defmodule Supac.AccountsTest do
+  use Supac.DataCase
 
-  alias Lv13.Accounts
+  alias Supac.Accounts
 
-  import Lv13.AccountsFixtures
-  alias Lv13.Accounts.{User, UserToken}
+  import Supac.AccountsFixtures
+  alias Supac.Accounts.{User, UserToken}
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

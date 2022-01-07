@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.CreateLeads do
+defmodule Supac.Repo.Migrations.CreateLeads do
   use Ecto.Migration
 
   def change do

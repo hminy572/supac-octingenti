@@ -1,4 +1,4 @@
-defmodule Lv13.Repo.Migrations.CreateCons do
+defmodule Supac.Repo.Migrations.CreateCons do
   use Ecto.Migration
 
   def change do

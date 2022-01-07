@@ -1,7 +1,7 @@
-defmodule Lv13Web.UnconfirmedLive do
-  use Lv13Web, :live_view
+defmodule SupacWeb.UnconfirmedLive do
+  use SupacWeb, :live_view
 
-  alias Lv13.Accounts
+  alias Supac.Accounts
 
   @impl true
   def mount(_, %{"user_token" => user_token} = _session, socket) do

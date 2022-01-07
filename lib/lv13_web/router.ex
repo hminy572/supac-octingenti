@@ -1,13 +1,13 @@
-defmodule Lv13Web.Router do
-  use Lv13Web, :router
+defmodule SupacWeb.Router do
+  use SupacWeb, :router
 
-  import Lv13Web.UserAuth
+  import SupacWeb.UserAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {Lv13Web.LayoutView, :root}
+    plug :put_root_layout, {SupacWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
@@ -17,22 +17,28 @@ defmodule Lv13Web.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", Lv13Web do
+  scope "/api", SupacWeb do
     pipe_through :api
 
     post "/log_in", UserApiSessionController, :create
   end
 
-  scope "/api", Lv13Web do
+  scope "/api", SupacWeb do
     pipe_through [:api, :verify_token]
 
     get "/status", UserApiSessionController, :status
     resources "/leads", LeadController, except: [:new, :edit, :update, :delete]
   end
 
+  scope "/", SupacWeb do
+    pipe_through :browser
+
+    get "/page", PageController, :index
+  end
+
   # unconfirmed
-  live_session :unconfirmed, on_mount: Lv13Web.Nav do
-    scope "/", Lv13Web do
+  live_session :unconfirmed, on_mount: SupacWeb.Nav do
+    scope "/", SupacWeb do
       pipe_through [:browser, :require_authenticated_user]
 
       # unconfrimed
@@ -41,7 +47,7 @@ defmodule Lv13Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Lv13Web do
+  # scope "/api", SupacWeb do
   #   pipe_through :api
   # end
 
@@ -57,7 +63,7 @@ defmodule Lv13Web.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: Lv13Web.Telemetry
+      live_dashboard "/dashboard", metrics: SupacWeb.Telemetry
     end
   end
 
@@ -75,7 +81,7 @@ defmodule Lv13Web.Router do
 
   ## Authentication routes
 
-  scope "/", Lv13Web do
+  scope "/", SupacWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     get "/users/register", UserRegistrationController, :new
@@ -89,8 +95,8 @@ defmodule Lv13Web.Router do
   end
 
   # main route
-  live_session :default, on_mount: [Lv13Web.UserLiveAuth, Lv13Web.Nav] do
-    scope "/", Lv13Web do
+  live_session :default, on_mount: [SupacWeb.UserLiveAuth, SupacWeb.Nav] do
+    scope "/", SupacWeb do
       pipe_through [:browser, :require_authenticated_user]
 
       # user settings
@@ -143,7 +149,7 @@ defmodule Lv13Web.Router do
     end
   end
 
-  scope "/", Lv13Web do
+  scope "/", SupacWeb do
     pipe_through [:browser]
 
     delete "/users/log_out", UserSessionController, :delete

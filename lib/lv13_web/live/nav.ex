@@ -1,4 +1,4 @@
-defmodule Lv13Web.Nav do
+defmodule SupacWeb.Nav do
   import Phoenix.LiveView
 
   def on_mount(:default, _params, _session, socket) do
@@ -11,13 +11,13 @@ defmodule Lv13Web.Nav do
   defp set_active_tab(_params, _url, socket) do
     active_tab =
       case {socket.view, socket.assigns.live_action} do
-        {Lv13Web.ChartLive, _} -> :chart
-        {Lv13Web.AppoLive.Index, _} -> :appo
-        {Lv13Web.ComLive.Index, _} -> :com
-        {Lv13Web.ConLive.Index, _} -> :con
-        {Lv13Web.LeadLive.Index, _} -> :lead
-        {Lv13Web.ProdLive.Index, _} -> :prod
-        {Lv13Web.TaskLive.Index, _} -> :task
+        {SupacWeb.ChartLive, _} -> :chart
+        {SupacWeb.AppoLive.Index, _} -> :appo
+        {SupacWeb.ComLive.Index, _} -> :com
+        {SupacWeb.ConLive.Index, _} -> :con
+        {SupacWeb.LeadLive.Index, _} -> :lead
+        {SupacWeb.ProdLive.Index, _} -> :prod
+        {SupacWeb.TaskLive.Index, _} -> :task
         {_, _} -> nil
       end
 

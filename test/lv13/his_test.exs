@@ -1,12 +1,12 @@
-defmodule Lv13.HisTest do
-  use Lv13.DataCase
+defmodule Supac.HisTest do
+  use Supac.DataCase
 
-  alias Lv13.His
+  alias Supac.His
 
   describe "upds" do
-    alias Lv13.His.Upd
+    alias Supac.His.Upd
 
-    import Lv13.HisFixtures
+    import Supac.HisFixtures
 
     @invalid_attrs %{update: nil}
 

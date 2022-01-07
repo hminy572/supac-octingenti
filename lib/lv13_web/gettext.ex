@@ -1,11 +1,11 @@
-defmodule Lv13Web.Gettext do
+defmodule SupacWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import Lv13Web.Gettext
+      import SupacWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule Lv13Web.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :lv13
+  use Gettext, otp_app: :Supac
 end

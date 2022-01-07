@@ -1,4 +1,4 @@
-defmodule Lv13.Sup.Con do
+defmodule Supac.Sup.Con do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -14,7 +14,7 @@ defmodule Lv13.Sup.Con do
         :staff
         ],
       default: :staff
-    belongs_to :com, Lv13.Sup.Com
+    belongs_to :com, Supac.Sup.Com
 
     timestamps()
   end

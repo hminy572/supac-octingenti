@@ -1,7 +1,7 @@
-defmodule Lv13Web.LeadLive.FormComponent do
-  use Lv13Web, :live_component
+defmodule SupacWeb.LeadLive.FormComponent do
+  use SupacWeb, :live_component
 
-  alias Lv13.Sup
+  alias Supac.Sup
 
   require Logger
 
@@ -126,7 +126,7 @@ defmodule Lv13Web.LeadLive.FormComponent do
         probability: 0.5,
         description: "first appointment with #{lead.com_name}",
         is_client: false,
-        person_in_charge: Enum.at(Lv13.Accounts.list_users_by_name(), 0)
+        person_in_charge: Enum.at(Supac.Accounts.list_users_by_name(), 0)
       }]
     }
   end

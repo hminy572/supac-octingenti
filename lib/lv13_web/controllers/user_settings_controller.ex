@@ -1,8 +1,8 @@
-defmodule Lv13Web.UserSettingsController do
-  use Lv13Web, :controller
+defmodule SupacWeb.UserSettingsController do
+  use SupacWeb, :controller
 
-  alias Lv13.Accounts
-  alias Lv13Web.UserAuth
+  alias Supac.Accounts
+  alias SupacWeb.UserAuth
 
   plug :assign_email_and_password_changesets
 

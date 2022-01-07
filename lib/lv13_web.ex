@@ -1,12 +1,12 @@
-defmodule Lv13Web do
+defmodule SupacWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use Lv13Web, :controller
-      use Lv13Web, :view
+      use SupacWeb, :controller
+      use SupacWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule Lv13Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: Lv13Web
+      use Phoenix.Controller, namespace: SupacWeb
 
       import Plug.Conn
-      import Lv13Web.Gettext
-      alias Lv13Web.Router.Helpers, as: Routes
+      import SupacWeb.Gettext
+      alias SupacWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/lv13_web/templates",
-        namespace: Lv13Web
+        root: "lib/Supac_web/templates",
+        namespace: SupacWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +45,7 @@ defmodule Lv13Web do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {Lv13Web.LayoutView, "live.html"}
+        layout: {SupacWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -72,7 +72,7 @@ defmodule Lv13Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import Lv13Web.Gettext
+      import SupacWeb.Gettext
     end
   end
 
@@ -83,14 +83,14 @@ defmodule Lv13Web do
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
-      import Lv13Web.LiveHelpers
+      import SupacWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import Lv13Web.ErrorHelpers
-      import Lv13Web.Gettext
-      alias Lv13Web.Router.Helpers, as: Routes
+      import SupacWeb.ErrorHelpers
+      import SupacWeb.Gettext
+      alias SupacWeb.Router.Helpers, as: Routes
     end
   end
 

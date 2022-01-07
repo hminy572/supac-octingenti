@@ -26,7 +26,7 @@
     <span class="text-red-500"><%= error_tag f, :due_date %></span>
 
     <%= label f, :person_in_charge, class: "block" %>
-    <%= select f, :person_in_charge, Lv13.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
+    <%= select f, :person_in_charge, Supac.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :person_in_charge %></span>
 
     <%= label f, :content, class: "block" %>
@@ -37,7 +37,7 @@
     <span class="text-red-500"><%= error_tag f, :content %></span>
 
     <%= label f, :priority, class: "block" %>
-    <%= select f, :priority, Ecto.Enum.values(Lv13.Sup.Task, :priority), class: "block rounded mb-3" %>
+    <%= select f, :priority, Ecto.Enum.values(Supac.Sup.Task, :priority), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :priority %></span>
 
     <div>

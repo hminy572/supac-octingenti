@@ -1,4 +1,4 @@
-defmodule Lv13Web.LiveHelpers do
+defmodule SupacWeb.LiveHelpers do
   import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
 
@@ -14,7 +14,7 @@ defmodule Lv13Web.LiveHelpers do
 
       <.modal return_to={Routes.lead_index_path(@socket, :index)}>
         <.live_component
-          module={Lv13Web.LeadLive.FormComponent}
+          module={SupacWeb.LeadLive.FormComponent}
           id={@lead.id || :new}
           title={@page_title}
           action={@live_action}
@@ -71,7 +71,7 @@ defmodule Lv13Web.LiveHelpers do
   Creates an update that has username, schema name, old version, and new version
   """
   def create_an_update(old, new, user) do
-    Lv13.His.create_upd(
+    Supac.His.create_upd(
       %{
         update: %{
           user: %{user_name: user.name, email: user.email},

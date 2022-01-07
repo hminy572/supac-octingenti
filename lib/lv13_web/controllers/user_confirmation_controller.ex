@@ -1,7 +1,7 @@
-defmodule Lv13Web.UserConfirmationController do
-  use Lv13Web, :controller
+defmodule SupacWeb.UserConfirmationController do
+  use SupacWeb, :controller
 
-  alias Lv13.Accounts
+  alias Supac.Accounts
 
   def new(conn, _params) do
     render(conn, "new.html")

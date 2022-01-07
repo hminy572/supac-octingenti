@@ -1,3 +1,3 @@
-defmodule Lv13Web.UserSettingsView do
-  use Lv13Web, :view
+defmodule SupacWeb.UserSettingsView do
+  use SupacWeb, :view
 end

@@ -1,12 +1,12 @@
-defmodule Lv13Web.Endpoint do
-  use Phoenix.Endpoint, otp_app: :lv13
+defmodule SupacWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :Supac
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_lv13_key",
+    key: "_Supac_key",
     signing_salt: "TBhQQcdJ"
   ]
 
@@ -18,7 +18,7 @@ defmodule Lv13Web.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :lv13,
+    from: :Supac,
     gzip: false,
     only: ~w(assets fonts images favicon.ico robots.txt)
 
@@ -28,7 +28,7 @@ defmodule Lv13Web.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :lv13
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :Supac
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -46,5 +46,5 @@ defmodule Lv13Web.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug Lv13Web.Router
+  plug SupacWeb.Router
 end

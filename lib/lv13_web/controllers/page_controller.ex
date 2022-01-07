@@ -1,5 +1,5 @@
-defmodule Lv13Web.PageController do
-  use Lv13Web, :controller
+defmodule SupacWeb.PageController do
+  use SupacWeb, :controller
 
   def index(conn, _params) do
     render(conn, "index.html")

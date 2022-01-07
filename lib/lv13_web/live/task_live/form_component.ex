@@ -1,7 +1,7 @@
-defmodule Lv13Web.TaskLive.FormComponent do
-  use Lv13Web, :live_component
+defmodule SupacWeb.TaskLive.FormComponent do
+  use SupacWeb, :live_component
 
-  alias Lv13.Sup
+  alias Supac.Sup
 
   @impl true
   def update(%{task: task} = assigns, socket) do

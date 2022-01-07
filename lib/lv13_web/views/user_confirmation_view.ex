@@ -1,3 +1,3 @@
-defmodule Lv13Web.UserConfirmationView do
-  use Lv13Web, :view
+defmodule SupacWeb.UserConfirmationView do
+  use SupacWeb, :view
 end

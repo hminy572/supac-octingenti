@@ -5,13 +5,13 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     Lv13.Repo.insert!(%Lv13.SomeSchema{})
+#     Supac.Repo.insert!(%Supac.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-import Lv13.Sup
-alias Lv13.Sup.{Lead, Product, Task, Appo, Com, Con}
+import Supac.Sup
+alias Supac.Sup.{Lead, Product, Task, Appo, Com, Con}
 
 # lead
 # Enum.each(1..30, fn _ ->
@@ -39,7 +39,7 @@ alias Lv13.Sup.{Lead, Product, Task, Appo, Com, Con}
 #   create_task(%{
 #     name: Faker.Pokemon.name,
 #     due_date: Faker.Date.backward(10),
-#     person_in_charge: Enum.random(Lv13.Accounts.list_users_by_name()),
+#     person_in_charge: Enum.random(Supac.Accounts.list_users_by_name()),
 #     priority: Enum.random(Ecto.Enum.values(Task, :priority)),
 #     content: Faker.Lorem.paragraph
 #   })
@@ -54,7 +54,7 @@ alias Lv13.Sup.{Lead, Product, Task, Appo, Com, Con}
 #     probability: :rand.uniform(),
 #     description: Faker.Lorem.paragraph,
 #     is_client: false,
-#     person_in_charge: Enum.random(Lv13.Accounts.list_users_by_name()),
+#     person_in_charge: Enum.random(Supac.Accounts.list_users_by_name()),
 #     date: Faker.Date.backward(10)
 #   })
 # end)

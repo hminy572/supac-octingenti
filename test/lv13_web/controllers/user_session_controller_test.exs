@@ -1,7 +1,7 @@
-defmodule Lv13Web.UserSessionControllerTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.UserSessionControllerTest do
+  use SupacWeb.ConnCase, async: true
 
-  import Lv13.AccountsFixtures
+  import Supac.AccountsFixtures
 
   setup do
     %{user: user_fixture()}
@@ -48,7 +48,7 @@ defmodule Lv13Web.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_lv13_web_user_remember_me"]
+      assert conn.resp_cookies["_Supac_web_user_remember_me"]
       assert redirected_to(conn) == "/"
     end
 

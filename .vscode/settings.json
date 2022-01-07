@@ -5,8 +5,8 @@
       "server": "localhost",
       "port": 5432,
       "driver": "PostgreSQL",
-      "name": "lv13",
-      "database": "lv13_dev",
+      "name": "Supac",
+      "database": "Supac_dev",
       "username": "root",
       "password": "root"
     }

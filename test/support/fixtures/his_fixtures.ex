@@ -1,7 +1,7 @@
-defmodule Lv13.HisFixtures do
+defmodule Supac.HisFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Lv13.His` context.
+  entities via the `Supac.His` context.
   """
 
   @doc """
@@ -13,7 +13,7 @@ defmodule Lv13.HisFixtures do
       |> Enum.into(%{
         update: %{}
       })
-      |> Lv13.His.create_upd()
+      |> Supac.His.create_upd()
 
     upd
   end

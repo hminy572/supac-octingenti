@@ -1,9 +1,9 @@
-defmodule Lv13Web.UserConfirmationControllerTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.UserConfirmationControllerTest do
+  use SupacWeb.ConnCase, async: true
 
-  alias Lv13.Accounts
-  alias Lv13.Repo
-  import Lv13.AccountsFixtures
+  alias Supac.Accounts
+  alias Supac.Repo
+  import Supac.AccountsFixtures
 
   setup do
     %{user: user_fixture()}

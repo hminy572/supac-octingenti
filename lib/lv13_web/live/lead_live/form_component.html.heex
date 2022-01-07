@@ -31,7 +31,7 @@
     <span class="text-red-500"><%= error_tag f, :com_name %></span>
 
     <%= label f, :state, class: "block" %>
-    <%= select f, :state, Ecto.Enum.values(Lv13.Sup.Lead, :state), class: "block rounded mb-3" %>
+    <%= select f, :state, Ecto.Enum.values(Supac.Sup.Lead, :state), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :state %></span>
 
     <%= if Map.has_key?(@changeset.changes, :state) && @changeset.changes.state == :converted do %>
@@ -39,11 +39,11 @@
     <% end %>
 
     <%= label f, :position, class: "block" %>
-    <%= select f, :position, Ecto.Enum.values(Lv13.Sup.Lead, :position), class: "block rounded mb-3" %>
+    <%= select f, :position, Ecto.Enum.values(Supac.Sup.Lead, :position), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :position %></span>
 
     <%= label f, :size, class: "block" %>
-    <%= select f, :size, Ecto.Enum.values(Lv13.Sup.Lead, :size), class: "block rounded mb-3" %>
+    <%= select f, :size, Ecto.Enum.values(Supac.Sup.Lead, :size), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :size %></span>
 
     <%= label f, :url, class: "block" %>

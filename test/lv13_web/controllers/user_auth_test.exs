@@ -1,16 +1,16 @@
-defmodule Lv13Web.UserAuthTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.UserAuthTest do
+  use SupacWeb.ConnCase, async: true
 
-  alias Lv13.Accounts
-  alias Lv13Web.UserAuth
-  import Lv13.AccountsFixtures
+  alias Supac.Accounts
+  alias SupacWeb.UserAuth
+  import Supac.AccountsFixtures
 
-  @remember_me_cookie "_lv13_web_user_remember_me"
+  @remember_me_cookie "_Supac_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, Lv13Web.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, SupacWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -65,7 +65,7 @@ defmodule Lv13Web.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      Lv13Web.Endpoint.subscribe(live_socket_id)
+      SupacWeb.Endpoint.subscribe(live_socket_id)
 
       conn
       |> put_session(:live_socket_id, live_socket_id)

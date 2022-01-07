@@ -1,7 +1,7 @@
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.task_index_path(@socket, :index)}>
     <.live_component
-      module={Lv13Web.TaskLive.FormComponent}
+      module={SupacWeb.TaskLive.FormComponent}
       id={@task.id || :new}
       title={@page_title}
       action={@live_action}

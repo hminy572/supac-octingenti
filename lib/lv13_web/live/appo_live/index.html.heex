@@ -1,7 +1,7 @@
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.appo_index_path(@socket, :index)}>
     <.live_component
-      module={Lv13Web.AppoLive.FormComponent}
+      module={SupacWeb.AppoLive.FormComponent}
       id={@appo.id || :new}
       title={@page_title}
       action={@live_action}

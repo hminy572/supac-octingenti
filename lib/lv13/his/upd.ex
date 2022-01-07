@@ -1,4 +1,4 @@
-defmodule Lv13.His.Upd do
+defmodule Supac.His.Upd do
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,11 +1,11 @@
-defmodule Lv13.Sup do
+defmodule Supac.Sup do
   @moduledoc """
   The Sup context.
   """
 
   import Ecto.Query, warn: false
-  alias Lv13.Repo
-  alias Lv13.Sup.{
+  alias Supac.Repo
+  alias Supac.Sup.{
     Lead,
     Prod,
     Task,

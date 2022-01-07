@@ -1,7 +1,7 @@
-defmodule Lv13Web.UserLiveAuth do
+defmodule SupacWeb.UserLiveAuth do
   import Phoenix.LiveView
 
-  alias Lv13.Accounts
+  alias Supac.Accounts
 
   require Logger
 

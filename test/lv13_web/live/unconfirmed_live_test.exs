@@ -1,5 +1,5 @@
-defmodule Lv13Web.UnconfirmedLiveTest do
-  use Lv13Web.ConnCase, async: true
+defmodule SupacWeb.UnconfirmedLiveTest do
+  use SupacWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
 
@@ -10,7 +10,7 @@ defmodule Lv13Web.UnconfirmedLiveTest do
     test "simply visit /unconfimred", %{conn: conn, user: user} do
       msg = "Your email hasn't been confirmed yet. Make sure to click the confirmation link in the email sent to #{user.email}"
 
-      {:ok, _view, html} = live(conn, Routes.live_path(conn, Lv13Web.UnconfirmedLive))
+      {:ok, _view, html} = live(conn, Routes.live_path(conn, SupacWeb.UnconfirmedLive))
 
       assert html =~ String.replace(msg, "'", "&#39;")
     end

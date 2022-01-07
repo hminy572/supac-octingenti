@@ -1,8 +1,8 @@
-defmodule Lv13Web.LeadLive.Index do
-  use Lv13Web, :live_view
+defmodule SupacWeb.LeadLive.Index do
+  use SupacWeb, :live_view
 
-  alias Lv13.Sup
-  alias Lv13.Sup.Lead
+  alias Supac.Sup
+  alias Supac.Sup.Lead
 
   require Logger
 

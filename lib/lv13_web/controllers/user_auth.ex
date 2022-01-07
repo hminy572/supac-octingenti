@@ -1,15 +1,15 @@
-defmodule Lv13Web.UserAuth do
+defmodule SupacWeb.UserAuth do
   import Plug.Conn
   import Phoenix.Controller
 
-  alias Lv13.Accounts
-  alias Lv13Web.Router.Helpers, as: Routes
+  alias Supac.Accounts
+  alias SupacWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.
   # If you want bump or reduce this value, also change
   # the token expiry itself in UserToken.
   @max_age 60 * 60 * 24 * 60
-  @remember_me_cookie "_lv13_web_user_remember_me"
+  @remember_me_cookie "_Supac_web_user_remember_me"
   @remember_me_options [sign: true, max_age: @max_age, same_site: "Lax"]
 
   @doc """
@@ -75,7 +75,7 @@ defmodule Lv13Web.UserAuth do
     user_token && Accounts.delete_session_token(user_token)
 
     if live_socket_id = get_session(conn, :live_socket_id) do
-      Lv13Web.Endpoint.broadcast(live_socket_id, "disconnect", %{})
+      SupacWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
     end
 
     conn
@@ -156,7 +156,7 @@ defmodule Lv13Web.UserAuth do
   defp render_unauthorized(conn) do
     conn
     |> put_status(:unauthorized)
-    |> put_view(Lv13Web.ErrorView)
+    |> put_view(SupacWeb.ErrorView)
     |> render(:"401")
     |> halt()
   end

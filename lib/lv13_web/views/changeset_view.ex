@@ -1,11 +1,11 @@
-defmodule Lv13Web.ChangesetView do
-  use Lv13Web, :view
+defmodule SupacWeb.ChangesetView do
+  use SupacWeb, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `Lv13Web.ErrorHelpers.translate_error/1` for more details.
+  `SupacWeb.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

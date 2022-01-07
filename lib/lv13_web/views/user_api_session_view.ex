@@ -1,5 +1,5 @@
-defmodule Lv13Web.UserApiSessionView do
-  use Lv13Web, :view
+defmodule SupacWeb.UserApiSessionView do
+  use SupacWeb, :view
 
   def render("token.json", %{token: token}) do
     %{token: token}
