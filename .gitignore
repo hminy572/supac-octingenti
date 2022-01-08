@@ -32,3 +32,5 @@ supac-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore sql files
+*.sql
