@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 import Supac.Sup
-alias Supac.Sup.{Lead, Product, Task, Appo, Com, Con}
+alias Supac.Sup.{Lead, Task, Appo, Com, Con}
 
 # lead
 Enum.each(1..30, fn _ ->
