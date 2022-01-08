@@ -1,8 +1,8 @@
 # Supac
 
 ---
-
-**Supac has Sup context**
+**Supac is simple crm. With Supac, you can use it to manage business data easily.**
+**Supac has Sup context which enable you to modify all the data in Supac, more specifically you can create, edit, update and delete data in Lead, Contact, Company, Appointment, Task and Product schema.**
 
 ---
 
