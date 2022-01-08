@@ -17,7 +17,8 @@ defmodule Supac.MixProject do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
-      ]
+      ],
+      name: "Supac"
     ]
   end
 
