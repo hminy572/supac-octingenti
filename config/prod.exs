@@ -10,7 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :supac, SupacWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  url: [host: "supac-unus.fly.dev", port: 8080],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -45,7 +45,7 @@ config :logger, level: :info
 # We also recommend setting `force_ssl` in your endpoint, ensuring
 # no data is ever sent via http, always redirecting to https:
 #
-#     config :supac, SupacWeb.Endpoint,
-#       force_ssl: [hsts: true]
+    # config :supac, SupacWeb.Endpoint,
+    #   force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.

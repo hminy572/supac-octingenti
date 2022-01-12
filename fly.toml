@@ -10,8 +10,8 @@ processes = []
   release_command = "/app/bin/supac eval Supac.Release.migrate"
 
 [env]
-  PHX_HOST = "supac-unus.fly.dev"
-  PORT = "8080"
+  # PHX_HOST = "supac-unus.fly.dev"
+  # PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
