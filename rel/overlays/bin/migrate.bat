@@ -1,0 +1,1 @@
+call "%~dp0\supac" eval Supac.Release.migrate

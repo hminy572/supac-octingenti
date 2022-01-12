@@ -60,8 +60,8 @@ config :supac, SupacWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/lv13_web/(live|views)/.*(ex)$",
-      ~r"lib/lv13_web/templates/.*(eex)$"
+      ~r"lib/supac_web/(live|views)/.*(ex)$",
+      ~r"lib/supac_web/templates/.*(eex)$"
     ]
   ]
 
