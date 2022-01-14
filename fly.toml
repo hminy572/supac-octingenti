@@ -1,17 +1,17 @@
-# fly.toml file generated for supac-unus on 2022-01-12T16:01:47+09:00
+# fly.toml file generated for supac-quattuor on 2022-01-14T15:26:31+09:00
 
-app = "supac-unus"
+app = "supac-quattuor"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "/app/bin/supac eval Supac.Release.migrate"
+  release_command = "/app/bin/migrate"
 
 [env]
-  # PHX_HOST = "supac-unus.fly.dev"
-  # PORT = "8080"
+  PHX_HOST = "supac-quattuor.fly.dev"
+  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
@@ -19,7 +19,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 4000
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
@@ -38,7 +38,7 @@ processes = []
     port = 443
 
   [[services.tcp_checks]]
-    grace_period = "30s"
+    grace_period = "1s"
     interval = "15s"
-    restart_limit = 6
+    restart_limit = 0
     timeout = "2s"

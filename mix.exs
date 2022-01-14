@@ -18,13 +18,11 @@ defmodule Supac.MixProject do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
-      name: "Supac" # doc name
+      name: "Supac", # doc name
+      releases: releases()
     ]
   end
 
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
   def application do
     [
       mod: {Supac.Application, []},
@@ -32,13 +30,9 @@ defmodule Supac.MixProject do
     ]
   end
 
-  # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  # Specifies your project dependencies.
-  #
-  # Type `mix help deps` for examples and options.
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.0"},
@@ -68,12 +62,6 @@ defmodule Supac.MixProject do
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to install project dependencies and perform other setup tasks, run:
-  #
-  #     $ mix setup
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
       setup: ["deps.get", "ecto.setup"],
@@ -81,6 +69,15 @@ defmodule Supac.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]
+    ]
+  end
+
+  defp releases() do
+    [
+      hello_elixir: [
+        include_executables_for: [:unix],
+        cookie: "4INoSxnSJ3XXjJOJuKJvG0RLm-6opL8vrdTiIAclkoF9YnpvvidZRw==" # Base.url_encode64(:crypto.strong_rand_bytes(40))
+      ]
     ]
   end
 end

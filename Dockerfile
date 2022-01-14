@@ -42,9 +42,6 @@ RUN mkdir config
 COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
-# Compile the release
-COPY lib lib
-
 COPY priv priv
 
 # note: if your project uses a tool like https://purgecss.com/,
@@ -55,6 +52,9 @@ COPY assets assets
 
 # compile assets
 RUN mix assets.deploy
+
+# Compile the release
+COPY lib lib
 
 RUN mix compile
 
