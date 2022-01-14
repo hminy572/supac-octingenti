@@ -7,8 +7,8 @@ kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "/app/bin/supac eval Supac.Release.migrate"
-
+  release_command = "/app/bin/migrate"
+  
 [env]
   # PHX_HOST = "supac-unus.fly.dev"
   # PORT = "8080"
