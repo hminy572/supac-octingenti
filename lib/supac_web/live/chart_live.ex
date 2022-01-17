@@ -38,20 +38,20 @@ defmodule SupacWeb.ChartLive do
       bar_svg: Plot.new(
         Dataset.new(
           data,
-          ["size", "frequency"]
+          ["規模", "会社数"]
         ),
         BarChart,
         600,
         300,
         [
-          mapping: %{category_col: "size", value_cols: ["frequency"]},
+          mapping: %{category_col: "規模", value_cols: ["会社数"]},
           legend_setting: :legend_right,
-          title: "Company Size Frequency in Leads",
+          title: "リードの会社規模分布",
           data_labels: false,
           type: :stacked
         ]
       )
-        |> Plot.axis_labels("size", "frequency")
+        |> Plot.axis_labels("規模", "会社数")
         |> Plot.to_svg()
     )
   end
@@ -81,16 +81,16 @@ defmodule SupacWeb.ChartLive do
       line_svg: Plot.new(
               Dataset.new(
                 data,
-                ["Size", "freq"]
+                ["規模", "会社数"]
               ),
               LinePlot,
               700,
               300,
               [
-                mapping: %{x_col: "Size", y_cols: ["freq"]},
+                mapping: %{x_col: "規模", y_cols: ["会社数"]},
                 smoothed: false,
                 legend_setting: :legend_right,
-                title: "Number of Leads per date",
+                title: "日次のリード数",
                 type: "line",
                 colour_scheme: "default",
                 custom_y_scale: y_scale
@@ -123,7 +123,7 @@ defmodule SupacWeb.ChartLive do
           [
             mapping: %{category_col: "cat", value_col: "1"},
             legend_setting: :legend_right,
-            title: "Lead State Chart",
+            title: "リードの各フェーズの割合",
             data_labels: true,
             #colour_palette: ["ff9838", "fdae53", "fbc26f", "fad48e", "fbe5af", "fff5d1"] # orange gradient
           ]

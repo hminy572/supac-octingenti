@@ -13,47 +13,47 @@
 
     <%= hidden_input f, :prod_id %>
 
-    <%= label f, :name, class: "block" %>
+    <%= label f, "氏名", class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :state, class: "block" %>
+    <%= label f, "フェーズ", class: "block" %>
     <%= select f, :state, Ecto.Enum.values(Supac.Sup.Appo, :state), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :state %></span>
 
-    <%= label f, :amount, class: "block" %>
+    <%= label f, "見込み金額", class: "block" %>
     <%= number_input f, :amount, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :amount %></span>
 
-    <%= label f, :probability, class: "block" %>
+    <%= label f, "確度", class: "block" %>
     <%= number_input f, :probability, step: "any", class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :probability %></span>
 
-    <%= label f, :description, class: "block" %>
+    <%= label f, "説明", class: "block" %>
     <%= textarea f, :description, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :description %></span>
 
-    <%= label f, :is_client, class: "block" %>
+    <%= label f, "契約済み", class: "block" %>
     <%= checkbox f, :is_client %>
     <span class="text-red-500"><%= error_tag f, :is_client %></span>
 
-    <%= label f, :person_in_charge, class: "block" %>
+    <%= label f, "担当者", class: "block" %>
     <%= select f, :person_in_charge, Supac.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :person_in_charge %></span>
 
-    <%= label f, :date, class: "block" %>
+    <%= label f, "日付", class: "block" %>
     <%= date_input f, :date, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
@@ -61,7 +61,7 @@
     <span class="text-red-500"><%= error_tag f, :date %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving...", class: "
+      <%= submit "保存", phx_disable_with: "Saving...", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -76,7 +76,7 @@
   <%= if @action == :edit do %>
     <hr class="mt-6">
     <div class="mt-2">
-      <div class="mt-3"><strong>Company</strong></div>
+      <div class="mt-3"><strong>会社</strong></div>
       <div>
         <%= if @appo.com do %>
           <%= live_redirect @appo.com.name, to: Routes.com_index_path(@socket, :edit, @appo.com), class: "text-amber-700 hover:underline" %>
@@ -96,11 +96,11 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Company</a>
+            font-bold rounded-xl">会社を追加</a>
         <% end %>
       </div>
 
-      <div class="mt-3"><strong>Prod</strong></div>
+      <div class="mt-3"><strong>商品</strong></div>
       <div>
         <%= if @appo.prod do %>
           <%= live_redirect @appo.prod.name, to: Routes.prod_index_path(@socket, :edit, @appo.prod), class: "text-amber-700 hover:underline" %>
@@ -113,7 +113,7 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Prod</a>
+            font-bold rounded-xl">商品を追加</a>
         <% end %>
       </div>
     </div>

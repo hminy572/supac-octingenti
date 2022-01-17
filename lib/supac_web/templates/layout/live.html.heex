@@ -2,13 +2,13 @@
   <div class="flex justify-between bg-amber-100">
     <div class="flex mt-4 overflow-x-scroll">
       <a href="/" class="font-serif text-2xl text-amber-700 font-bold mx-2">Supac</a>
-      <a href="/" class={SupacWeb.Nav.tab_style(@active_tab, :chart)}>Chart</a>
-      <a href="/leads" class={SupacWeb.Nav.tab_style(@active_tab, :lead)}>Lead</a>
-      <a href="/cons" class={SupacWeb.Nav.tab_style(@active_tab, :con)}>Con</a>
-      <a href="/coms" class={SupacWeb.Nav.tab_style(@active_tab, :com)}>Com</a>
-      <a href="/appos" class={SupacWeb.Nav.tab_style(@active_tab, :appo)}>Appo</a>
-      <a href="/tasks" class={SupacWeb.Nav.tab_style(@active_tab, :task)}>Task</a>
-      <a href="/prods" class={SupacWeb.Nav.tab_style(@active_tab, :prod)}>Prod</a>
+      <a href="/" class={SupacWeb.Nav.tab_style(@active_tab, :chart)}>グラフ</a>
+      <a href="/leads" class={SupacWeb.Nav.tab_style(@active_tab, :lead)}>リード</a>
+      <a href="/cons" class={SupacWeb.Nav.tab_style(@active_tab, :con)}>連絡先</a>
+      <a href="/coms" class={SupacWeb.Nav.tab_style(@active_tab, :com)}>会社</a>
+      <a href="/appos" class={SupacWeb.Nav.tab_style(@active_tab, :appo)}>アポ</a>
+      <a href="/tasks" class={SupacWeb.Nav.tab_style(@active_tab, :task)}>タスク</a>
+      <a href="/prods" class={SupacWeb.Nav.tab_style(@active_tab, :prod)}>商品</a>
       <form action="/search" method="get" class="search_form">
         <input type="search" class="rounded-md ml-4 h-9 w-28" name="term" value="" placeholder="🔍" autocomplete="off">
       </form>
@@ -19,12 +19,12 @@
         <div><%= @current_user.name %></div>
         <div>
           <%= link to: Routes.user_settings_path(@socket, :edit), class: "hover:underline" do%>
-            Settings
+            設定
           <% end %>
         </div>
         <div>
           <%= link to: Routes.user_session_path(@socket, :delete), method: :delete, class: "hover:underline" do %>
-            Logout
+            ログアウト
           <% end %>
         </div>
       <% else %>

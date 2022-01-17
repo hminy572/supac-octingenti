@@ -3,13 +3,13 @@
     <div class="flex justify-between bg-amber-100">
       <div class="flex mt-4 overflow-x-scroll">
         <a href="/" class="font-serif text-2xl text-amber-700 font-bold mx-2">Supac</a>
-        <a href="/" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Chart</a>
-        <a href="/leads" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Lead</a>
-        <a href="/cons" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Con</a>
-        <a href="/coms" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Com</a>
-        <a href="/appos" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Appo</a>
-        <a href="/tasks" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Task</a>
-        <a href="/prods" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">Prod</a>
+        <a href="/" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">グラフ</a>
+        <a href="/leads" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">リード</a>
+        <a href="/cons" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">連絡先</a>
+        <a href="/coms" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">会社</a>
+        <a href="/appos" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">アポ</a>
+        <a href="/tasks" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">タスク</a>
+        <a href="/prods" class="mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400">商品</a>
         <form action="/search" method="get" class="">
           <input type="search" class="rounded-md ml-4 h-9 w-28" name="term" value="" placeholder="🔍" autocomplete="off">
         </form>
@@ -17,10 +17,10 @@
       <div class="mx-2 mt-1">
         <div><%= @current_user.name %></div>
         <div>
-          <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "hover:underline underline-offset-4" %>
+          <%= link "設定", to: Routes.user_settings_path(@conn, :edit), class: "hover:underline underline-offset-4" %>
         </div>
         <div>
-          <%= link "Logout", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "hover:underline underline-offset-4" %>
+          <%= link "ログアウト", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "hover:underline underline-offset-4" %>
         </div>
       </div>
     </div>

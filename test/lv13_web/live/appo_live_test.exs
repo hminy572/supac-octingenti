@@ -65,15 +65,15 @@ defmodule SupacWeb.AppoLiveTest do
     test "lists all appos", %{conn: conn} do
       {:ok, _index_live, html} = live(conn, Routes.appo_index_path(conn, :index))
 
-      assert html =~ "New Appo"
+      assert html =~ "新規アポ"
     end
 
     test "saves new appo", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, Routes.appo_index_path(conn, :index))
 
       assert index_live
-            |> element("a", "New Appo")
-            |> render_click() =~ "New Appo"
+            |> element("a", "新規アポ")
+            |> render_click() =~ "新規アポ"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :new))
 
@@ -95,7 +95,7 @@ defmodule SupacWeb.AppoLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.appo_index_path(conn, :index))
 
       assert index_live
-            |> element("#appo-#{appo.id} a", "Edit")
+            |> element("#appo-#{appo.id} a", "編集")
             |> render_click() =~ "Edit Appo"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :edit, appo))
@@ -124,13 +124,13 @@ defmodule SupacWeb.AppoLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.appo_index_path(conn, :index))
 
       assert index_live
-            |> element("#appo-#{appo.id} a", "Edit")
+            |> element("#appo-#{appo.id} a", "編集")
             |> render_click() =~ "Edit Appo"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :edit, appo))
 
       assert index_live
-            |> element("a", "Add Company")
+            |> element("a", "会社を追加")
             |> render_click()
       assert_redirected(index_live, "/coms?appo_id=#{appo.id}")
 
@@ -165,13 +165,13 @@ defmodule SupacWeb.AppoLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.appo_index_path(conn, :index))
 
       assert index_live
-            |> element("#appo-#{appo.id} a", "Edit")
+            |> element("#appo-#{appo.id} a", "編集")
             |> render_click() =~ "Edit Appo"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :edit, appo))
 
       assert index_live
-            |> element("a", "Add Prod")
+            |> element("a", "商品を追加")
             |> render_click()
       assert_redirected(index_live, "/prods?appo_id=#{appo.id}")
 
@@ -206,7 +206,7 @@ defmodule SupacWeb.AppoLiveTest do
 
       {:ok, index_live, _html} = live(conn, Routes.appo_index_path(conn, :index))
 
-      assert index_live |> element("#appo-#{appo.id} a", "Delete") |> render_click()
+      assert index_live |> element("#appo-#{appo.id} a", "削除") |> render_click()
       refute has_element?(index_live, "#appo-#{appo.id}")
     end
   end

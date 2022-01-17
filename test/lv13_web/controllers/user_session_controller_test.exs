@@ -11,7 +11,7 @@ defmodule SupacWeb.UserSessionControllerTest do
     test "renders log in page", %{conn: conn} do
       conn = get(conn, Routes.user_session_path(conn, :new))
       response = html_response(conn, 200)
-      assert response =~ "Log in</div>"
+      assert response =~ "ログイン</div>"
       # assert response =~ "Register</a>"
       # assert response =~ "Forgot your password?</a>"
     end
@@ -73,7 +73,7 @@ defmodule SupacWeb.UserSessionControllerTest do
         })
 
       response = html_response(conn, 200)
-      assert response =~ "Log in</div>"
+      assert response =~ "ログイン</div>"
       assert response =~ "Invalid email or password"
     end
   end
