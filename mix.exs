@@ -4,7 +4,7 @@ defmodule Supac.MixProject do
   def project do
     [
       app: :supac,
-      version: "0.1.0",
+      version: "0.1.6",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),
@@ -18,7 +18,7 @@ defmodule Supac.MixProject do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
-      name: "Supac", # doc name
+      name: "Supac",
       releases: releases()
     ]
   end
@@ -36,7 +36,7 @@ defmodule Supac.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.0"},
-      {:phoenix, "~> 1.6.0"},
+      {:phoenix, "~> 1.6.6"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
@@ -58,7 +58,8 @@ defmodule Supac.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:contex, "~> 0.4.0"},
       {:map_diff, "~> 1.3"},
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:hackney, "~> 1.18"}
     ]
   end
 
@@ -74,9 +75,9 @@ defmodule Supac.MixProject do
 
   defp releases() do
     [
-      hello_elixir: [
+      supac: [
         include_executables_for: [:unix],
-        cookie: "4INoSxnSJ3XXjJOJuKJvG0RLm-6opL8vrdTiIAclkoF9YnpvvidZRw==" # Base.url_encode64(:crypto.strong_rand_bytes(40))
+        cookie: "4INoSxnSJ3XXjJOJuKJvG0RLm-6opL8vrdTiIAclkoF9YnpvvidZRw=="
       ]
     ]
   end

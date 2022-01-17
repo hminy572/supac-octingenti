@@ -1,6 +1,6 @@
-# fly.toml file generated for supac-quattuor on 2022-01-14T15:26:31+09:00
+# fly.toml file generated for supac-septem on 2022-01-15T15:17:03+09:00
 
-app = "supac-quattuor"
+app = "supac-septem"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
@@ -10,8 +10,8 @@ processes = []
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "supac-quattuor.fly.dev"
-  PORT = "8080"
+  # PHX_HOST = "supac-septem.fly.dev"
+  # PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
@@ -19,7 +19,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 8080
+  internal_port = 4000
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
@@ -38,7 +38,7 @@ processes = []
     port = 443
 
   [[services.tcp_checks]]
-    grace_period = "1s"
+    grace_period = "30s"
     interval = "15s"
-    restart_limit = 0
+    restart_limit = 6
     timeout = "2s"
