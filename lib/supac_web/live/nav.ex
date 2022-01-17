@@ -26,9 +26,9 @@ defmodule SupacWeb.Nav do
 
   def tab_style(active_tab, tab_name) do
     if active_tab == tab_name do
-      "mx-1 mb-7 p-1 border-b-4 border-b-amber-400 bg-amber-200"
+      "mx-1 mb-7 p-1 border-b-4 whitespace-nowrap border-b-amber-400 bg-amber-200"
     else
-      "mx-1 mb-7 p-1 border-b-4 hover:border-b-amber-400"
+      "mx-1 mb-7 p-1 border-b-4 whitespace-nowrap hover:border-b-amber-400"
     end
   end
 end
