@@ -96,7 +96,7 @@ defmodule SupacWeb.AppoLiveTest do
 
       assert index_live
             |> element("#appo-#{appo.id} a", "編集")
-            |> render_click() =~ "Edit Appo"
+            |> render_click() =~ "アポを編集"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :edit, appo))
 
@@ -125,7 +125,7 @@ defmodule SupacWeb.AppoLiveTest do
 
       assert index_live
             |> element("#appo-#{appo.id} a", "編集")
-            |> render_click() =~ "Edit Appo"
+            |> render_click() =~ "アポを編集"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :edit, appo))
 
@@ -166,7 +166,7 @@ defmodule SupacWeb.AppoLiveTest do
 
       assert index_live
             |> element("#appo-#{appo.id} a", "編集")
-            |> render_click() =~ "Edit Appo"
+            |> render_click() =~ "アポを編集"
 
       assert_patch(index_live, Routes.appo_index_path(conn, :edit, appo))
 

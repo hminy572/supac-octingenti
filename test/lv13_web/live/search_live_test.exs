@@ -78,7 +78,7 @@ defmodule SupacWeb.SearchLiveTest do
         |> render_click()
         |> follow_redirect(conn, Routes.appo_index_path(conn, :edit, appo))
 
-      assert appo_html =~ "Edit Appo"
+      assert appo_html =~ "アポを編集"
       assert appo_view |> element("#appo-form_name") |> render() =~ String.replace(appo.name, "'", "&#39;")
     end
 

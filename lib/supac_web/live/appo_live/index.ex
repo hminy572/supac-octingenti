@@ -16,31 +16,31 @@ defmodule SupacWeb.AppoLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Appo")
+    |> assign(:page_title, "アポを編集")
     |> assign(:appo, Sup.get_appo!(id))
   end
 
   defp apply_action(socket, :new, %{"com_id" => id}) do
     socket
-    |> assign(:page_title, "Add Appo")
+    |> assign(:page_title, "アポを追加")
     |> assign(:appo, %Appo{com_id: id})
   end
 
   defp apply_action(socket, :new, %{"prod_id" => id}) do
     socket
-    |> assign(:page_title, "Add Appo")
+    |> assign(:page_title, "アポを追加")
     |> assign(:appo, %Appo{prod_id: id})
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Appo")
+    |> assign(:page_title, "新規アポ")
     |> assign(:appo, %Appo{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Appos")
+    |> assign(:page_title, "アポ一覧")
     |> assign(:appo, nil)
   end
 

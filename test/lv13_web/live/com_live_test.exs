@@ -137,7 +137,7 @@ defmodule SupacWeb.ComLiveTest do
         |> follow_redirect(conn, Routes.appo_index_path(conn, :new, %{"com_id" => com.id}))
 
       # assert the appo you are about to create is tied with the com id
-      assert html =~ "Add Appo"
+      assert html =~ "アポを追加"
       assert has_element?(appo_view, ~s{[id="appo-form_com_id"][value="#{com.id}"]})
     end
 

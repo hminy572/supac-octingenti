@@ -96,7 +96,7 @@ defmodule SupacWeb.ProdLiveTest do
         |> follow_redirect(conn, Routes.appo_index_path(conn, :new, %{"prod_id" => prod.id}))
 
       # assert the appo you are about to create is tied with the prod id
-      assert html =~ "Add Appo"
+      assert html =~ "アポを追加"
       assert has_element?(appo_view, ~s{[id="appo-form_prod_id"][value="#{prod.id}"]})
     end
 
