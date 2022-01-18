@@ -8,7 +8,7 @@ defmodule Supac.Sup.Task do
     field :due_date, :date
     field :name, :string
     field :person_in_charge, :string
-    field :priority, Ecto.Enum, values: [:urgent, :high, :mid, :low], defautl: :low
+    field :priority, Ecto.Enum, values: [:"緊急", :"急ぎ", :"なる早", :"時間がある時"], defautl: :"時間がある時"
     belongs_to :com, Supac.Sup.Com
 
     timestamps()

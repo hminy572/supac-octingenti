@@ -15,7 +15,7 @@ defmodule SupacWeb.LeadLiveTest do
     name: "some name",
     position: Enum.random(Ecto.Enum.values(Lead, :position)),
     size: Enum.random(Ecto.Enum.values(Lead, :size)),
-    state: :not_contacted,
+    state: :"見込み",
     url: "https://some.url"
   }
   @update_attrs %{
@@ -24,7 +24,7 @@ defmodule SupacWeb.LeadLiveTest do
     name: "some name",
     position: Enum.random(Ecto.Enum.values(Lead, :position)),
     size: Enum.random(Ecto.Enum.values(Lead, :size)),
-    state: :not_contacted,
+    state: :"見込み",
     url: "https://some.url"
   }
   @converted_attrs %{
@@ -33,7 +33,7 @@ defmodule SupacWeb.LeadLiveTest do
     name: "some name",
     position: Enum.random(Ecto.Enum.values(Lead, :position)),
     size: Enum.random(Ecto.Enum.values(Lead, :size)),
-    state: :converted,
+    state: :"案件化",
     url: "https://some.url"
   }
   @invalid_attrs %{
@@ -42,7 +42,7 @@ defmodule SupacWeb.LeadLiveTest do
     name: nil,
     position: Enum.random(Ecto.Enum.values(Lead, :position)),
     size: Enum.random(Ecto.Enum.values(Lead, :size)),
-    state: :not_contacted,
+    state: :"見込み",
     url: "invalid url"
   }
 
@@ -142,7 +142,7 @@ defmodule SupacWeb.LeadLiveTest do
       assert update.update["new"]["com_name"] == updated_lead.com_name
     end
 
-    test "updates lead state to 'converted'", %{conn: conn, lead: lead, appo: appo} do
+    test "updates lead state to '案件化'", %{conn: conn, lead: lead, appo: appo} do
       # visit "/leads"
       {:ok, index_live, _html} = live(conn, Routes.lead_index_path(conn, :index))
 
@@ -151,7 +151,7 @@ defmodule SupacWeb.LeadLiveTest do
             |> element("#lead-#{lead.id} a", "編集")
             |> render_click() =~ "リードを編集"
 
-      # update lead with %{state :converted} and get redirected to "/appos/:id/edit"
+      # update lead with %{state :"案件化"} and get redirected to "/appos/:id/edit"
       {:ok, appo_live, html} =
         index_live
         |> form("#lead-form", lead: @converted_attrs)
@@ -168,10 +168,10 @@ defmodule SupacWeb.LeadLiveTest do
       assert has_element?(appo_live, "a", updated_lead.email) # link element to the con has email value
 
       # assert pre update lead value
-      assert update.update["old"]["state"] == "not_contacted" # fails if :not_contacted
+      assert update.update["old"]["state"] == "見込み" # fails if :"見込み"
 
       # assert post update lead value
-      assert update.update["new"]["state"] == "converted" # fails if :converted
+      assert update.update["new"]["state"] == "案件化" # fails if :"案件化"
     end
 
     test "deletes lead in listing", %{conn: conn, lead: lead} do
@@ -209,11 +209,11 @@ defmodule SupacWeb.LeadLiveTest do
 end
 
 
-## updated lead when state is not converted
+## updated lead when state is not "案件化"
 ### 1. open edit modal (already tested)
 ### 2. update lead
-## updated lead when state is converted
+## updated lead when state is "案件化"
 ### 1. open edit modal
-### 2. update lead with state == "converted"
+### 2. update lead with state == "案件化"
 ### 3. new com, con and appo are created and redirected to appo
 ### 4. make surea that appo has com and con with the lead values

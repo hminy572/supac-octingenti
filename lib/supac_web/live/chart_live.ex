@@ -96,7 +96,7 @@ defmodule SupacWeb.ChartLive do
                 custom_y_scale: y_scale
               ]
             )
-            |> Plot.axis_labels("Date", "number of Leads")
+            |> Plot.axis_labels("日付", "リード数")
             |> Plot.to_svg()
     )
   end

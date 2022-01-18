@@ -12,7 +12,7 @@ defmodule SupacWeb.UpdLiveTest do
   #   name: "some name",
   #   position: Enum.random(Ecto.Enum.values(Lead, :position)),
   #   size: Enum.random(Ecto.Enum.values(Lead, :size)),
-  #   state: :not_contacted,
+  #   state: :"見込み",
   #   url: "https://some.url"
   # }
   # @lead_update_attrs %{
@@ -21,7 +21,7 @@ defmodule SupacWeb.UpdLiveTest do
   #   name: "lead name",
   #   position: Enum.random(Ecto.Enum.values(Lead, :position)),
   #   size: Enum.random(Ecto.Enum.values(Lead, :size)),
-  #   state: :not_contacted,
+  #   state: :"見込み",
   #   url: "https://some_updated.url"
   # }
   # @appo_update_attrs %{

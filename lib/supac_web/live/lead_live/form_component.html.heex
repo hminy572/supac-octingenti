@@ -34,8 +34,8 @@
     <%= select f, :state, Ecto.Enum.values(Supac.Sup.Lead, :state), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :state %></span>
 
-    <%= if Map.has_key?(@changeset.changes, :state) && @changeset.changes.state == :converted do %>
-      <h3 style="font-weight: bold; color: orange;">[CAUTION!] New Appointment, Contact, Company is automatically going to be made.</h3>
+    <%= if Map.has_key?(@changeset.changes, :state) && @changeset.changes.state == :"案件化" do %>
+      <h3 style="font-weight: bold; color: orange;">案件化おめでとうございます！フェーズが案件化で保存された場合、新規アポ、連絡先、会社がこのリードの入力情報をもとに自動的に作成されます🎉</h3>
     <% end %>
 
     <%= label f, "役職", class: "block" %>

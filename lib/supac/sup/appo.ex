@@ -12,18 +12,14 @@ defmodule Supac.Sup.Appo do
     field :person_in_charge, :string
     field :probability, :float
     field :state, Ecto.Enum, values: [
-      :Prospecting,
-      :Qualification,
-      :NeedsAnalysis,
-      :ValueProposition,
-      :IndentifyingDecisionMakers,
-      :PerceptionAnalysis,
-      :Proposal,
-      :Negotiation,
-      :ClosedWon,
-      :ClosedLost
+      :"見込み",
+      :"決済者打診中",
+      :"提案中",
+      :"交渉中",
+      :"成約",
+      :"失注"
     ],
-    default: :Prospecting
+    default: :"見込み"
     belongs_to :com, Supac.Sup.Com
     belongs_to :prod, Supac.Sup.Prod
 

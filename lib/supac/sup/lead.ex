@@ -8,28 +8,29 @@ defmodule Supac.Sup.Lead do
     field :email, :string
     field :name, :string
     field :position, Ecto.Enum,
-    values: [
-      :ceo,
-      :manager,
-      :team_leader,
-      :staff
-    ], default: :staff
+      values: [
+        :"CEO",
+        :"マネージャー",
+        :"主任",
+        :"一般社員"
+        ],
+      default: :"一般社員"
     field :size, Ecto.Enum,
-    values: [
-      {:"1~5", "1~5"},
-      {:"5~30", "5~30"},
-      {:"30~50", "30~50"},
-      {:"50~100", "50~100"},
-      {:"100~300", "100~300"},
-      {:"300~", "300~"}
-    ], default: :"1~5"
+      values: [
+        {:"1~5", "1~5"},
+        {:"5~30", "5~30"},
+        {:"30~50", "30~50"},
+        {:"50~100", "50~100"},
+        {:"100~300", "100~300"},
+        {:"300~", "300~"}
+      ], default: :"1~5"
     field :state, Ecto.Enum,
-    values: [
-      :not_contacted,
-      :contacted,
-      :not_converted,
-      :converted
-    ], default: :not_contacted
+      values: [
+        :"見込み",
+        :"連絡済み",
+        :"日程調整中",
+        :"案件化"
+      ], default: :"見込み"
     field :url, :string
 
     timestamps()

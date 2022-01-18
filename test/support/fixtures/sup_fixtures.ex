@@ -18,7 +18,7 @@ defmodule Supac.SupFixtures do
         name: "some name",
         position: Enum.random(Ecto.Enum.values(Lead, :position)),
         size: Enum.random(Ecto.Enum.values(Lead, :size)),
-        state: :not_contacted,
+        state: :"見込み",
         url: "https://some.url"
       })
       |> Supac.Sup.create_lead()
@@ -106,7 +106,7 @@ defmodule Supac.SupFixtures do
         name: Faker.Pokemon.name,
         probability: :rand.uniform(),
         person_in_charge: "user1",
-        state: :Prospecting,
+        state: :"見込み",
       })
       |> Supac.Sup.create_appo()
 

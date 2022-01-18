@@ -8,12 +8,12 @@ defmodule Supac.Sup.Con do
     field :name, :string
     field :position, Ecto.Enum,
       values: [
-        :ceo,
-        :manager,
-        :team_leader,
-        :staff
+        :"CEO",
+        :"マネージャー",
+        :"主任",
+        :"一般社員"
         ],
-      default: :staff
+      default: :"一般社員"
     belongs_to :com, Supac.Sup.Com
 
     timestamps()

@@ -30,15 +30,16 @@ defmodule SupacWeb.LeadLive.FormComponent do
   end
 
   # Saves update based on changes.
-  # When changes include %{state: :converted}, you are redirected to edit page of newly created appointment.
+  # When changes include %{state: :"案件化"}, you are redirected to edit page of newly created appointment.
   defp save_lead(socket, :edit, lead_params) do
     # Logger.info(inspect(Map.has_key?(socket.assigns.changeset.changes, :state)))
-    # Logger.info(inspect(socket.assigns.changeset.changes.state == :converted))
+    # Logger.info(inspect(socket.assigns.changeset.changes.state == :"案件化"))
 
-    if lead_params["state"] == "converted" do
-      Logger.info("converted")
+    if lead_params["state"] == "案件化" do
+      Logger.info("案件化")
       case Sup.update_lead(socket.assigns.lead, lead_params) do
         {:ok, lead} ->
+          Logger.info("ok lead")
           com_params = com_params(lead)
           case Sup.create_com(com_params) do
             {:ok, com} ->
@@ -66,6 +67,7 @@ defmodule SupacWeb.LeadLive.FormComponent do
           end
 
         {:error, %Ecto.Changeset{} = changeset} ->
+          Logger.info("error")
           {:noreply, assign(socket, :changeset, changeset)}
       end
     else
@@ -77,7 +79,7 @@ defmodule SupacWeb.LeadLive.FormComponent do
               socket.assigns.current_user) do
 
             {:ok, _} ->
-              Logger.info("not converted")
+              Logger.info("日程調整中")
               {:noreply,
                 socket
                 |> put_flash(:info, "リードの編集内容が保存されました")
@@ -121,7 +123,7 @@ defmodule SupacWeb.LeadLive.FormComponent do
       appos: [%{
         name: "first appointment with #{lead.com_name}",
         date: Date.utc_today(),
-        state: :Prospecting,
+        state: :"見込み",
         amount: 1,
         probability: 0.5,
         description: "first appointment with #{lead.com_name}",
