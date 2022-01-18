@@ -126,14 +126,14 @@ defmodule Supac.Accounts do
 
   ## Examples
 
-      iex> register_user_in_iex_dev(%{field: value})
+      iex> register_user_in_iex(%{field: value})
       {:ok, %User{}}
 
-      iex> register_user_in_iex_dev(%{field: bad_value})
+      iex> register_user_in_iex(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def register_user_in_iex_dev(attrs) do
+  def register_user_in_iex(attrs) do
     case %User{}
           |> User.registration_changeset(attrs)
           |> Repo.insert() do
@@ -148,27 +148,6 @@ defmodule Supac.Accounts do
         end
       {:error, %Ecto.Changeset{} = changeset} ->
         {:error, %Ecto.Changeset{} = changeset}
-    end
-  end
-
-  @doc """
-  Registers a userfrom iex session when env is prod.
-
-  ## Examples
-
-      iex> register_user_in_iex_prod(%{field: value})
-      {:ok, %User{}}
-
-      iex> register_user_in_iex_prod(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def register_user_in_iex_prod(attrs) do
-    case %User{}
-          |> User.registration_changeset(attrs)
-          |> Repo.insert() do
-      {:ok, user} -> {:ok, user}
-      {:error, %Ecto.Changeset{} = changeset} -> {:error, %Ecto.Changeset{} = changeset}
     end
   end
 
