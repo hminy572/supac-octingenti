@@ -11,26 +11,26 @@
 
     <%= hidden_input f, :com_id %>
 
-    <%= label f, :name, class: "block" %>
+    <%= label f, "氏名", class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :email, class: "block" %>
+    <%= label f, "Eメールアドレス", class: "block" %>
     <%= text_input f, :email, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :email %></span>
 
-    <%= label f, :position, class: "block" %>
+    <%= label f, "役職", class: "block" %>
     <%= select f, :position, Ecto.Enum.values(Supac.Sup.Con, :position), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :position %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving...", class: "
+      <%= submit "保存", phx_disable_with: "Saving...", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -45,7 +45,7 @@
   <%= if @action == :edit do %>
     <hr class="mt-6">
     <div class="my-2">
-      <div class="mt-3"><strong>Company</strong></div>
+      <div class="mt-3"><strong>所属会社</strong></div>
       <div>
         <%= if @con.com do %>
           <%= live_redirect @con.com.name, to: Routes.com_index_path(@socket, :edit, @con.com), class: "text-amber-700 hover:underline" %>
@@ -58,7 +58,7 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Company</a>
+            font-bold rounded-xl">所属会社を追加</a>
         <% end %>
       </div>
     </div>

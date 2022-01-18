@@ -49,7 +49,7 @@ defmodule SupacWeb.TaskLive.FormComponent do
           {:ok, _} ->
             {:noreply,
               socket
-              |> put_flash(:info, "Task updated successfully")
+              |> put_flash(:info, "タスクの編集内容が保存されました")
               |> push_redirect(to: socket.assigns.return_to)
             }
 
@@ -67,7 +67,7 @@ defmodule SupacWeb.TaskLive.FormComponent do
       {:ok, _task} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Task created successfully")
+         |> put_flash(:info, "新規タスクが作成されました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

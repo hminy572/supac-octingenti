@@ -60,15 +60,15 @@ defmodule SupacWeb.TaskLiveTest do
     test "lists all tasks", %{conn: conn, task: task} do
       {:ok, _index_live, html} = live(conn, Routes.task_index_path(conn, :index))
 
-      assert html =~ "New Task"
+      assert html =~ "新規タスク"
       assert html =~ task.name
     end
 
     test "saves new task", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, Routes.task_index_path(conn, :index))
 
-      assert index_live |> element("a", "New Task") |> render_click() =~
-               "New Task"
+      assert index_live |> element("a", "新規タスク") |> render_click() =~
+               "新規タスク"
 
       assert_patch(index_live, Routes.task_index_path(conn, :new))
 
@@ -82,14 +82,14 @@ defmodule SupacWeb.TaskLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.task_index_path(conn, :index))
 
-      assert html =~ "Task created successfully"
+      assert html =~ "新規タスクが作成されました"
     end
 
     test "updates task in listing", %{conn: conn, task: task} do
       {:ok, index_live, _html} = live(conn, Routes.task_index_path(conn, :index))
 
-      assert index_live |> element("#task-#{task.id} a", "Edit") |> render_click() =~
-               "Edit Task"
+      assert index_live |> element("#task-#{task.id} a", "編集") |> render_click() =~
+               "タスクを編集"
 
       assert_patch(index_live, Routes.task_index_path(conn, :edit, task))
 
@@ -110,20 +110,20 @@ defmodule SupacWeb.TaskLiveTest do
       assert update.update["old"]["name"] == task.name
       assert update.update["new"]["name"] == updated_task.name
 
-      assert html =~ "Task updated successfully"
+      assert html =~ "タスクの編集内容が保存されました"
     end
 
     test "add com to task", %{conn: conn, task: task, com: com} do
       {:ok, index_live, _html} = live(conn, Routes.task_index_path(conn, :index))
 
       assert index_live
-            |> element("#task-#{task.id} a", "Edit")
-            |> render_click() =~ "Edit Task"
+            |> element("#task-#{task.id} a", "編集")
+            |> render_click() =~ "タスクを編集"
 
       assert_patch(index_live, Routes.task_index_path(conn, :edit, task))
 
       assert index_live
-            |> element("a", "Add Company")
+            |> element("a", "対象の会社を追加")
             |> render_click()
       assert_redirected(index_live, "/coms?task_id=#{task.id}")
 
@@ -132,11 +132,11 @@ defmodule SupacWeb.TaskLiveTest do
 
       com_view
       |> element(~s{[href="/coms/#{com.id}/edit"]})
-      |> render_click() =~ "Add Company to Task"
+      |> render_click() =~ "選択中のタスクにこの会社を追加"
 
       {:ok, task_view, _html} =
         com_view
-        |> element("a", "Add Company to Task")
+        |> element("a", "選択中のタスクにこの会社を追加")
         |> render_click()
         |> follow_redirect(conn, Routes.task_index_path(conn, :edit, task))
 
@@ -155,7 +155,7 @@ defmodule SupacWeb.TaskLiveTest do
     test "deletes task in listing", %{conn: conn, task: task} do
       {:ok, index_live, _html} = live(conn, Routes.task_index_path(conn, :index))
 
-      assert index_live |> element("#task-#{task.id} a", "Delete") |> render_click()
+      assert index_live |> element("#task-#{task.id} a", "削除") |> render_click()
       refute has_element?(index_live, "#task-#{task.id}")
     end
   end

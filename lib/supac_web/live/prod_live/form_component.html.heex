@@ -9,14 +9,14 @@
     phx-change="validate"
     phx-submit="save">
 
-    <%= label f, :name, class: "block" %>
+    <%= label f, "商品名", class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :price, class: "block" %>
+    <%= label f, "価格", class: "block" %>
     <%= number_input f, :price, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
@@ -24,7 +24,7 @@
     <span class="text-red-500"><%= error_tag f, :price %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving...", class: "
+      <%= submit "保存", phx_disable_with: "Saving...", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -40,7 +40,7 @@
     <hr class="mt-6">
     <div class="mt-2">
       <div class="mt-4">
-        <strong>Appointments</strong>
+        <strong>この商品のアポ</strong>
         <%= if @appo_id do %>
           <a phx-click="add_prod_to_appo" phx-target={@myself} href="#" class="
             border-l-4 border-l-amber-200
@@ -50,9 +50,9 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Prod to Appointment</a>
+            font-bold rounded-xl">選択中のアポにこの商品を追加</a>
         <% else %>
-          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{prod_id: @prod.id}), class: "
+          <%= live_redirect "この商品のアポを追加", to: Routes.appo_index_path(@socket, :new, %{prod_id: @prod.id}), class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400

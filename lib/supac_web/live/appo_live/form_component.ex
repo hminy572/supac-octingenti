@@ -60,7 +60,7 @@ defmodule SupacWeb.AppoLive.FormComponent do
           {:ok, _} ->
             {:noreply,
               socket
-              |> put_flash(:info, "Appointment updated successfully")
+              |> put_flash(:info, "アポの編集内容が保存されました")
               |> push_redirect(to: socket.assigns.return_to)
             }
 
@@ -78,7 +78,7 @@ defmodule SupacWeb.AppoLive.FormComponent do
       {:ok, _appo} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Appo created successfully")
+         |> put_flash(:info, "新規アポが作成されました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

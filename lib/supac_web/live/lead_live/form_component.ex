@@ -80,7 +80,7 @@ defmodule SupacWeb.LeadLive.FormComponent do
               Logger.info("not converted")
               {:noreply,
                 socket
-                |> put_flash(:info, "Lead updated successfully")
+                |> put_flash(:info, "リードの編集内容が保存されました")
                 |> push_redirect(to: socket.assigns.return_to)
               }
 
@@ -99,7 +99,7 @@ defmodule SupacWeb.LeadLive.FormComponent do
       {:ok, _lead} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Lead created successfully")
+         |> put_flash(:info, "新規リードが作成されました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

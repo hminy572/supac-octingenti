@@ -65,7 +65,7 @@ defmodule SupacWeb.ProdLive.FormComponent do
           {:ok, _} ->
             {:noreply,
               socket
-              |> put_flash(:info, "Prod updated successfully")
+              |> put_flash(:info, "商品の編集内容が保存されました")
               |> push_redirect(to: socket.assigns.return_to)
             }
 
@@ -83,7 +83,7 @@ defmodule SupacWeb.ProdLive.FormComponent do
       {:ok, _prod} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Prod created successfully")
+         |> put_flash(:info, "新規商品が作成されました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

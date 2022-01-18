@@ -9,33 +9,33 @@
     phx-change="validate"
     phx-submit="save">
 
-    <%= label f, :name, class: "block" %>
+    <%= label f, "会社名", class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :email, class: "block" %>
+    <%= label f, "Eメールアドレス", class: "block" %>
     <%= text_input f, :email, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :email %></span>
 
-    <%= label f, :url, class: "block" %>
+    <%= label f, "会社URL", class: "block" %>
     <%= text_input f, :url, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :url %></span>
 
-    <%= label f, :size, class: "block" %>
+    <%= label f, "会社規模", class: "block" %>
     <%= select f, :size, Ecto.Enum.values(Supac.Sup.Com, :size), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :size %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving...", class: "
+      <%= submit "保存", phx_disable_with: "Saving...", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -51,7 +51,7 @@
     <hr class="mt-6">
     <div class="mt-2">
       <div class="mt-4">
-        <strong>Contacts</strong>
+        <strong>関連する連絡先</strong>
         <%= if @con_id do %>
           <a id="add_com_to_con" phx-click="add_com_to_con" phx-target={@myself} href="#" class="
             border-l-4 border-l-amber-200
@@ -61,9 +61,9 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Company to Contact</a>
+            font-bold rounded-xl">選択中の連絡先にこの会社を追加</a>
         <% else %>
-          <%= live_redirect "Add Contact", to: Routes.con_index_path(@socket, :new, %{com_id: @com.id}), id: "add_con", class: "
+          <%= live_redirect "関連連絡先を作成", to: Routes.con_index_path(@socket, :new, %{com_id: @com.id}), id: "add_con", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -81,7 +81,7 @@
 
     <div>
       <div class="mt-4">
-        <strong>Appointments</strong>
+        <strong>関連するアポ</strong>
         <%= if @appo_id do %>
           <a id="add_com_to_appo" phx-click="add_com_to_appo" phx-target={@myself} href="#" class="
             border-l-4 border-l-amber-200
@@ -91,9 +91,9 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Company to Appointment</a>
+            font-bold rounded-xl">選択中のアポにこの会社を追加</a>
         <% else %>
-          <%= live_redirect "Add Appointment", to: Routes.appo_index_path(@socket, :new, %{com_id: @com.id}), id: "add_appo", class: "
+          <%= live_redirect "関連アポを作成", to: Routes.appo_index_path(@socket, :new, %{com_id: @com.id}), id: "add_appo", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -111,7 +111,7 @@
 
     <div>
       <div class="mt-4">
-        <strong>Tasks</strong>
+        <strong>関連するタスク</strong>
         <%= if @task_id do %>
           <a id="add_com_to_task" phx-click="add_com_to_task" phx-target={@myself} href="#" class="
             border-l-4 border-l-amber-200
@@ -121,9 +121,9 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Company to Task</a>
+            font-bold rounded-xl">選択中のタスクにこの会社を追加</a>
         <% else %>
-          <%= live_redirect "Add Task", to: Routes.task_index_path(@socket, :new, %{com_id: @com.id}), id: "add_task", class: "
+          <%= live_redirect "関連タスクを作成", to: Routes.task_index_path(@socket, :new, %{com_id: @com.id}), id: "add_task", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400

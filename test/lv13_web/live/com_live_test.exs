@@ -50,7 +50,7 @@ defmodule SupacWeb.ComLiveTest do
     test "lists all coms", %{conn: conn, com: com} do
       {:ok, _index_live, html} = live(conn, Routes.com_index_path(conn, :index))
 
-      assert html =~ "New Com"
+      assert html =~ "新規会社"
       assert html =~ com.email
     end
 
@@ -58,8 +58,8 @@ defmodule SupacWeb.ComLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.com_index_path(conn, :index))
 
       assert index_live
-            |> element("a", "New Com")
-            |> render_click() =~ "New Com"
+            |> element("a", "新規会社")
+            |> render_click() =~ "新規会社"
 
       assert_patch(index_live, Routes.com_index_path(conn, :new))
 
@@ -73,7 +73,7 @@ defmodule SupacWeb.ComLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.com_index_path(conn, :index))
 
-      assert html =~ "Com created successfully"
+      assert html =~ "新規会社が作成されました"
       assert html =~ "some@email.com"
     end
 
@@ -82,7 +82,7 @@ defmodule SupacWeb.ComLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.com_index_path(conn, :index))
 
       # open 'edit' modal for com with the com's id
-      assert index_live |> element("#com-#{com.id} a", "Edit") |> render_click() =~ "Edit Com"
+      assert index_live |> element("#com-#{com.id} a", "編集") |> render_click() =~ "会社を編集"
 
       # send form to update the com with invalid attrs and recieve validation error
       assert index_live
@@ -96,7 +96,7 @@ defmodule SupacWeb.ComLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.com_index_path(conn, :index))
 
-      assert html =~ "Com updated successfully"
+      assert html =~ "会社の編集内容が保存されました"
       assert html =~ "some@updated.email"
 
     end
@@ -106,7 +106,7 @@ defmodule SupacWeb.ComLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.com_index_path(conn, :index))
 
       # open 'edit' modal for com with the com's id
-      assert index_live |> element("#com-#{com.id} a", "Edit") |> render_click() =~ "Edit Com"
+      assert index_live |> element("#com-#{com.id} a", "編集") |> render_click() =~ "会社を編集"
       assert has_element?(index_live, ~s{[href="/cons/new?com_id=#{com.id}"]})
 
       # click anchor tag to create a new con with the com and redirected to con LiveView
@@ -117,7 +117,7 @@ defmodule SupacWeb.ComLiveTest do
         |> follow_redirect(conn, Routes.con_index_path(conn, :new, %{"com_id" => com.id}))
 
       # assert the con you are about to create is tied with the com id
-      assert html =~ "Add Con"
+      assert html =~ "連絡先を追加"
       assert has_element?(con_view, ~s{[id="con-form_com_id"][value="#{com.id}"]})
     end
 
@@ -126,7 +126,7 @@ defmodule SupacWeb.ComLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.com_index_path(conn, :index))
 
       # open 'edit' modal for com with the com's id
-      assert index_live |> element("#com-#{com.id} a", "Edit") |> render_click() =~ "Edit Com"
+      assert index_live |> element("#com-#{com.id} a", "編集") |> render_click() =~ "会社を編集"
       assert has_element?(index_live, ~s{[href="/appos/new?com_id=#{com.id}"]})
 
       # click anchor tag to create a new appo with the com and redirected to appo LiveView
@@ -146,7 +146,7 @@ defmodule SupacWeb.ComLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.com_index_path(conn, :index))
 
       # open 'edit' modal for com with the com's id
-      assert index_live |> element("#com-#{com.id} a", "Edit") |> render_click() =~ "Edit Com"
+      assert index_live |> element("#com-#{com.id} a", "編集") |> render_click() =~ "会社を編集"
       assert has_element?(index_live, ~s{[href="/tasks/new?com_id=#{com.id}"]})
 
       # click anchor tag to create a new task with the com and redirected to task LiveView
@@ -157,14 +157,14 @@ defmodule SupacWeb.ComLiveTest do
         |> follow_redirect(conn, Routes.task_index_path(conn, :new, %{"com_id" => com.id}))
 
       # assert the task you are about to create is tied with the com id
-      assert html =~ "Add Task"
+      assert html =~ "タスクを追加"
       assert has_element?(task_view, ~s{[id="task-form_com_id"][value="#{com.id}"]})
     end
 
     test "deletes com in listing", %{conn: conn, com: com} do
       {:ok, index_live, _html} = live(conn, Routes.com_index_path(conn, :index))
 
-      assert index_live |> element("#com-#{com.id} a", "Delete") |> render_click()
+      assert index_live |> element("#com-#{com.id} a", "削除") |> render_click()
       refute has_element?(index_live, "#com-#{com.id}")
     end
   end

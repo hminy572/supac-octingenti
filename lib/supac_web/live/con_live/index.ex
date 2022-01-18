@@ -20,25 +20,25 @@ defmodule SupacWeb.ConLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Con")
+    |> assign(:page_title, "連絡先を編集")
     |> assign(:con, Sup.get_con!(id))
   end
 
   defp apply_action(socket, :new, %{"com_id" => id}) do
     socket
-    |> assign(:page_title, "Add Con")
+    |> assign(:page_title, "連絡先を追加")
     |> assign(:con, %Con{com_id: id})
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Con")
+    |> assign(:page_title, "新規連絡先")
     |> assign(:con, %Con{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Cons")
+    |> assign(:page_title, "連絡先一覧")
     |> assign(:con, nil)
   end
 

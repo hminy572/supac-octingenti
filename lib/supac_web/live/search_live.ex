@@ -33,7 +33,7 @@ defmodule SupacWeb.SearchLive do
       <%= for result <- @results.appos do %>
         <%= live_redirect to: Routes.appo_index_path(@socket, :edit, result), id: "appo-#{result.id}" do %>
           <div class="my-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg">
-            <h3>Appointment</h3>
+            <h3>アポ</h3>
             <div class="">name: <%= result.name %></div>
           </div>
         <% end %>
@@ -42,7 +42,7 @@ defmodule SupacWeb.SearchLive do
       <%= for result <- @results.coms do %>
         <%= live_redirect to: Routes.com_index_path(@socket, :edit, result), id: "com-#{result.id}" do %>
           <div class="my-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg">
-            <h3>Company</h3>
+            <h3>会社</h3>
             <div class="">name: <%= result.name %></div>
           </div>
         <% end %>
@@ -51,7 +51,7 @@ defmodule SupacWeb.SearchLive do
       <%= for result <- @results.cons do %>
         <%= live_redirect to: Routes.con_index_path(@socket, :edit, result), id: "con-#{result.id}" do %>
           <div class="my-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg">
-            <h3>Contact</h3>
+            <h3>連絡先</h3>
             <div class="">name: <%= result.name %></div>
           </div>
         <% end %>
@@ -60,7 +60,7 @@ defmodule SupacWeb.SearchLive do
       <%= for result <- @results.leads do %>
         <%= live_redirect to: Routes.lead_index_path(@socket, :edit, result), id: "lead-#{result.id}" do %>
           <div class="my-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg">
-            <h3>Lead</h3>
+            <h3>リード</h3>
             <div class="">name: <%= result.name %></div>
           </div>
         <% end %>
@@ -69,7 +69,7 @@ defmodule SupacWeb.SearchLive do
       <%= for result <- @results.prods do %>
         <%= live_redirect to: Routes.prod_index_path(@socket, :edit, result), id: "prod-#{result.id}" do %>
           <div class="my-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg">
-            <h3>Prod</h3>
+            <h3>商品</h3>
             <div class="">name: <%= result.name %></div>
           </div>
         <% end %>
@@ -78,7 +78,7 @@ defmodule SupacWeb.SearchLive do
       <%= for result <- @results.tasks do %>
         <%= live_redirect to: Routes.task_index_path(@socket, :edit, result), id: "task-#{result.id}" do %>
           <div class="my-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg">
-            <h3>Task</h3>
+            <h3>タスク</h3>
             <div class="">name: <%= result.name %></div>
           </div>
         <% end %>

@@ -114,7 +114,7 @@ defmodule SupacWeb.ComLive.FormComponent do
           {:ok, _} ->
             {:noreply,
               socket
-              |> put_flash(:info, "Com updated successfully")
+              |> put_flash(:info, "会社の編集内容が保存されました")
               |> push_redirect(to: socket.assigns.return_to)
             }
 
@@ -132,7 +132,7 @@ defmodule SupacWeb.ComLive.FormComponent do
       {:ok, _com} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Com created successfully")
+         |> put_flash(:info, "新規会社が作成されました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

@@ -56,17 +56,17 @@ defmodule SupacWeb.SearchLiveTest do
       {:ok, _view, html} = live(conn, Routes.live_path(conn, SearchLive, term: ""))
 
       assert html =~ "search_term: "
-      assert html =~ "Appointment"
+      assert html =~ "アポ"
       assert html =~ appo.name
-      assert html =~ "Company"
+      assert html =~ "会社"
       assert html =~ com.name
-      assert html =~ "Contact"
+      assert html =~ "連絡先"
       assert html =~ con.name
-      assert html =~ "Lead"
+      assert html =~ "リード"
       assert html =~ lead.name
-      assert html =~ "Prod"
+      assert html =~ "商品"
       assert html =~ prod.name
-      assert html =~ "Task"
+      assert html =~ "タスク"
       assert html =~ task.name
     end
 
@@ -90,7 +90,7 @@ defmodule SupacWeb.SearchLiveTest do
         |> render_click()
         |> follow_redirect(conn, Routes.com_index_path(conn, :edit, com))
 
-      assert com_html =~ "Edit Com"
+      assert com_html =~ "会社を編集"
       assert com_view |> element("#com-form_name") |> render() =~ String.replace(com.name, "'", "&#39;")
     end
 
@@ -102,7 +102,7 @@ defmodule SupacWeb.SearchLiveTest do
         |> render_click()
         |> follow_redirect(conn, Routes.con_index_path(conn, :edit, con))
 
-      assert con_html =~ "Edit Con"
+      assert con_html =~ "連絡先を編集"
       assert con_view |> element("#con-form_name") |> render() =~ String.replace(con.name, "'", "&#39;")
     end
 
@@ -114,7 +114,7 @@ defmodule SupacWeb.SearchLiveTest do
         |> render_click()
         |> follow_redirect(conn, Routes.lead_index_path(conn, :edit, lead))
 
-      assert lead_html =~ "Edit Lead"
+      assert lead_html =~ "リードを編集"
       assert lead_view |> element("#lead-form_name") |> render() =~ lead.name
     end
 
@@ -126,7 +126,7 @@ defmodule SupacWeb.SearchLiveTest do
         |> render_click()
         |> follow_redirect(conn, Routes.prod_index_path(conn, :edit, prod))
 
-      assert prod_html =~ "Edit Prod"
+      assert prod_html =~ "商品を編集"
       assert prod_view |> element("#prod-form_name") |> render() =~ prod.name
     end
 
@@ -138,7 +138,7 @@ defmodule SupacWeb.SearchLiveTest do
         |> render_click()
         |> follow_redirect(conn, Routes.task_index_path(conn, :edit, task))
 
-      assert task_html =~ "Edit Task"
+      assert task_html =~ "タスクを編集"
       assert task_view |> element("#task-form_name") |> render() =~ String.replace(task.name, "'", "&#39;")
     end
 

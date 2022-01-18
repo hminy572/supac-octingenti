@@ -19,26 +19,26 @@ defmodule SupacWeb.ProdLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Prod")
+    |> assign(:page_title, "商品を編集")
     |> assign(:prod, Sup.get_prod!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Prod")
+    |> assign(:page_title, "新規商品")
     |> assign(:prod, %Prod{})
   end
 
   defp apply_action(socket, :index, %{"appo_id" => appo_id}) do
     socket
-    |> assign(:page_title, "Listing Prods")
+    |> assign(:page_title, "商品一覧")
     |> assign(:appo_id, appo_id)
     |> assign(:prod, nil)
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Prods")
+    |> assign(:page_title, "商品一覧")
     |> assign(:prod, nil)
   end
 

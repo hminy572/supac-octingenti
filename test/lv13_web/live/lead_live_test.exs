@@ -76,7 +76,7 @@ defmodule SupacWeb.LeadLiveTest do
     test "lists all leads", %{conn: conn, lead: lead} do
       {:ok, _index_live, html} = live(conn, Routes.lead_index_path(conn, :index))
 
-      assert html =~ "New Lead"
+      assert html =~ "新規リード"
       assert html =~ lead.com_name
     end
 
@@ -84,8 +84,8 @@ defmodule SupacWeb.LeadLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.lead_index_path(conn, :index))
 
       assert index_live
-            |> element("a", "New Lead")
-            |> render_click() =~ "New Lead"
+            |> element("a", "新規リード")
+            |> render_click() =~ "新規リード"
 
       assert_patch(index_live, Routes.lead_index_path(conn, :new))
 
@@ -99,7 +99,7 @@ defmodule SupacWeb.LeadLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.lead_index_path(conn, :index))
 
-      assert html =~ "Lead created successfully"
+      assert html =~ "新規リードが作成されました"
       assert html =~ "some com_name"
     end
 
@@ -109,8 +109,8 @@ defmodule SupacWeb.LeadLiveTest do
 
       # open edit modal for lead
       assert index_live
-            |> element("#lead-#{lead.id} a", "Edit")
-            |> render_click() =~ "Edit Lead"
+            |> element("#lead-#{lead.id} a", "編集")
+            |> render_click() =~ "リードを編集"
 
       assert_patch(index_live, Routes.lead_index_path(conn, :edit, lead))
 
@@ -126,7 +126,7 @@ defmodule SupacWeb.LeadLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.lead_index_path(conn, :index))
 
-      assert html =~ "Lead updated successfully"
+      assert html =~ "リードの編集内容が保存されました"
       assert html =~ "some updated com_name"
 
       # get updated_lead and update
@@ -148,8 +148,8 @@ defmodule SupacWeb.LeadLiveTest do
 
       # open edit modal
       assert index_live
-            |> element("#lead-#{lead.id} a", "Edit")
-            |> render_click() =~ "Edit Lead"
+            |> element("#lead-#{lead.id} a", "編集")
+            |> render_click() =~ "リードを編集"
 
       # update lead with %{state :converted} and get redirected to "/appos/:id/edit"
       {:ok, appo_live, html} =
@@ -177,7 +177,7 @@ defmodule SupacWeb.LeadLiveTest do
     test "deletes lead in listing", %{conn: conn, lead: lead} do
       {:ok, index_live, _html} = live(conn, Routes.lead_index_path(conn, :index))
 
-      assert index_live |> element("#lead-#{lead.id} a", "Delete") |> render_click()
+      assert index_live |> element("#lead-#{lead.id} a", "削除") |> render_click()
       refute has_element?(index_live, "#lead-#{lead.id}")
     end
   end

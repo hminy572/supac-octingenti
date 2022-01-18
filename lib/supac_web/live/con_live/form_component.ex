@@ -49,7 +49,7 @@ defmodule SupacWeb.ConLive.FormComponent do
           {:ok, _} ->
             {:noreply,
               socket
-              |> put_flash(:info, "Con updated successfully")
+              |> put_flash(:info, "連絡先の編集内容が保存されました")
               |> push_redirect(to: socket.assigns.return_to)
             }
 
@@ -67,7 +67,7 @@ defmodule SupacWeb.ConLive.FormComponent do
       {:ok, _con} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Con created successfully")
+         |> put_flash(:info, "新規連絡先が作成されました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

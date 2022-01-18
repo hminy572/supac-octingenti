@@ -21,40 +21,40 @@ defmodule SupacWeb.ComLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Com")
+    |> assign(:page_title, "会社を編集")
     |> assign(:com, Sup.get_com!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Com")
+    |> assign(:page_title, "新規会社")
     |> assign(:com, %Com{})
   end
 
   defp apply_action(socket, :index, %{"con_id" => con_id}) do
     socket
-    |> assign(:page_title, "Listing Coms")
+    |> assign(:page_title, "会社一覧")
     |> assign(:con_id, con_id)
     |> assign(:com, nil)
   end
 
   defp apply_action(socket, :index, %{"appo_id" => appo_id}) do
     socket
-    |> assign(:page_title, "Listing Coms")
+    |> assign(:page_title, "会社一覧")
     |> assign(:appo_id, appo_id)
     |> assign(:com, nil)
   end
 
   defp apply_action(socket, :index, %{"task_id" => task_id}) do
     socket
-    |> assign(:page_title, "Listing Coms")
+    |> assign(:page_title, "会社一覧")
     |> assign(:task_id, task_id)
     |> assign(:com, nil)
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Coms")
+    |> assign(:page_title, "会社一覧")
     |> assign(:com, nil)
   end
 

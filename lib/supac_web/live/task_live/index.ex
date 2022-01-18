@@ -16,25 +16,25 @@ defmodule SupacWeb.TaskLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Task")
+    |> assign(:page_title, "タスクを編集")
     |> assign(:task, Sup.get_task!(id))
   end
 
   defp apply_action(socket, :new, %{"com_id" => id}) do
     socket
-    |> assign(:page_title, "Add Task")
+    |> assign(:page_title, "タスクを追加")
     |> assign(:task, %Task{com_id: id})
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Task")
+    |> assign(:page_title, "新規タスク")
     |> assign(:task, %Task{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Tasks")
+    |> assign(:page_title, "タスク一覧")
     |> assign(:task, nil)
   end
 

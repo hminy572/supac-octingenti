@@ -9,28 +9,28 @@
     phx-change="validate"
     phx-submit="save">
 
-    <%= label f, :name, class: "block" %>
+    <%= label f, "氏名", class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :email, class: "block" %>
+    <%= label f, "Eメールアドレス", class: "block" %>
     <%= text_input f, :email, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :email %></span>
 
-    <%= label f, :com_name, class: "block" %>
+    <%= label f, "会社名", class: "block" %>
     <%= text_input f, :com_name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :com_name %></span>
 
-    <%= label f, :state, class: "block" %>
+    <%= label f, "フェーズ", class: "block" %>
     <%= select f, :state, Ecto.Enum.values(Supac.Sup.Lead, :state), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :state %></span>
 
@@ -38,15 +38,15 @@
       <h3 style="font-weight: bold; color: orange;">[CAUTION!] New Appointment, Contact, Company is automatically going to be made.</h3>
     <% end %>
 
-    <%= label f, :position, class: "block" %>
+    <%= label f, "役職", class: "block" %>
     <%= select f, :position, Ecto.Enum.values(Supac.Sup.Lead, :position), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :position %></span>
 
-    <%= label f, :size, class: "block" %>
+    <%= label f, "会社規模", class: "block" %>
     <%= select f, :size, Ecto.Enum.values(Supac.Sup.Lead, :size), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :size %></span>
 
-    <%= label f, :url, class: "block" %>
+    <%= label f, "会社URL", class: "block" %>
     <%= text_input f, :url, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
@@ -54,7 +54,7 @@
     <span class="text-red-500"><%= error_tag f, :url %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving...", class: "
+      <%= submit "保存", phx_disable_with: "Saving...", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400

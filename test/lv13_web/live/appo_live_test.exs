@@ -87,7 +87,7 @@ defmodule SupacWeb.AppoLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.appo_index_path(conn, :index))
 
-      assert html =~ "Appo created successfully"
+      assert html =~ "新規アポが作成されました"
     end
 
     test "updates appo in listing", %{conn: conn, appo: appo} do
@@ -117,7 +117,7 @@ defmodule SupacWeb.AppoLiveTest do
       assert update.update["old"]["name"] == appo.name
       assert update.update["new"]["name"] == updated_appo.name
 
-      assert html =~ "Appointment updated successfully"
+      assert html =~ "アポの編集内容が保存されました"
     end
 
     test "add com to appo", %{conn: conn, appo: appo, com: com} do
@@ -140,12 +140,12 @@ defmodule SupacWeb.AppoLiveTest do
       # open edit modal
       com_view
       |> element(~s{[href="/coms/#{com.id}/edit"]})
-      |> render_click() =~ "Add Company to Appointment"
+      |> render_click() =~ "選択中のアポにこの会社を追加"
 
       # update com with appo id
       {:ok, appo_view, _html} =
         com_view
-        |> element("a", "Add Company to Appointment")
+        |> element("a", "選択中のアポにこの会社を追加")
         |> render_click()
         |> follow_redirect(conn, Routes.appo_index_path(conn, :edit, appo))
 
@@ -181,12 +181,12 @@ defmodule SupacWeb.AppoLiveTest do
       # open edit modal
       prod_view
       |> element(~s{[href="/prods/#{prod.id}/edit"]})
-      |> render_click() =~ "Add Prod to Appointment"
+      |> render_click() =~ "選択中のアポにこの商品を追加"
 
       # update prod with appo id
       {:ok, appo_view, _html} =
         prod_view
-        |> element("a", "Add Prod to Appointment")
+        |> element("a", "選択中のアポにこの商品を追加")
         |> render_click()
         |> follow_redirect(conn, Routes.appo_index_path(conn, :edit, appo))
 

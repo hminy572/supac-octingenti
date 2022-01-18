@@ -32,15 +32,15 @@ defmodule SupacWeb.ProdLiveTest do
     test "lists all prods", %{conn: conn, prod: prod} do
       {:ok, _index_live, html} = live(conn, Routes.prod_index_path(conn, :index))
 
-      assert html =~ "New Prod"
+      assert html =~ "新規商品"
       assert html =~ prod.name
     end
 
     test "saves new prod", %{conn: conn} do
       {:ok, index_live, _html} = live(conn, Routes.prod_index_path(conn, :index))
 
-      assert index_live |> element("a", "New Prod") |> render_click() =~
-               "New Prod"
+      assert index_live |> element("a", "新規商品") |> render_click() =~
+               "新規商品"
 
       assert_patch(index_live, Routes.prod_index_path(conn, :new))
 
@@ -54,15 +54,15 @@ defmodule SupacWeb.ProdLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.prod_index_path(conn, :index))
 
-      assert html =~ "Prod created successfully"
+      assert html =~ "新規商品が作成されました"
       assert html =~ "some name"
     end
 
     test "updates prod in listing", %{conn: conn, prod: prod} do
       {:ok, index_live, _html} = live(conn, Routes.prod_index_path(conn, :index))
 
-      assert index_live |> element("#prod-#{prod.id} a", "Edit") |> render_click() =~
-               "Edit Prod"
+      assert index_live |> element("#prod-#{prod.id} a", "編集") |> render_click() =~
+               "商品を編集"
 
       assert_patch(index_live, Routes.prod_index_path(conn, :edit, prod))
 
@@ -76,7 +76,7 @@ defmodule SupacWeb.ProdLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.prod_index_path(conn, :index))
 
-      assert html =~ "Prod updated successfully"
+      assert html =~ "商品の編集内容が保存されました"
       assert html =~ "some updated name"
     end
 
@@ -84,8 +84,8 @@ defmodule SupacWeb.ProdLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.prod_index_path(conn, :index))
 
       assert index_live
-            |> element("#prod-#{prod.id} a", "Edit")
-            |> render_click() =~ "Edit Prod"
+            |> element("#prod-#{prod.id} a", "編集")
+            |> render_click() =~ "商品を編集"
       assert has_element?(index_live, ~s{[href="/appos/new?prod_id=#{prod.id}"]})
 
       # click anchor tag to create new appo with the prod and redirected to appo LiveView
@@ -103,7 +103,7 @@ defmodule SupacWeb.ProdLiveTest do
     test "deletes prod in listing", %{conn: conn, prod: prod} do
       {:ok, index_live, _html} = live(conn, Routes.prod_index_path(conn, :index))
 
-      assert index_live |> element("#prod-#{prod.id} a", "Delete") |> render_click()
+      assert index_live |> element("#prod-#{prod.id} a", "削除") |> render_click()
       refute has_element?(index_live, "#prod-#{prod.id}")
     end
   end

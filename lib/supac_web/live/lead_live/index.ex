@@ -19,19 +19,19 @@ defmodule SupacWeb.LeadLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Lead")
+    |> assign(:page_title, "リードを編集")
     |> assign(:lead, Sup.get_lead!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Lead")
+    |> assign(:page_title, "新規リード")
     |> assign(:lead, %Lead{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Leads")
+    |> assign(:page_title, "リード一覧")
     |> assign(:lead, nil)
   end
 

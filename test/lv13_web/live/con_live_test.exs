@@ -53,7 +53,7 @@ defmodule SupacWeb.ConLiveTest do
     test "lists all cons", %{conn: conn, con: con} do
       {:ok, _index_live, html} = live(conn, Routes.con_index_path(conn, :index))
 
-      assert html =~ "New Con"
+      assert html =~ "新規連絡先"
       assert html =~ con.email
     end
 
@@ -61,8 +61,8 @@ defmodule SupacWeb.ConLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.con_index_path(conn, :index))
 
       assert index_live
-            |> element("a", "New Con")
-            |> render_click() =~ "New Con"
+            |> element("a", "新規連絡先")
+            |> render_click() =~ "新規連絡先"
 
       assert_patch(index_live, Routes.con_index_path(conn, :new))
 
@@ -76,7 +76,7 @@ defmodule SupacWeb.ConLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.con_index_path(conn, :index))
 
-      assert html =~ "Con created successfully"
+      assert html =~ "新規連絡先が作成されました"
       assert html =~ "some@email.com"
     end
 
@@ -84,8 +84,8 @@ defmodule SupacWeb.ConLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.con_index_path(conn, :index))
 
       assert index_live
-            |> element("#con-#{con.id} a", "Edit")
-            |> render_click() =~ "Edit Con"
+            |> element("#con-#{con.id} a", "編集")
+            |> render_click() =~ "連絡先を編集"
 
       assert_patch(index_live, Routes.con_index_path(conn, :edit, con))
 
@@ -106,7 +106,7 @@ defmodule SupacWeb.ConLiveTest do
       assert update.update["old"]["name"] == con.name
       assert update.update["new"]["name"] == updated_con.name
 
-      assert html =~ "Con updated successfully"
+      assert html =~ "連絡先の編集内容が保存されました"
       assert html =~ "some@updated.email"
     end
 
@@ -114,13 +114,13 @@ defmodule SupacWeb.ConLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.con_index_path(conn, :index))
 
       assert index_live
-            |> element("#con-#{con.id} a", "Edit")
-            |> render_click() =~ "Edit Con"
+            |> element("#con-#{con.id} a", "編集")
+            |> render_click() =~ "連絡先を編集"
 
       assert_patch(index_live, Routes.con_index_path(conn, :edit, con))
 
       assert index_live
-            |> element("a", "Add Company")
+            |> element("a", "所属会社を追加")
             |> render_click()
       assert_redirected(index_live, "/coms?con_id=#{con.id}")
 
@@ -129,11 +129,11 @@ defmodule SupacWeb.ConLiveTest do
 
       com_view
       |> element(~s{[href="/coms/#{com.id}/edit"]})
-      |> render_click() =~ "Add Company to Contact"
+      |> render_click() =~ "選択中の連絡先にこの会社を追加"
 
       {:ok, con_view, _html} =
         com_view
-        |> element("a", "Add Company to Contact")
+        |> element("a", "選択中の連絡先にこの会社を追加")
         |> render_click()
         |> follow_redirect(conn, Routes.con_index_path(conn, :edit, con))
 
@@ -146,13 +146,13 @@ defmodule SupacWeb.ConLiveTest do
       assert updated_con.com_id == update.update["new"]["com_id"]
       assert updated_con.com_id == com.id
 
-      refute has_element?(con_view, "a", "Add Company")
+      refute has_element?(con_view, "a", "所属会社を追加")
     end
 
     test "deletes con in listing", %{conn: conn, con: con} do
       {:ok, index_live, _html} = live(conn, Routes.con_index_path(conn, :index))
 
-      assert index_live |> element("#con-#{con.id} a", "Delete") |> render_click()
+      assert index_live |> element("#con-#{con.id} a", "削除") |> render_click()
       refute has_element?(index_live, "#con-#{con.id}")
     end
   end

@@ -11,37 +11,37 @@
 
     <%= hidden_input f, :com_id %>
 
-    <%= label f, :name, class: "block" %>
+    <%= label f, "タスク名", class: "block" %>
     <%= text_input f, :name, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :name %></span>
 
-    <%= label f, :due_date, class: "block" %>
+    <%= label f, "期日", class: "block" %>
     <%= date_input f, :due_date, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :due_date %></span>
 
-    <%= label f, :person_in_charge, class: "block" %>
+    <%= label f, "担当者", class: "block" %>
     <%= select f, :person_in_charge, Supac.Accounts.list_users_by_name(), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :person_in_charge %></span>
 
-    <%= label f, :content, class: "block" %>
+    <%= label f, "内容", class: "block" %>
     <%= textarea f, :content, class: "
           block shadow appearance-none border rounded
           w-full py-2 px-3 mb-3 text-gray-700 leading-tight
           focus:outline-none focus:shadow-outline" %>
     <span class="text-red-500"><%= error_tag f, :content %></span>
 
-    <%= label f, :priority, class: "block" %>
+    <%= label f, "優先度", class: "block" %>
     <%= select f, :priority, Ecto.Enum.values(Supac.Sup.Task, :priority), class: "block rounded mb-3" %>
     <span class="text-red-500"><%= error_tag f, :priority %></span>
 
     <div>
-      <%= submit "Save", phx_disable_with: "Saving...", class: "
+      <%= submit "保存", phx_disable_with: "Saving...", class: "
             border-l-4 border-l-amber-200
             border-t-4 border-t-amber-200
             border-r-4 border-r-amber-400
@@ -56,7 +56,7 @@
 <%= if @action == :edit do %>
   <hr class="mt-6">
   <div class="mt-2">
-    <div class="mt-3"><strong>Company</strong></div>
+    <div class="mt-3"><strong>対象の会社</strong></div>
     <div>
       <%= if @task.com do %>
         <%= live_redirect @task.com.name, to: Routes.com_index_path(@socket, :edit,@task.com), class: "text-amber-700 hover:underline" %>
@@ -69,7 +69,7 @@
             bg-amber-100 hover:bg-amber-300
             px-2 shadow
             text-sm text-amber-800 hover:text-amber-900
-            font-bold rounded-xl">Add Company</a>
+            font-bold rounded-xl">対象の会社を追加</a>
       <% end %>
     </div>
   </div>
