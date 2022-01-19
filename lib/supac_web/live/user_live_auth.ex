@@ -16,7 +16,7 @@ defmodule SupacWeb.UserLiveAuth do
       {:cont, socket }
     else
       {:halt, redirect(socket
-        |> put_flash(:error, "Please confirm your email before signing in. An email confirmation link has been sent to you."),
+        |> put_flash(:error, "あなたのEメールアドレス宛に確認用のメールが送信されています。そのメールのリンクをクリックしてください。"),
         to: "/unconfirmed")
       }
     end

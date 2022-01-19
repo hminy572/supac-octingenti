@@ -17,7 +17,7 @@ defmodule SupacWeb.UnconfirmedLive do
     ~H"""
     <div class="flex justify-center mt-16">
       <div class="mx-2 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 xl:w-7/12">
-        <p class="text-xl">Your email hasn't been confirmed yet. Make sure to click the confirmation link in the email sent to <%= @current_user.email %></p>
+        <p class="text-xl"><%= @current_user.email %>宛に送信された確認メールのリンクをクリックしてください。</p>
       </div>
     </div>
     """
