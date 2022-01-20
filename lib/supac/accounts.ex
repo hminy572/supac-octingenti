@@ -126,16 +126,20 @@ defmodule Supac.Accounts do
 
   ## Examples
 
-      iex> register_user_in_iex(%{field: value})
+      iex> register_user_iex_dev(name, email, password)
       {:ok, %User{}}
 
-      iex> register_user_in_iex(%{field: bad_value})
+      iex> register_user_iex_dev(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def register_user_in_iex(attrs) do
+  def register_user_iex_dev(name, email, password) do
     case %User{}
-          |> User.registration_changeset(attrs)
+          |> User.registration_changeset(%{
+            name: name,
+            email: email,
+            password: password
+            })
           |> Repo.insert() do
       {:ok, user} ->
         if user.confirmed_at do
@@ -144,6 +148,40 @@ defmodule Supac.Accounts do
           {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
           Repo.insert!(user_token)
           url = "http://localhost:4000/users/confirm/#{encoded_token}"
+          UserNotifier.deliver_confirmation_instructions(user, url)
+        end
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:error, %Ecto.Changeset{} = changeset}
+    end
+  end
+
+  @doc """
+  Registers a user from iex session when in production.
+
+  ## Examples
+
+      iex> register_user_iex_prod(name, email, password)
+      {:ok, %User{}}
+
+      iex> register_user_iex_prod(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def register_user_iex_prod(name, email, password) do
+    case %User{}
+          |> User.registration_changeset(%{
+            name: name,
+            email: email,
+            password: password
+            })
+          |> Repo.insert() do
+      {:ok, user} ->
+        if user.confirmed_at do
+          {:error, :already_confirmed}
+        else
+          {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
+          Repo.insert!(user_token)
+          url = "https://#{System.get_env("FLY_APP_NAME")}.fly.dev/users/confirm/#{encoded_token}"
           UserNotifier.deliver_confirmation_instructions(user, url)
         end
       {:error, %Ecto.Changeset{} = changeset} ->
