@@ -8,7 +8,7 @@ defmodule Supac.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"MyApp", "contact@example.com"})
+      |> from({"Supac", "hminy572@gmail.com"})
       |> subject(subject)
       |> text_body(body)
 
