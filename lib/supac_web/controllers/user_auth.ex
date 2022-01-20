@@ -132,7 +132,7 @@ defmodule SupacWeb.UserAuth do
       conn
     else
       conn
-      |> put_flash(:error, "このページにアクセスするにはログインする必要があります")
+      |> put_flash(:error, "コンテンツにアクセスするにはログインする必要があります")
       |> maybe_store_return_to()
       |> redirect(to: Routes.user_session_path(conn, :new))
       |> halt()

@@ -132,7 +132,7 @@ defmodule SupacWeb.UserAuthTest do
       conn = conn |> fetch_flash() |> UserAuth.require_authenticated_user([])
       assert conn.halted
       assert redirected_to(conn) == Routes.user_session_path(conn, :new)
-      assert get_flash(conn, :error) == "このページにアクセスするにはログインする必要があります"
+      assert get_flash(conn, :error) == "コンテンツにアクセスするにはログインする必要があります"
     end
 
     test "stores the path to redirect to on GET", %{conn: conn} do
