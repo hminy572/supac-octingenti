@@ -1,9 +1,9 @@
 <div class="ml-10 mt-10">
-  <div class="text-lg font-bold my-2">Please click 'Confirm my account' button below to access content</div>
+  <div class="text-lg font-bold my-2">「アカウント登録を完了する」ボタンをクリックしてアカウント登録を完了してください</div>
 
   <.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
     <div>
-      <%= submit "Confirm my account", class: "
+      <%= submit "アカウント登録を完了する", class: "
         border-l-4 border-l-amber-200
         border-t-4 border-t-amber-200
         border-r-4 border-r-amber-400
