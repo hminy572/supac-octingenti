@@ -8,7 +8,7 @@ defmodule SupacWeb.UnconfirmedLiveTest do
   describe "create lead update" do
 
     test "simply visit /unconfimred", %{conn: conn, user: user} do
-      msg = "Your email hasn't been confirmed yet. Make sure to click the confirmation link in the email sent to #{user.email}"
+      msg = "#{user.email}宛に送信された確認メールのリンクをクリックしてください。"
 
       {:ok, _view, html} = live(conn, Routes.live_path(conn, SupacWeb.UnconfirmedLive))
 

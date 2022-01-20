@@ -21,17 +21,21 @@ defmodule Supac.Accounts.UserNotifier do
   Deliver instructions to confirm account.
   """
   def deliver_confirmation_instructions(user, url) do
-    deliver(user.email, "Confirmation instructions", """
+    deliver(user.email, "アカウント作成に伴うメールアドレスの確認手続きのご案内", """
 
     ==============================
 
-    Hi #{user.email},
+    #{user.name}さん、こんにちは。
 
-    You can confirm your account by visiting the URL below:
+    #{user.name}さんのアカウントが下記の内容で作成されました。
+    氏名：#{user.name}
+    Eメールアドレス：#{user.email}
+
+    下記のリンクをクリックするとアカウントの登録が完了されます。アカウントの登録が完了しないとログインしても中のコンテンツをご覧いただけません。
 
     <a href=#{url}>#{url}</a>
 
-    If you didn't create an account with us, please ignore this.
+    もしアカウントを作成していない、またはこのメールに心当たりがない場合はこのメールを無視してください。
 
     ==============================
     """)
@@ -41,17 +45,17 @@ defmodule Supac.Accounts.UserNotifier do
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    deliver(user.email, "Reset password instructions", """
+    deliver(user.email, "パスワード変更手続きのご案内", """
 
     ==============================
 
-    Hi #{user.email},
+    #{user.name}さん、こんにちは。
 
-    You can reset your password by visiting the URL below:
+    下記のリンクをクリックいただくとパスワードの変更が完了します。
 
     <a href=#{url}>#{url}</a>
 
-    If you didn't request this change, please ignore this.
+    もしパスワードの変更手続きを行っていないという場合はこのメールを無視してください。
 
     ==============================
     """)
@@ -61,17 +65,17 @@ defmodule Supac.Accounts.UserNotifier do
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
-    deliver(user.email, "Update email instructions", """
+    deliver(user.email, "Eメールアドレス変更手続きのご案内", """
 
     ==============================
 
-    Hi #{user.email},
+    #{user.name}さん、こんにちは。
 
-    You can change your email by visiting the URL below:
+    下記リンクをクリックいただくとEメールアドレスの変更手続きが完了します。
 
     <a href=#{url}>#{url}</a>
 
-    If you didn't request this change, please ignore this.
+    もしEメールアドレスの変更手続きを行っていないという場合はこのメールを無視してください。
 
     ==============================
     """)
