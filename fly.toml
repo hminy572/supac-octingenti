@@ -1,6 +1,6 @@
-# fly.toml file generated for supac-septem on 2022-01-15T15:17:03+09:00
+# fly.toml file generated for supac-octingenti on 2022-01-22T15:36:30+09:00
 
-app = "supac-septem"
+app = "supac-octingenti"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
@@ -10,8 +10,6 @@ processes = []
   release_command = "/app/bin/migrate"
 
 [env]
-  # PHX_HOST = "supac-septem.fly.dev"
-  # PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
