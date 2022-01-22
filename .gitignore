@@ -34,3 +34,6 @@ npm-debug.log
 
 # Ignore sql files
 *.sql
+
+# Ignore .vscode
+/.vscode/
