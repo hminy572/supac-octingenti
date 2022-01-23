@@ -92,3 +92,4 @@ mix phx.gen.live Sup Appo appos name state amount:integer probability:float desc
 # Mix Task for History Context
 
 mix phx.gen.live His Upd upds update:map
+
