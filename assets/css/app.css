@@ -1,3 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and ( max-width:300px) {
+  #pie-chart {
+    position: relative;
+    width: 100vw;
+    min-height: 50vh;
+    margin: 0;
+  }
+  .pie-chart-title {
+    font-size:x-small;
+  }
+}
+@media screen and (min-width:300px) and ( max-width:480px) {
+  #pie-chart {
+    position: relative;
+    width: 80vw;
+    min-height: 50vh;
+    margin: 0;
+  }
+  .pie-chart-title {
+    font-size: small;
+  }
+}
+@media screen and (min-width:480px) and ( max-width:768px) {
+  #pie-chart {
+    position: relative;
+    width: 70vw;
+    min-height: 50vh;
+    margin: 0;
+  }
+  .pie-chart-title {
+    font-size: medium;
+  }
+}
+@media screen and (min-width:768px) and ( max-width:1024px) {
+  #pie-chart {
+    position: relative;
+    width: 70vw;
+    min-height: 50vh;
+    margin: 0;
+  }
+  .pie-chart-title {
+    font-size: large;
+  }
+}
+@media screen and (min-width:1024px) {
+  #pie-chart {
+    position: relative;
+    width: 60vw;
+    min-height: 50vh;
+    margin: 0;
+  }
+  .pie-chart-title {
+    font-size: large;
+  }
+}
+
+#pie-chart figcaption {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-size: smaller;
+  text-align: right;
+}
+#pie-chart span:after {
+  display: inline-block;
+  content: "";
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.4em;
+  height: 0.8em;
+  border-radius: 0.2em;
+  background: currentColor;
+}

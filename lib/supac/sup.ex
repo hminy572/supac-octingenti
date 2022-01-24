@@ -90,10 +90,12 @@ defmodule Supac.Sup do
   """
   def pie_chart_leads() do
     query = from l in Lead, where: is_nil(l.deleted_at), select: l.state
-    Repo.all(query)
-    |> Enum.frequencies()
-    |> Map.to_list()
-    |> Enum.map(fn {x, y} -> {Atom.to_string(x), y} end)
+    res =
+      Repo.all(query)
+      |> Enum.frequencies() # %{日程調整中: 21, 案件化: 15, 見込み: 13, 連絡済み: 11}
+      |> Enum.map(fn {_, num} -> num end) # [21, 15, 13, 11]
+    sum = Enum.sum(res)
+    Enum.map(res, fn x -> Kernel./(x, sum) end) # final_result [0.35, 0.25, 0.21666666666666667, 0.18333333333333332]
   end
 
   @doc """
@@ -103,9 +105,9 @@ defmodule Supac.Sup do
   def bar_chart_leads() do
     query = from l in Lead, where: is_nil(l.deleted_at), select: l.size
     Repo.all(query)
-    |> Enum.frequencies()
-    |> Map.to_list()
-    |> Enum.map(fn {x, y} -> {Atom.to_string(x), y} end)
+    # |> Enum.frequencies()
+    # |> Map.to_list()
+    # |> Enum.map(fn {x, y} -> {Atom.to_string(x), y} end)
   end
 
   @doc """
@@ -115,7 +117,7 @@ defmodule Supac.Sup do
   add 29 additional date data before Enum.frequencies
   and subtract 1 from frequency values afterwards in ordr to remove additional date data.
   """
-  def line_plot_leads() do
+  def line_path_leads() do
     query = from l in Lead, where: is_nil(l.deleted_at), select: l.inserted_at
     date_list = Repo.all(query)
     first =
@@ -131,8 +133,41 @@ defmodule Supac.Sup do
     |> Map.to_list() # [{~N[2021-12-11], 1}, {~N[2021-12-12], 1}, .. {~N[2021-01-09], 1}]
     |> Enum.map(fn {x, y} ->
         {:ok, ndt} = NaiveDateTime.new(x, ~T[00:00:00])
-        {ndt, y - 1}
+        [ndt, y - 1]
       end )
+    |> Enum.map(fn [ndt, num] -> [ndt.day * 30 - 30, 495 - num * 3] end)
+    |> Enum.map(fn [x, y] -> [Integer.to_string(x), Integer.to_string(y)] end)
+    |> Enum.map(fn [x, y] -> "#{x} #{y} L #{x} #{y} " end)
+    |> List.to_string()
+  end
+
+  @doc """
+  Returns the data list for dataset of  Chart about leads.
+
+  To make the data 30 days list,
+  add 29 additional date data before Enum.frequencies
+  and subtract 1 from frequency values afterwards in ordr to remove additional date data.
+  """
+  def line_circle_leads() do
+    query = from l in Lead, where: is_nil(l.deleted_at), select: l.inserted_at
+    date_list = Repo.all(query)
+    first =
+      if date_list == [] do
+        NaiveDateTime.utc_now()
+      else
+        Enum.at(date_list, 0)
+      end
+
+    date_list ++ Enum.map(1..29, &([] ++ NaiveDateTime.add(first, 86_400 * &1) )) # [~N[2021-12-11 13:54:29], ~N[2021-12-12 13:54:29], .. ~N[2022-01-09 13:54:29]]
+    |> Enum.map(fn x -> NaiveDateTime.to_date(x) end )
+    |> Enum.frequencies() # %{~N[2021-12-11] => 1, ~N[2021-12-12] => 1, .. ~N[2021-01-09] => 1}
+    |> Map.to_list() # [{~N[2021-12-11], 1}, {~N[2021-12-12], 1}, .. {~N[2021-01-09], 1}]
+    |> Enum.map(fn {x, y} ->
+        {:ok, ndt} = NaiveDateTime.new(x, ~T[00:00:00])
+        [ndt, y - 1]
+      end )
+    |> Enum.map(fn [ndt, num] -> [ndt.day * 30 - 30, 495 - num * 3] end)
+    |> Enum.map(fn [x, y] -> [Integer.to_string(x), Integer.to_string(y)] end)
   end
 
   @doc """
