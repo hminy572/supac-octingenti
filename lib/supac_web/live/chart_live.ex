@@ -10,38 +10,6 @@ defmodule SupacWeb.ChartLive do
       |> assign(:pc, Sup.pie_chart_leads())
       |> assign(:lc_path, Sup.line_path_leads())
       |> assign(:lc_circle, Sup.line_circle_leads())
-      |> assign(:sample_lc, [
-        [~N[2022-02-01 00:00:00], 11],
-        [~N[2022-02-02 00:00:00], 22],
-        [~N[2022-02-03 00:00:00], 33],
-        [~N[2022-02-04 00:00:00], 44],
-        [~N[2022-02-05 00:00:00], 55],
-        [~N[2022-02-06 00:00:00], 66],
-        [~N[2022-02-07 00:00:00], 77],
-        [~N[2022-02-08 00:00:00], 88],
-        [~N[2022-02-09 00:00:00], 99],
-        [~N[2022-02-10 00:00:00], 12],
-        [~N[2022-02-11 00:00:00], 13],
-        [~N[2022-02-12 00:00:00], 23],
-        [~N[2022-02-13 00:00:00], 34],
-        [~N[2022-02-14 00:00:00], 45],
-        [~N[2022-02-15 00:00:00], 56],
-        [~N[2022-02-16 00:00:00], 67],
-        [~N[2022-01-18 00:00:00], 59],
-        [~N[2022-01-19 00:00:00], 43],
-        [~N[2022-01-20 00:00:00], 42],
-        [~N[2022-01-21 00:00:00], 78],
-        [~N[2022-01-22 00:00:00], 94],
-        [~N[2022-01-23 00:00:00], 82],
-        [~N[2022-01-24 00:00:00], 51],
-        [~N[2022-01-25 00:00:00], 14],
-        [~N[2022-01-26 00:00:00], 69],
-        [~N[2022-01-27 00:00:00], 70],
-        [~N[2022-01-28 00:00:00], 50],
-        [~N[2022-01-29 00:00:00], 30],
-        [~N[2022-01-30 00:00:00], 20],
-        [~N[2022-01-31 00:00:00], 0]
-      ])
     }
   end
 
@@ -66,36 +34,6 @@ defmodule SupacWeb.ChartLive do
     ~H"""
     <div class="flex justify-center">
       <div class="mt-6 w-screen sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12">
-        <div class="m-4 p-4 border-4 border-amber-200 shadow-md">
-          <svg
-            id="chart"
-            width="70%"
-            height="100%"
-            viewBox="-100 -30 1200 560"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <text
-              fill="black"
-              x="280"
-              y="0"
-              class="font-bold text-2xl"
-            >
-              日次のリード数
-            </text>
-            <path
-              d={"M #{@lc_path} 930 500"}
-              fill="none"
-              stroke="#444cf7"
-              stroke-width="5px"
-            />
-            <path d="M0 0 L0 500 M0 500 L1000 500 M0 0 L-30 0 M0 100 L-20 100 M0 200 L-20 200 M0 300 L-20 300 M0 400 L-20 400 M0 500 L-20 500" stroke="#ddd" fill="rgba(0,0,0,0)" stroke-width="5" />
-            <g id="">
-              <%= for d <- @lc_circle do %>
-                <circle cx={Enum.at(d, 0)} cy={Enum.at(d, 1)} r="8" fill="#444cf7" />
-              <% end %>
-            </g>
-          </svg>
-        </div>
         <div class="m-4 p-4 border-4 border-amber-200 shadow-md">
           <p class="pie-chart-title">リードの各フェーズの割合</p>
           <figure
@@ -333,6 +271,36 @@ defmodule SupacWeb.ChartLive do
               >
                 Jane
               </text>
+            </g>
+          </svg>
+        </div>
+        <div class="m-4 p-4 border-4 border-amber-200 shadow-md">
+          <svg
+            id="chart"
+            width="70%"
+            height="100%"
+            viewBox="-100 -30 1200 560"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <text
+              fill="black"
+              x="280"
+              y="0"
+              class="font-bold text-2xl"
+            >
+              日次のリード数
+            </text>
+            <path
+              d={"M #{@lc_path} 930 500"}
+              fill="none"
+              stroke="#444cf7"
+              stroke-width="5px"
+            />
+            <path d="M0 0 L0 500 M0 500 L1000 500 M0 0 L-30 0 M0 100 L-20 100 M0 200 L-20 200 M0 300 L-20 300 M0 400 L-20 400 M0 500 L-20 500" stroke="#ddd" fill="rgba(0,0,0,0)" stroke-width="5" />
+            <g id="">
+              <%= for d <- @lc_circle do %>
+                <circle cx={Enum.at(d, 0)} cy={Enum.at(d, 1)} r="8" fill="#444cf7" />
+              <% end %>
             </g>
           </svg>
         </div>
