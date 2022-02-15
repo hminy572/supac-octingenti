@@ -1,4 +1,6 @@
-app = "supac-octingenti"
+# fly.toml file generated for supac-decem on 2022-02-15T16:17:30+09:00
+
+app = "supac-decem"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
